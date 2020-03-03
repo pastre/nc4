@@ -53,6 +53,27 @@ class EnemyGroupFactory: SceneSupplicant {
     
     func getEnemyGroup() -> EnemyGroup {
         let clonedNode = self.baseNode.copy() as! SKNode
+        
+        clonedNode.children.forEach {
+            self.configurePhysics(on: $0 as! SKSpriteNode)
+        }
+        
         return EnemyGroup(clonedNode, self.scene)
+    }
+    
+
+    func configurePhysics(on node: SKSpriteNode) {
+        let body = SKPhysicsBody(rectangleOf: node.size )
+        
+        body.affectedByGravity = false
+        body.allowsRotation = false
+        body.pinned = false
+        
+        body.isDynamic = false
+        body.categoryBitMask = ContactMask.enemy.rawValue
+        body.collisionBitMask = 0
+        body.contactTestBitMask = ContactMask.player.rawValue
+        
+        node.physicsBody = body
     }
 }

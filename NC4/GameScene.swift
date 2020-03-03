@@ -13,7 +13,7 @@ func clamp<T: Comparable>(_ value: T, _ floor: T, _ roof: T) -> T {
     return min(max(value, floor), roof)
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerNode: SKSpriteNode!
     var currentEnemyGroup: EnemyGroup?
@@ -23,10 +23,18 @@ class GameScene: SKScene {
     private var lastUpdate = TimeInterval()
     
     override func didMove(to view: SKView) {
+        
+        self.physicsWorld.contactDelegate = self
+        
         self.enemyFactory = EnemyGroupFactory(scene: self)
         
         self.playerNode = self.childNode(withName: "player") as! SKSpriteNode
         
+        playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
+        playerNode.physicsBody?.collisionBitMask = ContactMask.none.rawValue
+        playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue
+        playerNode.physicsBody?.restitution = 0
+
     }
     
     
@@ -64,6 +72,30 @@ class GameScene: SKScene {
         self.currentEnemyGroup = newEnemyGroup
     }
     
+    // MARK: - Collision methods
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+        guard let nodeA = contact.bodyA.node else { return }
+        guard let nodeB = contact.bodyB.node else { return }
+        
+        if nodeA.name == "player" {
+            self.playerCollision(playerNode: nodeA, other: nodeB)
+        } else if nodeB.name == "player" {
+            self.playerCollision(playerNode: nodeB, other: nodeA)
+        }
+        
+    }
+    
+    
+    func playerCollision(playerNode: SKNode, other: SKNode) {
+        if other.name!.contains("enemy")  {
+            
+            print("Bateu!!!")
+            
+        } else if other.name!.contains("coin") {
+            
+        }
+    }
     
     // MARK: - Touch callbacks
     
