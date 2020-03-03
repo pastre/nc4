@@ -86,16 +86,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    func didEnd(_ contact: SKPhysicsContact) {
+
+        guard let group = self.currentEnemyGroup else { return }
+        group.onContactStop()
+    }
     
     func playerCollision(playerNode: SKNode, other: SKNode) {
         if other.name!.contains("enemy")  {
-            
-            print("Bateu!!!")
-            
+            guard let group = self.currentEnemyGroup else { return }
+            group.onContact(with: other as! SKSpriteNode)
         } else if other.name!.contains("coin") {
             
         }
     }
+
     
     // MARK: - Touch callbacks
     

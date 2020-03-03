@@ -10,22 +10,47 @@ import SpriteKit
 
 class Player: AbstractGameObject {
     
-    override func update(_ deltaTime: TimeInterval) {
-        
-    }
     
+}
+
+class Enemy: AbstractGameObject {
+    var points: Int! = 0
+    
+    func rollPoints() {
+        self.points = .random(in: 5...10)
+    }
     
 }
 
 
 class EnemyGroup: AbstractGameObject {
     
+    var collidingEnemy: Enemy?
+    var enemies: [Enemy]!
+    
+    init(enemies: [Enemy], _ node: SKNode, _ scene: GameScene) {
+        super.init(node, scene)
+        self.enemies = enemies
+    }
+    
     override func update(_ deltaTime: TimeInterval) {
-        let deltaY = CGFloat(deltaTime) * 100
         
-        self.node.position.y -= deltaY
+        if let collidingEnemy = self.collidingEnemy {
+            collidingEnemy.points -= 1
+            
+            if collidingEnemy.points <= 0 {
+                collidingEnemy.node.removeFromParent()
+                self.enemies.removeAll { $0.points == 0}
+                self.collidingEnemy = nil
+            }
+        } else {
+            // Goes down
+            let deltaY = CGFloat(deltaTime) * 100
+            self.node.position.y -= deltaY
+        }
         
     }
+    
     
     func isOutOfScreen(_ bounds: CGRect) -> Bool {
         return self.node.position.y < bounds.minY
@@ -35,6 +60,13 @@ class EnemyGroup: AbstractGameObject {
         self.node.removeFromParent()
     }
     
+    func onContact(with node: SKSpriteNode ) {
+        self.collidingEnemy = self.enemies.filter { $0.node == node }.first
+    }
+    
+    func onContactStop() {
+        self.collidingEnemy = nil
+    }
     
 }
 
@@ -42,6 +74,7 @@ class EnemyGroupFactory: SceneSupplicant {
     
     var scene: GameScene!
     var baseNode: SKNode!
+    
     
     internal init(scene: GameScene?) {
         self.scene = scene
@@ -57,8 +90,19 @@ class EnemyGroupFactory: SceneSupplicant {
         clonedNode.children.forEach {
             self.configurePhysics(on: $0 as! SKSpriteNode)
         }
+        let enemies = clonedNode.children.map { Enemy($0, self.scene)}
         
-        return EnemyGroup(clonedNode, self.scene)
+        enemies.forEach {
+            $0.rollPoints()
+        }
+        
+        print("------------------")
+        
+        enemies.forEach {
+            print($0.points)
+        }
+        
+        return EnemyGroup(enemies: enemies,clonedNode, self.scene)
     }
     
 
