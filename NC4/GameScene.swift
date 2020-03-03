@@ -88,8 +88,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func didEnd(_ contact: SKPhysicsContact) {
 
-        guard let group = self.currentEnemyGroup else { return }
-        group.onContactStop()
+//        guard let group = self.currentEnemyGroup else { return }
+//        group.onContactStop()
     }
     
     func playerCollision(playerNode: SKNode, other: SKNode) {
@@ -112,6 +112,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let lastTouch = self.lastTouchPos {
             let deltaX = pos.x - lastTouch.x
             self.playerNode.position.x += deltaX
+            
+            
             self.playerNode.position.x = clamp(self.playerNode.position.x, self.getBounds().origin.x, self.getBounds().width)
         }
         

@@ -15,9 +15,38 @@ class Player: AbstractGameObject {
 
 class Enemy: AbstractGameObject {
     var points: Int! = 0
+    var lastContact: TimeInterval! = TimeInterval(2)
+    var minContactThreshold = TimeInterval(0.3)
     
-    func rollPoints() {
+    
+    
+    func configure() {
         self.points = .random(in: 5...10)
+    }
+    
+    
+    override func update(_ deltaTime: TimeInterval) {
+        self.lastContact += deltaTime
+        
+        self.getLabelNode().text = "\(self.points!)"
+    }
+    
+    func canCollide() -> Bool {
+        self.lastContact > minContactThreshold
+    }
+    
+    func onCollision() {
+        if self.canCollide() {
+            self.points -= 1
+            self.lastContact = TimeInterval(0)
+        }
+    }
+    
+    func shouldDespawn() -> Bool { self.points <= 0 }
+    
+    
+    func getLabelNode() -> SKLabelNode {
+        return self.node.childNode(withName: "point") as! SKLabelNode
     }
     
 }
@@ -35,10 +64,12 @@ class EnemyGroup: AbstractGameObject {
     
     override func update(_ deltaTime: TimeInterval) {
         
+        self.enemies.forEach { $0.update(deltaTime)}
+        
         if let collidingEnemy = self.collidingEnemy {
-            collidingEnemy.points -= 1
+            collidingEnemy.onCollision()
             
-            if collidingEnemy.points <= 0 {
+            if collidingEnemy.shouldDespawn() {
                 collidingEnemy.node.removeFromParent()
                 self.enemies.removeAll { $0.points == 0}
                 self.collidingEnemy = nil
@@ -93,7 +124,7 @@ class EnemyGroupFactory: SceneSupplicant {
         let enemies = clonedNode.children.map { Enemy($0, self.scene)}
         
         enemies.forEach {
-            $0.rollPoints()
+            $0.configure()
         }
         
         print("------------------")
