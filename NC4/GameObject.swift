@@ -8,11 +8,20 @@
 
 import SpriteKit
 
-class AbstractGameObject {
-    var node: SKNode!
-    var scene: SKScene!
+protocol Updateable {
     
-    init(_ node: SKNode, _ scene: SKScene) {
+    func update(_ deltaTime: TimeInterval)
+}
+
+protocol SceneSupplicant {
+    var scene: GameScene! { get set }
+}
+
+class AbstractGameObject: Updateable, SceneSupplicant {
+    var node: SKNode!
+    var scene: GameScene!
+    
+    init(_ node: SKNode, _ scene: GameScene) {
         self.node = node
         self.scene = scene
     }

@@ -18,13 +18,41 @@ class Player: AbstractGameObject {
 }
 
 
-class Enemy: AbstractGameObject {
+class EnemyGroup: AbstractGameObject {
     
     override func update(_ deltaTime: TimeInterval) {
-        let deltaY = deltaTime * 0.1
+        let deltaY = CGFloat(deltaTime) * 100
         
-//        self.node.position.y -= deltaY
+        self.node.position.y -= deltaY
+        
+    }
+    
+    func isOutOfScreen(_ bounds: CGRect) -> Bool {
+        return self.node.position.y < bounds.minY
+    }
+    
+    func despawn() {
+        self.node.removeFromParent()
     }
     
     
+}
+
+class EnemyGroupFactory: SceneSupplicant {
+    
+    var scene: GameScene!
+    var baseNode: SKNode!
+    
+    internal init(scene: GameScene?) {
+        self.scene = scene
+        
+        let enemyRootNode = self.scene.childNode(withName: "enemyGroup")
+        
+        self.baseNode = enemyRootNode!
+    }
+    
+    func getEnemyGroup() -> EnemyGroup {
+        let clonedNode = self.baseNode.copy() as! SKNode
+        return EnemyGroup(clonedNode, self.scene)
+    }
 }

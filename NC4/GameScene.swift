@@ -16,12 +16,56 @@ func clamp<T: Comparable>(_ value: T, _ floor: T, _ roof: T) -> T {
 class GameScene: SKScene {
     
     var playerNode: SKSpriteNode!
+    var currentEnemyGroup: EnemyGroup?
+    var enemyFactory: EnemyGroupFactory!
     var lastTouchPos: CGPoint?
     
+    private var lastUpdate = TimeInterval()
+    
     override func didMove(to view: SKView) {
+        self.enemyFactory = EnemyGroupFactory(scene: self)
+        
         self.playerNode = self.childNode(withName: "player") as! SKSpriteNode
+        
     }
     
+    
+    override func update(_ currentTime: TimeInterval) {
+        
+        if lastUpdate == 0 {
+            lastUpdate = currentTime
+            return
+        }
+        
+        let deltaTime = currentTime - self.lastUpdate
+        self.lastUpdate = currentTime
+        
+        if deltaTime > 0.1 { return }
+        
+        if let enemyGroup = self.currentEnemyGroup {
+            enemyGroup.update(deltaTime)
+            
+            if enemyGroup.isOutOfScreen(self.getBounds()) {
+                enemyGroup.despawn()
+                self.currentEnemyGroup = nil
+            }
+        } else {
+            self.spawnEnemyGroup()
+        }
+    }
+    
+    func spawnEnemyGroup() {
+        let newEnemyGroup = self.enemyFactory.getEnemyGroup()
+        
+        self.addChild(newEnemyGroup.node)
+        
+        newEnemyGroup.node.position.y = self.getBounds().height
+        
+        self.currentEnemyGroup = newEnemyGroup
+    }
+    
+    
+    // MARK: - Touch callbacks
     
     func touchDown(atPoint pos : CGPoint) {
         self.lastTouchPos = pos
@@ -57,10 +101,6 @@ class GameScene: SKScene {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
-    
-    override func update(_ currentTime: TimeInterval) {
-        
-    }
     
     func getBounds() -> CGRect {
         return CGRect(x: -self.scene!.size.width / 2, y: -self.scene!.size.height / 2, width: self.scene!.size.width / 2, height: self.scene!.size.height / 2)
