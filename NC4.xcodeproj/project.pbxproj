@@ -83,8 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				D718CF30240FF096007A1833 /* game */,
-				D718CF0C240EE433007A1833 /* GameScene.sks */,
 				D718CF10240EE433007A1833 /* GameScene.swift */,
+				D718CF0C240EE433007A1833 /* GameScene.sks */,
 				D718CF12240EE433007A1833 /* GameViewController.swift */,
 				D7B80D54241066260089F65C /* Utils.swift */,
 				D718CF14240EE433007A1833 /* Main.storyboard */,
@@ -99,19 +99,51 @@
 		D718CF30240FF096007A1833 /* game */ = {
 			isa = PBXGroup;
 			children = (
-				D718CF26240EF72F007A1833 /* ContactMask.swift */,
+				D7B80D59241066A40089F65C /* abstract */,
+				D7B80D56241066830089F65C /* coin */,
+				D7B80D58241066950089F65C /* enemy */,
+				D7B80D5A241066B80089F65C /* player */,
+			);
+			path = game;
+			sourceTree = "<group>";
+		};
+		D7B80D56241066830089F65C /* coin */ = {
+			isa = PBXGroup;
+			children = (
 				D7B80D4C2410241B0089F65C /* Coin.swift */,
 				D7B80D4E241024330089F65C /* CoinFactory.swift */,
 				D7B80D502410248B0089F65C /* CoinSpawner.swift */,
+			);
+			path = coin;
+			sourceTree = "<group>";
+		};
+		D7B80D58241066950089F65C /* enemy */ = {
+			isa = PBXGroup;
+			children = (
 				D718CF2C240FF041007A1833 /* Enemy.swift */,
 				D718CF2A240FF024007A1833 /* EnemyGroup.swift */,
 				D718CF28240FF003007A1833 /* EnemyGroupFactory.swift */,
+			);
+			path = enemy;
+			sourceTree = "<group>";
+		};
+		D7B80D59241066A40089F65C /* abstract */ = {
+			isa = PBXGroup;
+			children = (
+				D718CF26240EF72F007A1833 /* ContactMask.swift */,
 				D718CF22240EE48E007A1833 /* GameObject.swift */,
 				D718CF2E240FF05D007A1833 /* Lifeable.swift */,
+			);
+			path = abstract;
+			sourceTree = "<group>";
+		};
+		D7B80D5A241066B80089F65C /* player */ = {
+			isa = PBXGroup;
+			children = (
 				D718CF24240EE547007A1833 /* Player.swift */,
 				D7B80D522410660C0089F65C /* Tail.swift */,
 			);
-			path = game;
+			path = player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -29,7 +29,5 @@ class Tail: AbstractGameObject {
         
         self.node.zRotation = theta
         self.node.position.x -= distance.x * CGFloat(speed)
-        
-        
     }
 }

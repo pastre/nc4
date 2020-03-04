@@ -13,19 +13,17 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerNode: SKSpriteNode!
+    var lastContact: SKPhysicsContact?
     var player: Player!
     var currentEnemyGroup: EnemyGroup?
     var enemyFactory: EnemyGroupFactory<EnemyGroup>!
-    
-    
     var coinSpawner: CoinSpawner!
     
-    
-    var lastTouchPos: CGPoint?
     
     var vc: GameViewController?
     
     private var lastUpdate = TimeInterval()
+    private var lastTouchPos: CGPoint?
     
     override func didMove(to view: SKView) {
         
@@ -125,19 +123,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    var lastContact: SKPhysicsContact?
     
     func didEnd(_ contact: SKPhysicsContact) {
-        
-//        guard let nodeA = contact.bodyA.node else { return }
-//        guard let nodeB = contact.bodyB.node else { return }
-//        
-//        guard nodeA.name == "enemy" || nodeB.name == "enemy" else { return }
-        
-        
         self.lastContact = nil
-        
-        
     }
     
     func hasPickedCoin(_ node: SKNode) -> Bool {
