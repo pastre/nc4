@@ -44,6 +44,9 @@ class Enemy: AbstractGameObject {
     
     func shouldDespawn() -> Bool { self.points <= 0 }
     
+    func getWallNode() -> SKSpriteNode {
+        return self.node.childNode(withName: "wall") as! SKSpriteNode
+    }
     
     func getLabelNode() -> SKLabelNode {
         return self.node.childNode(withName: "point") as! SKLabelNode
@@ -64,7 +67,6 @@ class EnemyGroup: AbstractGameObject {
     
     override func update(_ deltaTime: TimeInterval) {
         
-        self.enemies.forEach { $0.update(deltaTime)}
         
         if let collidingEnemy = self.collidingEnemy {
             collidingEnemy.onCollision()
@@ -80,6 +82,7 @@ class EnemyGroup: AbstractGameObject {
             self.node.position.y -= deltaY
         }
         
+        self.enemies.forEach { $0.update(deltaTime)}
     }
     
     
@@ -93,10 +96,7 @@ class EnemyGroup: AbstractGameObject {
     
     func onContact(with node: SKSpriteNode ) {
         self.collidingEnemy = self.enemies.filter { $0.node == node }.first
-    }
-    
-    func onContactStop() {
-        self.collidingEnemy = nil
+       
     }
     
 }
@@ -112,6 +112,24 @@ class EnemyGroupFactory: SceneSupplicant {
         
         let enemyRootNode = self.scene.childNode(withName: "enemyGroup")
         
+        for child in enemyRootNode!.children {
+            guard child.name == "wall", let node = child as? SKSpriteNode else { continue }
+            
+            let body = SKPhysicsBody(rectangleOf: node.size )
+            
+            body.affectedByGravity = false
+            body.allowsRotation = false
+            body.pinned = true
+            
+            body.isDynamic = false
+            body.categoryBitMask = ContactMask.wall.rawValue
+            body.collisionBitMask = ContactMask.player.rawValue
+            body.contactTestBitMask = ContactMask.none.rawValue
+            
+            node.physicsBody = body
+            
+        }
+        
         self.baseNode = enemyRootNode!
     }
     
@@ -126,12 +144,12 @@ class EnemyGroupFactory: SceneSupplicant {
         enemies.forEach {
             $0.configure()
         }
-        
-        print("------------------")
-        
-        enemies.forEach {
-            print($0.points)
-        }
+//        
+//        print("------------------")
+//        
+//        enemies.forEach {
+//            print($0.points)
+//        }
         
         return EnemyGroup(enemies: enemies,clonedNode, self.scene)
     }
