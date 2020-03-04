@@ -39,15 +39,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.playerNode = self.childNode(withName: "player") as! SKSpriteNode
         
+        self.playerNode.physicsBody = SKPhysicsBody(rectangleOf: .init(width: 20, height: 20))
+        
         playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
         playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
         playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
         playerNode.physicsBody?.restitution = 0
+        
         playerNode.physicsBody?.isDynamic = true
+        playerNode.physicsBody?.pinned = false
+        playerNode.physicsBody?.mass = 100000000
+        playerNode.physicsBody?.affectedByGravity = false
+        
         
         self.player = Player(playerNode, self)
     }
     
+    override func didSimulatePhysics() {
+        self.player.clampTail()
+    }
     
     override func update(_ currentTime: TimeInterval) {
         
@@ -164,7 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let deltaX = pos.x - lastTouch.x
 
-            self.player.applySpeed(direction: deltaX > 0)
+            self.player.applySpeed(deltaX )
             if let lastContact = self.lastContact, lastContact.bodyA.node?.name == "player" || lastContact.bodyB.node?.name == "player" {
                 
                 let distanceToPlayer = lastContact.contactPoint.x - self.playerNode.position.x

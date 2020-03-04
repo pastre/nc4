@@ -11,7 +11,7 @@ import SpriteKit
 
 class Player: AbstractGameObject, Lifeable {
     
-    var lifes: Int! = 1
+    var lifes: Int! = 10
     
     override init(_ node: SKNode, _ scene: GameScene) {
         super.init(node, scene)
@@ -19,6 +19,7 @@ class Player: AbstractGameObject, Lifeable {
         for _ in 1...self.lifes {
             self.increaseTail()
         }
+        
     }
     
     func onLifeTaken() {
@@ -45,6 +46,8 @@ class Player: AbstractGameObject, Lifeable {
         return self.lifes < 0
     }
     
+    
+    
     func increaseTail() {
         let node = self.getTailNode()
         var joint: SKPhysicsJointLimit
@@ -61,8 +64,6 @@ class Player: AbstractGameObject, Lifeable {
             joint = SKPhysicsJointLimit.joint(withBodyA: lastElement.physicsBody!, bodyB: node.physicsBody!, anchorA: lastNodePos, anchorB: newNodePos)
             
         } else {
-            let nodePos = self.scene.convert(node.position, from: self.node)
-            let playerPos = self.scene.convert(self.node.position, from: self.scene)
 
             self.node.addChild(node)
             joint = SKPhysicsJointLimit.joint(withBodyA: self.node.physicsBody!, bodyB: node.physicsBody!, anchorA: self.node.position, anchorB: CGPoint(x: self.node.position.x, y: self.node.position.y - CGFloat(20 * self.getTailNodes().count)))
@@ -73,8 +74,14 @@ class Player: AbstractGameObject, Lifeable {
         self.scene.physicsWorld.add(joint)
     }
     
-    func applySpeed(direction isRight: Bool) {
-        self.getTailNodes().first?.physicsBody?.applyForce(.init(dx: isRight ? 100 : -100, dy: 0))
+    func clampTail() {
+        self.getTailNodes().forEach {
+            $0.physicsBody?.velocity.dy = 0
+        }
+    }
+    
+    func applySpeed(_ value: CGFloat) {
+        self.getTailNodes().first?.physicsBody?.applyImpulse(.init(dx: -value * 2, dy: 0))
     }
     
     func decreaseTail() {
@@ -86,17 +93,18 @@ class Player: AbstractGameObject, Lifeable {
     }
     
     func getTailNode() -> SKShapeNode {
-        let node = SKShapeNode(circleOfRadius: 5)
+        let node = SKShapeNode(circleOfRadius: 10)
         
-        let body = SKPhysicsBody(circleOfRadius: 5)
+        let body = SKPhysicsBody(circleOfRadius: 10)
         
         body.isDynamic = true
         body.affectedByGravity = false
         body.allowsRotation = false
-        body.linearDamping = 10000
-        body.friction = 100000
-        body.mass = 10000
+        body.linearDamping = 1
+//        body.friction = 0.000001
+        body.mass = 3
         
+        body.collisionBitMask = 0
         
         node.fillColor = .systemPink
         node.physicsBody = body
