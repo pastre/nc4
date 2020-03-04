@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,43 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="NC4" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMv-1u-Aha">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </skView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Yo-U5-s3i">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="onPlay:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Zke-65-PT7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="tMv-1u-Aha" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="7iG-jF-6gA"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="tMv-1u-Aha" secondAttribute="trailing" id="Dvz-kS-7ex"/>
+                            <constraint firstItem="7Yo-U5-s3i" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" id="Oub-CB-Sim"/>
+                            <constraint firstItem="tMv-1u-Aha" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="RgG-8Q-fbC"/>
+                            <constraint firstAttribute="bottom" secondItem="tMv-1u-Aha" secondAttribute="bottom" id="UfN-bV-wwa"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="7Yo-U5-s3i" secondAttribute="bottom" id="b99-xn-A17"/>
+                            <constraint firstItem="7Yo-U5-s3i" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="tDO-id-elb"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="7Yo-U5-s3i" secondAttribute="trailing" id="zRx-jJ-on9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
+                    <connections>
+                        <outlet property="playButton" destination="7Yo-U5-s3i" id="XEZ-8y-4As"/>
+                        <outlet property="skView" destination="tMv-1u-Aha" id="TVd-qb-tFc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="140.57971014492756" y="138.61607142857142"/>
         </scene>
     </scenes>
 </document>

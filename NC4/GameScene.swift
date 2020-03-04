@@ -16,9 +16,12 @@ func clamp<T: Comparable>(_ value: T, _ floor: T, _ roof: T) -> T {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerNode: SKSpriteNode!
+    var player: Player!
     var currentEnemyGroup: EnemyGroup?
-    var enemyFactory: EnemyGroupFactory!
+    var enemyFactory: EnemyGroupFactory<EnemyGroup>!
     var lastTouchPos: CGPoint?
+    
+    var vc: GameViewController?
     
     private var lastUpdate = TimeInterval()
     
@@ -34,11 +37,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
         playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue
         playerNode.physicsBody?.restitution = 0
+        
+        self.player = Player(playerNode, self)
 
     }
     
     
     override func update(_ currentTime: TimeInterval) {
+        
+        if self.player.isDead() {
+            self.vc?.onGameOver()
+        }
         
         if lastUpdate == 0 {
             lastUpdate = currentTime
@@ -49,6 +58,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.lastUpdate = currentTime
         
         if deltaTime > 0.1 { return }
+        
+        self.player.update(deltaTime)
         
         if let enemyGroup = self.currentEnemyGroup {
             enemyGroup.update(deltaTime)
@@ -63,7 +74,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func spawnEnemyGroup() {
-        let newEnemyGroup = self.enemyFactory.getEnemyGroup()
+        let newEnemyGroup = self.enemyFactory.getGameObject()
         
         self.addChild(newEnemyGroup.node)
         
@@ -106,7 +117,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func playerCollision(playerNode: SKNode, other: SKNode) {
         if other.name!.contains("enemy")  {
             guard let group = self.currentEnemyGroup else { return }
-            
             group.onContact(with: other as! SKSpriteNode)
         } else if other.name!.contains("coin") {
             

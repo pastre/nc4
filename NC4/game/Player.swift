@@ -10,7 +10,7 @@ import SpriteKit
 
 
 class Player: AbstractGameObject, Lifeable {
-    var lifes: Int!
+    var lifes: Int! = 10
     
     func onLifeTaken() {
         self.lifes -= 1
@@ -19,6 +19,19 @@ class Player: AbstractGameObject, Lifeable {
     func onLifePicked(_ amount: Int) {
         self.lifes += amount
     }
+    
+    func getPointsNode() -> SKLabelNode {
+        return self.node.childNode(withName: "point") as! SKLabelNode
+    }
+    
+    override func update(_ deltaTime: TimeInterval) {
+        self.getPointsNode().text = "\(self.lifes!)"
+    }
+    
+    func isDead() -> Bool {
+        return self.lifes <= 0
+    }
+    
 }
 
 

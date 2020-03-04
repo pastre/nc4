@@ -12,25 +12,36 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+    var scene: SKScene?
+    
+    
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var skView: SKView!
+    
+    fileprivate func loadScene() {
+        // Load the SKScene from 'GameScene.sks'
+        if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
+           
+            // Set the scale mode to scale to fit the window
+            scene.scaleMode = .aspectFill
+            scene.vc = self
+            self.scene = scene
+            // Present the scene
+            self.skView.presentScene(scene)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
+            self.loadScene()
             
-            view.ignoresSiblingOrder = true
+            self.skView.ignoresSiblingOrder = true
             
-            view.showsFPS = true
-            view.showsNodeCount = true
-            view.showsPhysics = true
-        }
+            self.skView.showsFPS = true
+            self.skView.showsNodeCount = true
+            self.skView.showsPhysics = true
+        
     }
 
     override var shouldAutorotate: Bool {
@@ -48,4 +59,18 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    func onGameOver() {
+        self.loadScene()
+        self.scene?.isPaused = true
+        self.playButton.isHidden = false
+        
+    }
+    
+    @IBAction func onPlay(_ sender: Any) {
+        self.scene?.isPaused = false
+        
+        self.playButton.isHidden = true
+    }
+    
 }

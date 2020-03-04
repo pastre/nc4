@@ -8,40 +8,42 @@
 
 import SpriteKit
 
+protocol GameObjectFactory: SceneSupplicant  {
+    
+    associatedtype T
+    
+    func configurePhysics(on node: SKSpriteNode)
+    func loadBaseNode() -> SKNode
+    func getGameObject() -> T
+}
 
-class EnemyGroupFactory: SceneSupplicant {
+//class CoinGroupFactory<T>: GameObjectFactory {
+//    
+//    func loadBaseNode() -> SKNode {
+//        return SKShapeNode(circleOfRadius: 20)
+//    }
+//    
+//    func getGameObject() ->  {
+//        <#code#>
+//    }
+//}
+
+class EnemyGroupFactory<T>: GameObjectFactory {
     
     var scene: GameScene!
     var baseNode: SKNode!
     
-    
     internal init(scene: GameScene?) {
         self.scene = scene
-        
-        let enemyRootNode = self.scene.childNode(withName: "enemyGroup")
-        
-        for child in enemyRootNode!.children {
-            guard child.name == "wall", let node = child as? SKSpriteNode else { continue }
-            
-            let body = SKPhysicsBody(rectangleOf: node.size )
-            
-            body.affectedByGravity = false
-            body.allowsRotation = false
-            body.pinned = true
-            
-            body.isDynamic = false
-            body.categoryBitMask = ContactMask.wall.rawValue
-            body.collisionBitMask = ContactMask.player.rawValue
-            body.contactTestBitMask = ContactMask.none.rawValue
-            
-            node.physicsBody = body
-            
-        }
-        
-        self.baseNode = enemyRootNode!
+    
+        self.baseNode = self.loadBaseNode()
     }
     
-    func getEnemyGroup() -> EnemyGroup {
+    func loadBaseNode() -> SKNode {
+        return self.scene.childNode(withName: "enemyGroup")!
+    }
+    
+    func getGameObject() -> EnemyGroup {
         let clonedNode = self.baseNode.copy() as! SKNode
         
         clonedNode.children.forEach {

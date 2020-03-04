@@ -13,8 +13,6 @@ class Enemy: AbstractGameObject, Lifeable {
     var lastContact: TimeInterval! = TimeInterval(2)
     var minContactThreshold = TimeInterval(0.3)
     
-    
-    
     func configure() {
         self.lifes = .random(in: 5...10)
     }
@@ -36,6 +34,7 @@ class Enemy: AbstractGameObject, Lifeable {
     
     func onCollision() {
         if self.canCollide() {
+            self.scene.player.onLifeTaken()
             self.onLifeTaken()
             self.lastContact = TimeInterval(0)
         }
