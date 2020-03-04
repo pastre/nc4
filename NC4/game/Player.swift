@@ -10,7 +10,8 @@ import SpriteKit
 
 
 class Player: AbstractGameObject, Lifeable {
-    var lifes: Int! = 10
+    
+    var lifes: Int! = 1
     
     override init(_ node: SKNode, _ scene: GameScene) {
         super.init(node, scene)
@@ -28,7 +29,6 @@ class Player: AbstractGameObject, Lifeable {
     func onLifePicked(_ amount: Int) {
         self.lifes += amount
         for _ in 1...amount {
-            print("Increased tail!")
             self.increaseTail()
         }
     }
@@ -47,10 +47,34 @@ class Player: AbstractGameObject, Lifeable {
     
     func increaseTail() {
         let node = self.getTailNode()
+        var joint: SKPhysicsJointLimit
         
-        node.position = CGPoint(x: 0, y: -20 * self.node.children.count)
         
-        self.node.addChild(node)
+        node.position = CGPoint(x: 0, y:( -20 * self.node.children.count))
+        
+        if let lastElement = self.getTailNodes().last {
+            
+            let newNodePos = self.scene.convert(node.position, from: self.node)
+            let lastNodePos = self.scene.convert(lastElement.position, from: self.node)
+
+            self.node.addChild(node)
+            joint = SKPhysicsJointLimit.joint(withBodyA: lastElement.physicsBody!, bodyB: node.physicsBody!, anchorA: lastNodePos, anchorB: newNodePos)
+            
+        } else {
+            let nodePos = self.scene.convert(node.position, from: self.node)
+            let playerPos = self.scene.convert(self.node.position, from: self.scene)
+
+            self.node.addChild(node)
+            joint = SKPhysicsJointLimit.joint(withBodyA: self.node.physicsBody!, bodyB: node.physicsBody!, anchorA: self.node.position, anchorB: CGPoint(x: self.node.position.x, y: self.node.position.y - CGFloat(20 * self.getTailNodes().count)))
+            
+        }
+        
+        
+        self.scene.physicsWorld.add(joint)
+    }
+    
+    func applySpeed(direction isRight: Bool) {
+        self.getTailNodes().first?.physicsBody?.applyForce(.init(dx: isRight ? 100 : -100, dy: 0))
     }
     
     func decreaseTail() {
@@ -62,15 +86,17 @@ class Player: AbstractGameObject, Lifeable {
     }
     
     func getTailNode() -> SKShapeNode {
-        let node = SKShapeNode(circleOfRadius: 10)
+        let node = SKShapeNode(circleOfRadius: 5)
         
-        let body = SKPhysicsBody(circleOfRadius: 10)
+        let body = SKPhysicsBody(circleOfRadius: 5)
         
         body.isDynamic = true
         body.affectedByGravity = false
         body.allowsRotation = false
-        body.linearDamping = 1
-        body.isDynamic = true
+        body.linearDamping = 10000
+        body.friction = 100000
+        body.mass = 10000
+        
         
         node.fillColor = .systemPink
         node.physicsBody = body

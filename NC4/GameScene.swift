@@ -43,6 +43,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
         playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
         playerNode.physicsBody?.restitution = 0
+        playerNode.physicsBody?.isDynamic = true
         
         self.player = Player(playerNode, self)
     }
@@ -74,7 +75,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.currentEnemyGroup = nil
             }
         } else {
-            self.spawnEnemyGroup()
+//            self.spawnEnemyGroup()
         }
     }
     
@@ -100,6 +101,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
+        guard nodeA.name == "player" || nodeB.name == "player" else { return }
+        
+        
+        if self.hasPickedCoin(nodeA) { return }
+        if self.hasPickedCoin(nodeB) { return }
+        
         
         guard contact.contactNormal.dx == 0 else {
             self.lastContact = contact
@@ -121,19 +128,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
         
+        guard nodeA.name == "enemy" || nodeB.name == "enemy" else { return }
+        
+        
         self.lastContact = nil
         
         
+    }
+    
+    func hasPickedCoin(_ node: SKNode) -> Bool {
+        
+        if let reward = self.coinSpawner.onCoinPicked(node) {
+            self.player.onLifePicked(reward)
+        }
+        
+        return node.name == "coin"
     }
     
     func playerCollision(playerNode: SKNode, other: SKNode) {
         if other.name!.contains("enemy")  {
             guard let group = self.currentEnemyGroup else { return }
             group.onContact(with: other as! SKSpriteNode)
-        } else if other.name!.contains("coin") {
-            if let reward = self.coinSpawner.onCoinPicked(other) {
-                self.player.onLifePicked(reward)
-            }
         }
     }
 
@@ -147,8 +162,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func touchMoved(toPoint pos : CGPoint) {
         if let lastTouch = self.lastTouchPos {
             
-            var deltaX = pos.x - lastTouch.x
-                    
+            let deltaX = pos.x - lastTouch.x
+
+            self.player.applySpeed(direction: deltaX > 0)
             if let lastContact = self.lastContact, lastContact.bodyA.node?.name == "player" || lastContact.bodyB.node?.name == "player" {
                 
                 let distanceToPlayer = lastContact.contactPoint.x - self.playerNode.position.x
