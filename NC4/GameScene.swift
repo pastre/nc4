@@ -55,9 +55,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.player = Player(playerNode, self)
     }
     
-    override func didSimulatePhysics() {
-        self.player.clampTail()
-    }
     
     override func update(_ currentTime: TimeInterval) {
         
@@ -173,8 +170,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let lastTouch = self.lastTouchPos {
             
             let deltaX = pos.x - lastTouch.x
-
-            self.player.applySpeed(deltaX )
+            
             if let lastContact = self.lastContact, lastContact.bodyA.node?.name == "player" || lastContact.bodyB.node?.name == "player" {
                 
                 let distanceToPlayer = lastContact.contactPoint.x - self.playerNode.position.x
@@ -192,7 +188,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             self.playerNode.position.x += deltaX
             
-            self.playerNode.position.x = clamp(self.playerNode.position.x, self.getBounds().origin.x, self.getBounds().width)
+            self.playerNode.position.x = clamp(self.playerNode.position.x, (self.getBounds().origin.x + self.playerNode.size.width / 2), (self.getBounds().width - self.playerNode.size.width / 2))
         }
         
         self.lastTouchPos = pos

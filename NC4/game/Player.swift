@@ -74,15 +74,7 @@ class Player: AbstractGameObject, Lifeable {
         self.scene.physicsWorld.add(joint)
     }
     
-    func clampTail() {
-        self.getTailNodes().forEach {
-            $0.physicsBody?.velocity.dy = 0
-        }
-    }
     
-    func applySpeed(_ value: CGFloat) {
-        self.getTailNodes().first?.physicsBody?.applyImpulse(.init(dx: -value * 2, dy: 0))
-    }
     
     func decreaseTail() {
         self.getTailNodes().last?.removeFromParent()
@@ -100,9 +92,6 @@ class Player: AbstractGameObject, Lifeable {
         body.isDynamic = true
         body.affectedByGravity = false
         body.allowsRotation = false
-        body.linearDamping = 1
-//        body.friction = 0.000001
-        body.mass = 3
         
         body.collisionBitMask = 0
         
