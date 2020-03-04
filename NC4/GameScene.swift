@@ -9,9 +9,6 @@
 import SpriteKit
 import GameplayKit
 
-func clamp<T: Comparable>(_ value: T, _ floor: T, _ roof: T) -> T {
-    return min(max(value, floor), roof)
-}
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
