@@ -21,6 +21,9 @@
 		D718CF2B240FF024007A1833 /* EnemyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF2A240FF024007A1833 /* EnemyGroup.swift */; };
 		D718CF2D240FF041007A1833 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF2C240FF041007A1833 /* Enemy.swift */; };
 		D718CF2F240FF05D007A1833 /* Lifeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF2E240FF05D007A1833 /* Lifeable.swift */; };
+		D7B80D4D2410241B0089F65C /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B80D4C2410241B0089F65C /* Coin.swift */; };
+		D7B80D4F241024330089F65C /* CoinFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B80D4E241024330089F65C /* CoinFactory.swift */; };
+		D7B80D512410248B0089F65C /* CoinSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B80D502410248B0089F65C /* CoinSpawner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		D718CF2A240FF024007A1833 /* EnemyGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyGroup.swift; sourceTree = "<group>"; };
 		D718CF2C240FF041007A1833 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		D718CF2E240FF05D007A1833 /* Lifeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifeable.swift; sourceTree = "<group>"; };
+		D7B80D4C2410241B0089F65C /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		D7B80D4E241024330089F65C /* CoinFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinFactory.swift; sourceTree = "<group>"; };
+		D7B80D502410248B0089F65C /* CoinSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSpawner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,9 @@
 			isa = PBXGroup;
 			children = (
 				D718CF26240EF72F007A1833 /* ContactMask.swift */,
+				D7B80D4C2410241B0089F65C /* Coin.swift */,
+				D7B80D4E241024330089F65C /* CoinFactory.swift */,
+				D7B80D502410248B0089F65C /* CoinSpawner.swift */,
 				D718CF2C240FF041007A1833 /* Enemy.swift */,
 				D718CF2A240FF024007A1833 /* EnemyGroup.swift */,
 				D718CF28240FF003007A1833 /* EnemyGroupFactory.swift */,
@@ -175,11 +184,14 @@
 				D718CF11240EE433007A1833 /* GameScene.swift in Sources */,
 				D718CF13240EE433007A1833 /* GameViewController.swift in Sources */,
 				D718CF2F240FF05D007A1833 /* Lifeable.swift in Sources */,
+				D7B80D512410248B0089F65C /* CoinSpawner.swift in Sources */,
 				D718CF25240EE547007A1833 /* Player.swift in Sources */,
 				D718CF29240FF003007A1833 /* EnemyGroupFactory.swift in Sources */,
 				D718CF2D240FF041007A1833 /* Enemy.swift in Sources */,
 				D718CF27240EF730007A1833 /* ContactMask.swift in Sources */,
 				D718CF2B240FF024007A1833 /* EnemyGroup.swift in Sources */,
+				D7B80D4F241024330089F65C /* CoinFactory.swift in Sources */,
+				D7B80D4D2410241B0089F65C /* Coin.swift in Sources */,
 				D718CF0B240EE433007A1833 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

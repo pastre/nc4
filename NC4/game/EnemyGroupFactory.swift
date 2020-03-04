@@ -12,21 +12,12 @@ protocol GameObjectFactory: SceneSupplicant  {
     
     associatedtype T
     
+    var baseNode: SKNode! { get set }
+    
     func configurePhysics(on node: SKSpriteNode)
     func loadBaseNode() -> SKNode
     func getGameObject() -> T
 }
-
-//class CoinGroupFactory<T>: GameObjectFactory {
-//    
-//    func loadBaseNode() -> SKNode {
-//        return SKShapeNode(circleOfRadius: 20)
-//    }
-//    
-//    func getGameObject() ->  {
-//        <#code#>
-//    }
-//}
 
 class EnemyGroupFactory<T>: GameObjectFactory {
     

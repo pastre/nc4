@@ -19,6 +19,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var player: Player!
     var currentEnemyGroup: EnemyGroup?
     var enemyFactory: EnemyGroupFactory<EnemyGroup>!
+    
+    
+    var coinSpawner: CoinSpawner!
+    
+    
     var lastTouchPos: CGPoint?
     
     var vc: GameViewController?
@@ -30,16 +35,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         
         self.enemyFactory = EnemyGroupFactory(scene: self)
+        self.coinSpawner = CoinSpawner(scene: self)
         
         self.playerNode = self.childNode(withName: "player") as! SKSpriteNode
         
         playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
         playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
-        playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue
+        playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
         playerNode.physicsBody?.restitution = 0
         
         self.player = Player(playerNode, self)
-
     }
     
     
@@ -59,7 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if deltaTime > 0.1 { return }
         
-        self.player.update(deltaTime)
+        self.getUpdateables().forEach { $0.update(deltaTime) }
         
         if let enemyGroup = self.currentEnemyGroup {
             enemyGroup.update(deltaTime)
@@ -71,6 +76,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             self.spawnEnemyGroup()
         }
+    }
+    
+    func getUpdateables() -> [Updateable] {
+        return [
+            self.player,
+            self.coinSpawner
+        ]
     }
     
     func spawnEnemyGroup() {
@@ -119,7 +131,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             guard let group = self.currentEnemyGroup else { return }
             group.onContact(with: other as! SKSpriteNode)
         } else if other.name!.contains("coin") {
-            
+            if let reward = self.coinSpawner.onCoinPicked(other) {
+                self.player.lifes += reward
+            }
         }
     }
 

@@ -34,13 +34,14 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-            self.loadScene()
-            
-            self.skView.ignoresSiblingOrder = true
-            
-            self.skView.showsFPS = true
-            self.skView.showsNodeCount = true
-            self.skView.showsPhysics = true
+        self.loadScene()
+        self.scene?.isPaused = true
+        
+        self.skView.ignoresSiblingOrder = true
+        
+        self.skView.showsFPS = true
+        self.skView.showsNodeCount = true
+        self.skView.showsPhysics = true
         
     }
 

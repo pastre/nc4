@@ -29,7 +29,7 @@ class Player: AbstractGameObject, Lifeable {
     }
     
     func isDead() -> Bool {
-        return self.lifes <= 0
+        return self.lifes < 0
     }
     
 }
