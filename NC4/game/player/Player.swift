@@ -27,6 +27,7 @@ class Player: AbstractGameObject, Lifeable {
     func onLifeTaken() {
         self.lifes -= 1
         self.decreaseTail()
+        self.scene.playerDidScore()
     }
     
     func onLifePicked(_ amount: Int) {

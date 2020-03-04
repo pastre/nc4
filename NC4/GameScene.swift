@@ -13,26 +13,29 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerNode: SKSpriteNode!
-    var lastContact: SKPhysicsContact?
+    var scoreNode: SKLabelNode!
     var player: Player!
     var currentEnemyGroup: EnemyGroup?
     var enemyFactory: EnemyGroupFactory<EnemyGroup>!
     var coinSpawner: CoinSpawner!
-    
-    
+
     var vc: GameViewController?
     
     private var lastUpdate = TimeInterval()
     private var lastTouchPos: CGPoint?
+    var lastContact: SKPhysicsContact?
+    
+    var score: Int!
     
     override func didMove(to view: SKView) {
-        
+        self.score = 0
         self.physicsWorld.contactDelegate = self
         
         self.enemyFactory = EnemyGroupFactory(scene: self)
         self.coinSpawner = CoinSpawner(scene: self)
         
         self.playerNode = self.childNode(withName: "player") as! SKSpriteNode
+        self.scoreNode = self.childNode(withName: "score") as! SKLabelNode
         
         self.playerNode.physicsBody = SKPhysicsBody(rectangleOf: .init(width: 20, height: 20))
         
@@ -144,6 +147,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
+    
+    // MARK:  Player helper function
+    
+    func playerDidScore() {
+        self.score += 1
+        self.scoreNode.text = "Score: \(self.score!)"
+    }
     
     // MARK: - Touch callbacks
     
