@@ -132,7 +132,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             group.onContact(with: other as! SKSpriteNode)
         } else if other.name!.contains("coin") {
             if let reward = self.coinSpawner.onCoinPicked(other) {
-                self.player.lifes += reward
+                self.player.onLifePicked(reward)
             }
         }
     }
