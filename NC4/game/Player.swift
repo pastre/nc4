@@ -9,7 +9,29 @@
 import SpriteKit
 
 class Tail: AbstractGameObject {
+    var player: Player!
+    var index: CGFloat!
     
+    init(_ player: Player, _ index: CGFloat, _ node: SKNode, _ scene: GameScene) {
+        super.init(node, scene)
+        self.index = index
+        self.player = player
+    }
+    
+    override func update(_ deltaTime: TimeInterval) {
+        let playerPos = self.player.node.position
+        let nodePos = self.node.position
+        let speed = 1 / self.index * 0.75
+        
+        
+        let distance = nodePos - playerPos
+        let theta = atan(distance.y / distance.x) + (distance.x > 0 ? .pi / 2 : -.pi / 2 )
+        
+        self.node.zRotation = theta
+        self.node.position.x -= distance.x * CGFloat(speed)
+        
+        
+    }
 }
 
 class Player: AbstractGameObject, Lifeable {
@@ -45,6 +67,8 @@ class Player: AbstractGameObject, Lifeable {
     
     override func update(_ deltaTime: TimeInterval) {
         self.getPointsNode().text = "\(self.lifes!)"
+        
+        self.tail.forEach { $0.update(deltaTime) }
     }
     
     func isDead() -> Bool {
@@ -55,11 +79,11 @@ class Player: AbstractGameObject, Lifeable {
     
     func increaseTail() {
         let node = self.getTailNode()
-        let tail = Tail(node, self.scene)
+        let tail = Tail(self, CGFloat(self.tail.count + 1), node, self.scene)
         
         self.tail.append(tail)
         
-        node.position = CGPoint(x: self.node.position.x, y: self.node.position.y + CGFloat( -20 * self.tail.count))
+        node.position = CGPoint(x: self.tail.last?.node.position.x ?? self.node.position.x, y: self.node.position.y + CGFloat( -20 * self.tail.count))
                 
         self.scene.addChild(node)
     }
@@ -91,3 +115,8 @@ class Player: AbstractGameObject, Lifeable {
 
 
 
+extension CGPoint {
+    static func -(_ p1: CGPoint, _ p2: CGPoint) -> CGPoint {
+        return CGPoint(x: p1.x - p2.x, y: p1.y - p2.y)
+    }
+}
