@@ -8,12 +8,17 @@
 
 import SpriteKit
 
+class Tail: AbstractGameObject {
+    
+}
 
 class Player: AbstractGameObject, Lifeable {
     
     var lifes: Int! = 10
+    var tail: [Tail]
     
     override init(_ node: SKNode, _ scene: GameScene) {
+        self.tail = [Tail]()
         super.init(node, scene)
         
         for _ in 1...self.lifes {
@@ -50,55 +55,35 @@ class Player: AbstractGameObject, Lifeable {
     
     func increaseTail() {
         let node = self.getTailNode()
-        var joint: SKPhysicsJointLimit
+        let tail = Tail(node, self.scene)
         
+        self.tail.append(tail)
         
-        node.position = CGPoint(x: 0, y:( -20 * self.node.children.count))
-        
-        if let lastElement = self.getTailNodes().last {
-            
-            let newNodePos = self.scene.convert(node.position, from: self.node)
-            let lastNodePos = self.scene.convert(lastElement.position, from: self.node)
-
-            self.node.addChild(node)
-            joint = SKPhysicsJointLimit.joint(withBodyA: lastElement.physicsBody!, bodyB: node.physicsBody!, anchorA: lastNodePos, anchorB: newNodePos)
-            
-        } else {
-
-            self.node.addChild(node)
-            joint = SKPhysicsJointLimit.joint(withBodyA: self.node.physicsBody!, bodyB: node.physicsBody!, anchorA: self.node.position, anchorB: CGPoint(x: self.node.position.x, y: self.node.position.y - CGFloat(20 * self.getTailNodes().count)))
-            
-        }
-        
-        
-        self.scene.physicsWorld.add(joint)
+        node.position = CGPoint(x: self.node.position.x, y: self.node.position.y + CGFloat( -20 * self.tail.count))
+                
+        self.scene.addChild(node)
     }
     
     
     
     func decreaseTail() {
-        self.getTailNodes().last?.removeFromParent()
+        if let last = self.tail.last {
+            last.node.removeFromParent()
+            self.tail.removeLast()
+        }
+        
     }
     
-    func getTailNodes() -> [SKNode] {
-        return self.node.children.filter { $0.name == "tail" }
-    }
+    
     
     func getTailNode() -> SKShapeNode {
         let node = SKShapeNode(circleOfRadius: 10)
+        let emojiNode = SKLabelNode(text: "😍")
         
-        let body = SKPhysicsBody(circleOfRadius: 10)
-        
-        body.isDynamic = true
-        body.affectedByGravity = false
-        body.allowsRotation = false
-        
-        body.collisionBitMask = 0
-        
-        node.fillColor = .systemPink
-        node.physicsBody = body
+        node.fillColor = .clear
         node.name = "tail"
         
+        node.addChild(emojiNode)
         return node
     }
 }

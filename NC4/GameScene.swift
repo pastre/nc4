@@ -82,7 +82,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.currentEnemyGroup = nil
             }
         } else {
-//            self.spawnEnemyGroup()
+            self.spawnEnemyGroup()
         }
     }
     
@@ -132,10 +132,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func didEnd(_ contact: SKPhysicsContact) {
         
-        guard let nodeA = contact.bodyA.node else { return }
-        guard let nodeB = contact.bodyB.node else { return }
-        
-        guard nodeA.name == "enemy" || nodeB.name == "enemy" else { return }
+//        guard let nodeA = contact.bodyA.node else { return }
+//        guard let nodeB = contact.bodyB.node else { return }
+//        
+//        guard nodeA.name == "enemy" || nodeB.name == "enemy" else { return }
         
         
         self.lastContact = nil
@@ -178,12 +178,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if distanceToPlayer * deltaX >= 0 {
                     return
                 }
-                
-//                let debug = SKShapeNode(circleOfRadius: 2)
-//                debug.fillColor = .blue
-//                debug.position = lastContact.contactPoint
-//
-//                self.addChild(debug)
             }
             
             self.playerNode.position.x += deltaX
