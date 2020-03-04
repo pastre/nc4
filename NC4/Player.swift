@@ -8,41 +8,68 @@
 
 import SpriteKit
 
-class Player: AbstractGameObject {
+protocol Lifeable {
+    var lifes: Int! { get set }
     
-    
+    func isDead() -> Bool
+    func onLifeTaken()
+    func onLifePicked(_ amount: Int)
 }
 
-class Enemy: AbstractGameObject {
-    var points: Int! = 0
+extension Lifeable {
+    
+    func isDead() -> Bool { return self.lifes <= 0 }
+    func onLifePicked(_ amount: Int) {
+        
+    }
+}
+
+class Player: AbstractGameObject, Lifeable {
+    var lifes: Int!
+    
+    func onLifeTaken() {
+        self.lifes -= 1
+    }
+    
+    func onLifePicked(_ amount: Int) {
+        self.lifes += amount
+    }
+}
+
+class Enemy: AbstractGameObject, Lifeable {
+    var lifes: Int! = 0
     var lastContact: TimeInterval! = TimeInterval(2)
     var minContactThreshold = TimeInterval(0.3)
     
     
     
     func configure() {
-        self.points = .random(in: 5...10)
+        self.lifes = .random(in: 5...10)
     }
     
     
     override func update(_ deltaTime: TimeInterval) {
         self.lastContact += deltaTime
         
-        self.getLabelNode().text = "\(self.points!)"
+        self.getLabelNode().text = "\(self.lifes!)"
     }
     
     func canCollide() -> Bool {
         self.lastContact > minContactThreshold
     }
     
+    func onLifeTaken() {
+         self.lifes -= 1
+    }
+    
     func onCollision() {
         if self.canCollide() {
-            self.points -= 1
+            self.onLifeTaken()
             self.lastContact = TimeInterval(0)
         }
     }
     
-    func shouldDespawn() -> Bool { self.points <= 0 }
+    func isDead() -> Bool { self.lifes <= 0 }
     
     func getWallNode() -> SKSpriteNode {
         return self.node.childNode(withName: "wall") as! SKSpriteNode
@@ -71,9 +98,9 @@ class EnemyGroup: AbstractGameObject {
         if let collidingEnemy = self.collidingEnemy {
             collidingEnemy.onCollision()
             
-            if collidingEnemy.shouldDespawn() {
+            if collidingEnemy.isDead() {
                 collidingEnemy.node.removeFromParent()
-                self.enemies.removeAll { $0.points == 0}
+                self.enemies.removeAll { $0.lifes == 0}
                 self.collidingEnemy = nil
             }
         } else {
