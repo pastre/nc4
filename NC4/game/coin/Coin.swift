@@ -22,7 +22,7 @@ class Coin: AbstractGameObject, Lifeable {
         
         node.position = CGPoint(x:
             .random(in: (
-                scene.getBounds().minX + 10)...(scene.getBounds().maxX - 10)), y:
+                scene.getBounds().minX + 10)...(scene.getBounds().width - 10)), y:
             scene.getBounds().height)
         
         self.getLabelNode().text = "\(self.lifes!)"
