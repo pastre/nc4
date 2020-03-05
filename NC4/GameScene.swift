@@ -41,8 +41,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.playerNode = self.childNode(withName: "player") as! SKSpriteNode
         self.scoreNode = self.childNode(withName: "score") as! SKLabelNode
         
-//        self.playerNode.physicsBody = SKPhysicsBody(rectangleOf: .init(width: 20, height: 20))
-        
         playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
         playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
         playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
@@ -99,6 +97,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Collision methods
     func didBegin(_ contact: SKPhysicsContact) {
         
+        print("CONTACT!!!!!", contact.bodyA.node?.name, contact.bodyB.node?.name)
         
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }

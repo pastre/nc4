@@ -79,6 +79,7 @@ class Player: AbstractGameObject, Lifeable {
     func getTailNode() -> SKShapeNode {
         let node = SKShapeNode(circleOfRadius: 10)
         let emojiNode = SKLabelNode(text: "😍")
+        emojiNode.fontSize = 10
         
         node.fillColor = .clear
         node.name = "tail"

@@ -10,7 +10,7 @@ import SpriteKit
 
 class EnemyGroup: AbstractGameObject {
     
-    var collidingEnemy: Enemy?
+    var collidingEnemies: [Enemy] = [Enemy]()
     var enemies: [Enemy]!
     
     init(enemies: [Enemy], _ node: SKNode, _ scene: GameScene) {
@@ -21,13 +21,16 @@ class EnemyGroup: AbstractGameObject {
     override func update(_ deltaTime: TimeInterval) {
         
         
-        if let collidingEnemy = self.collidingEnemy {
-            collidingEnemy.onCollision()
-            
-            if collidingEnemy.isDead() {
-                collidingEnemy.node.removeFromParent()
-                self.enemies.removeAll { $0.lifes == 0}
-                self.collidingEnemy = nil
+        if self.collidingEnemies.count > 0 {
+            for collidingEnemy in self.collidingEnemies {
+
+                collidingEnemy.onCollision()
+                
+                if collidingEnemy.isDead() {
+                    collidingEnemy.node.removeFromParent()
+                    self.enemies.removeAll { $0.lifes == 0}
+                    self.collidingEnemies.removeAll { $0.lifes == 0}
+                }
             }
         } else {
             // Goes down
@@ -48,8 +51,15 @@ class EnemyGroup: AbstractGameObject {
     }
     
     func onContact(with node: SKSpriteNode ) {
-        self.collidingEnemy = self.enemies.filter { $0.node == node }.first
-       
+        guard let enemyInContact = self.enemies.filter({ (enemy) -> Bool in
+            return enemy.node == node
+        }).first else  { return }
+        
+        self.collidingEnemies.append(enemyInContact)
+    }
+    
+    func onContactStopped(with node: SKSpriteNode) {
+        
     }
     
 }
