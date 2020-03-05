@@ -62,4 +62,8 @@ class EnemyGroup: AbstractGameObject {
         self.collidingEnemies.removeAll { $0.node == node }
     }
     
+    func isInContact() -> Bool {
+        return self.collidingEnemies.count > 0
+    }
+    
 }

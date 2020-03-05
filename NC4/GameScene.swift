@@ -69,11 +69,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.currentDeltaTime = deltaTime
         
+        
         self.getUpdateables().forEach { $0.update(deltaTime) }
         
         if let enemyGroup = self.currentEnemyGroup {
-            enemyGroup.update(deltaTime)
             
+            enemyGroup.update(deltaTime)
+
+            self.coinSpawner.shouldMoveCoins = !enemyGroup.isInContact()
             if enemyGroup.isOutOfScreen(self.getBounds()) {
                 enemyGroup.despawn()
                 self.currentEnemyGroup = nil

@@ -15,7 +15,10 @@ class CoinSpawner: SceneSupplicant, Updateable {
     var coins: [Coin]!
     
     let spawnThreshold = TimeInterval(2)
+    
     var currentSpawnTimer = TimeInterval(2)
+    var shouldMoveCoins: Bool = true
+    
     
     internal init(scene: GameScene) {
         self.scene = scene
@@ -27,7 +30,9 @@ class CoinSpawner: SceneSupplicant, Updateable {
     func update(_ deltaTime: TimeInterval) {
         self.currentSpawnTimer += deltaTime
         
-        self.coins.forEach { $0.update(deltaTime)  }
+        if self.shouldMoveCoins {
+            self.coins.forEach { $0.update(deltaTime)  }
+        }
         
         if currentSpawnTimer > self.spawnThreshold {
             self.spawn()
@@ -68,6 +73,13 @@ class CoinSpawner: SceneSupplicant, Updateable {
     }
     
     
+    func onCollisionStarted() {
+        self.shouldMoveCoins = false
+    }
+    
+    func onCollisionEnded() {
+        self.shouldMoveCoins = true
+    }
     
     
 }
