@@ -37,20 +37,11 @@ class EnemyGroupFactory<T>: GameObjectFactory {
     func getGameObject() -> EnemyGroup {
         let clonedNode = self.baseNode.copy() as! SKNode
         
-        clonedNode.children.forEach {
-            self.configurePhysics(on: $0 as! SKSpriteNode)
-        }
+        clonedNode.children.forEach { self.configurePhysics(on: $0 as! SKSpriteNode) }
+        
         let enemies = clonedNode.children.map { Enemy($0, self.scene)}
         
-        enemies.forEach {
-            $0.configure()
-        }
-//
-//        print("------------------")
-//
-//        enemies.forEach {
-//            print($0.points)
-//        }
+        enemies.forEach { $0.configure() }
         
         return EnemyGroup(enemies: enemies,clonedNode, self.scene)
     }
@@ -65,8 +56,15 @@ class EnemyGroupFactory<T>: GameObjectFactory {
         
         body.isDynamic = false
         body.categoryBitMask = ContactMask.enemy.rawValue
-        body.collisionBitMask = 0
+        body.collisionBitMask = ContactMask.none.rawValue
         body.contactTestBitMask = ContactMask.player.rawValue
+        body.mass = .infinity
+        
+        if let wallBody = node.childNode(withName: "wall")?.physicsBody {
+            wallBody.categoryBitMask = ContactMask.wall.rawValue
+            wallBody.collisionBitMask = ContactMask.player.rawValue
+            wallBody.contactTestBitMask = ContactMask.none.rawValue
+        }
         
         node.physicsBody = body
     }

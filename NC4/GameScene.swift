@@ -9,6 +9,9 @@
 import SpriteKit
 import GameplayKit
 
+func abs(_ f: CGFloat) -> CGFloat{
+    return f * (f < 0 ? -1 : 1)
+}
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -23,6 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var lastUpdate = TimeInterval()
     private var lastTouchPos: CGPoint?
+    private var currentDeltaTime: TimeInterval!
     var lastContact: SKPhysicsContact?
     
     var score: Int!
@@ -37,17 +41,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.playerNode = self.childNode(withName: "player") as! SKSpriteNode
         self.scoreNode = self.childNode(withName: "score") as! SKLabelNode
         
-        self.playerNode.physicsBody = SKPhysicsBody(rectangleOf: .init(width: 20, height: 20))
+//        self.playerNode.physicsBody = SKPhysicsBody(rectangleOf: .init(width: 20, height: 20))
         
         playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
         playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
         playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
-        playerNode.physicsBody?.restitution = 0
         
-        playerNode.physicsBody?.isDynamic = true
-        playerNode.physicsBody?.pinned = false
-        playerNode.physicsBody?.mass = 100000000
-        playerNode.physicsBody?.affectedByGravity = false
         
         
         self.player = Player(playerNode, self)
@@ -70,6 +69,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if deltaTime > 0.1 { return }
         
+        self.currentDeltaTime = deltaTime
+        
         self.getUpdateables().forEach { $0.update(deltaTime) }
         
         if let enemyGroup = self.currentEnemyGroup {
@@ -84,12 +85,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func getUpdateables() -> [Updateable] {
-        return [
-            self.player,
-            self.coinSpawner
-        ]
-    }
     
     func spawnEnemyGroup() {
         let newEnemyGroup = self.enemyFactory.getGameObject()
@@ -104,10 +99,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Collision methods
     func didBegin(_ contact: SKPhysicsContact) {
         
+        
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
         guard nodeA.name == "player" || nodeB.name == "player" else { return }
-        
         
         if self.hasPickedCoin(nodeA) { return }
         if self.hasPickedCoin(nodeB) { return }
@@ -126,10 +121,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    
-    func didEnd(_ contact: SKPhysicsContact) {
-        self.lastContact = nil
-    }
     
     func hasPickedCoin(_ node: SKNode) -> Bool {
         
@@ -155,6 +146,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.scoreNode.text = "Score: \(self.score!)"
     }
     
+    func movePlayer(_ dx: CGFloat) {
+
+        let vx = (abs(dx) > 1 ? dx : 0) / CGFloat(self.currentDeltaTime)
+        
+        self.playerNode.physicsBody?.velocity = CGVector(dx: vx, dy: 0)
+        
+        self.playerNode.position.x = clamp(self.playerNode.position.x, (self.getBounds().origin.x + self.playerNode.size.width / 2), (self.getBounds().width - self.playerNode.size.width / 2))
+    }
+    
     // MARK: - Touch callbacks
     
     func touchDown(atPoint pos : CGPoint) {
@@ -163,27 +163,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func touchMoved(toPoint pos : CGPoint) {
         if let lastTouch = self.lastTouchPos {
-            
-            let deltaX = pos.x - lastTouch.x
-            
-            if let lastContact = self.lastContact, lastContact.bodyA.node?.name == "player" || lastContact.bodyB.node?.name == "player" {
-                
-                let distanceToPlayer = lastContact.contactPoint.x - self.playerNode.position.x
-                
-                if distanceToPlayer * deltaX >= 0 {
-                    return
-                }
-            }
-            
-            self.playerNode.position.x += deltaX
-            
-            self.playerNode.position.x = clamp(self.playerNode.position.x, (self.getBounds().origin.x + self.playerNode.size.width / 2), (self.getBounds().width - self.playerNode.size.width / 2))
+            self.movePlayer(pos.x - lastTouch.x)
         }
         
         self.lastTouchPos = pos
     }
     
     func touchUp(atPoint pos : CGPoint) {
+        self.playerNode.physicsBody?.velocity = .zero
+        
         self.lastTouchPos = nil
     }
     
@@ -206,6 +194,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func getBounds() -> CGRect {
         return CGRect(x: -self.scene!.size.width / 2, y: -self.scene!.size.height / 2, width: self.scene!.size.width / 2, height: self.scene!.size.height / 2)
+    }
+    
+    func getUpdateables() -> [Updateable] {
+        return [
+            self.player,
+            self.coinSpawner
+        ]
     }
     
 }

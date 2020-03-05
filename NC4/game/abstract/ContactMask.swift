@@ -9,10 +9,10 @@
 import Foundation
 
 enum ContactMask: UInt32 {
-    case player = 0b1
-    case enemy = 0b10
-    case coin = 0b100
-    case wall = 0b1000
+    case player = 0b000001
+    case enemy =  0b000010
+    case coin =   0b000100
+    case wall =   0b001000
     
     case none = 0b00000000000000000000000000000000
 }
