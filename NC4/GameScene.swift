@@ -97,8 +97,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Collision methods
     func didBegin(_ contact: SKPhysicsContact) {
         
-        print("CONTACT!!!!!", contact.bodyA.node?.name, contact.bodyB.node?.name)
-        
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
         guard nodeA.name == "player" || nodeB.name == "player" else { return }
@@ -113,13 +111,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if nodeA.name == "player" {
-            self.playerCollision(playerNode: nodeA, other: nodeB)
+            self.playerCollisionStarted(playerNode: nodeA, other: nodeB)
         } else if nodeB.name == "player" {
-            self.playerCollision(playerNode: nodeB, other: nodeA)
+            self.playerCollisionStarted(playerNode: nodeB, other: nodeA)
         }
         
     }
     
+    func didEnd(_ contact: SKPhysicsContact) {
+        
+        guard let nodeA = contact.bodyA.node else { return }
+        guard let nodeB = contact.bodyB.node else { return }
+        guard nodeA.name == "player" || nodeB.name == "player" else { return }
+        
+        if nodeA.name == "player" {
+            self.playerCollisionCompleted(playerNode: nodeA, other: nodeB)
+        } else if nodeB.name == "player" {
+            self.playerCollisionCompleted(playerNode: nodeB, other: nodeA)
+        }
+        
+    }
     
     func hasPickedCoin(_ node: SKNode) -> Bool {
         
@@ -130,11 +141,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return node.name == "coin"
     }
     
-    func playerCollision(playerNode: SKNode, other: SKNode) {
+    func playerCollisionStarted(playerNode: SKNode, other: SKNode) {
         if other.name!.contains("enemy")  {
             guard let group = self.currentEnemyGroup else { return }
             group.onContact(with: other as! SKSpriteNode)
         }
+    }
+    
+    func playerCollisionCompleted(playerNode: SKNode, other: SKNode) {
+        self.currentEnemyGroup?.onContactStopped(with: other as! SKSpriteNode)
     }
 
     

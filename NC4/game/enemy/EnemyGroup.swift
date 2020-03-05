@@ -59,7 +59,7 @@ class EnemyGroup: AbstractGameObject {
     }
     
     func onContactStopped(with node: SKSpriteNode) {
-        
+        self.collidingEnemies.removeAll { $0.node == node }
     }
     
 }

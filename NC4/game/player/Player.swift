@@ -11,7 +11,7 @@ import SpriteKit
 
 class Player: AbstractGameObject, Lifeable {
     
-    var lifes: Int! = 10
+    var lifes: Int! = 1000
     var tail: [Tail]
     
     override init(_ node: SKNode, _ scene: GameScene) {
