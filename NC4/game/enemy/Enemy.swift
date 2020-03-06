@@ -15,8 +15,10 @@ class Enemy: AbstractGameObject, Lifeable {
     
     func configure() {
         self.lifes = .random(in: 5...10)
+        
+        self.getTextureNode().texture = self.getRandomTexture()
+        
     }
-    
     
     override func update(_ deltaTime: TimeInterval) {
         self.lastContact += deltaTime
@@ -29,7 +31,24 @@ class Enemy: AbstractGameObject, Lifeable {
     }
     
     func onLifeTaken() {
-         self.lifes -= 1
+        self.lifes -= 1
+        self.animateCollisionParticle()
+        self.animateCollision()
+    }
+    
+    func animateCollision() {
+        let scale = SKAction.scale(by: 1.2, duration: 0.05)
+        
+        self.getTextureNode().run(SKAction.sequence([scale, scale.reversed()]))
+    }
+    
+    func animateCollisionParticle() {
+        let particleNode = EnemyHitParticleLoader.getParticle()
+        let action = EnemyHitParticleLoader.getAction()
+        
+        self.node.addChild(particleNode)
+        
+        particleNode.run(action)
     }
     
     func onCollision() {
@@ -50,4 +69,60 @@ class Enemy: AbstractGameObject, Lifeable {
         return self.node.childNode(withName: "point") as! SKLabelNode
     }
     
+    func getTextureNode() -> SKSpriteNode {
+        return self.node.childNode(withName: "texture") as! SKSpriteNode
+    }
+    
+    func getRandomTexture() -> SKTexture {
+        let textures = [ "school", "bank", "market"]
+        
+        return SKTexture(imageNamed: textures.randomElement()!)
+    }
+    
+    
+    
+}
+
+
+class EnemyHitParticleLoader {
+    
+    private static var particles: [SKSpriteNode]!
+    
+    static func load() {
+        var textures = [SKTexture]()
+        for i in 1...4 {
+            let newTexture = SKTexture(imageNamed: "impact\(i)")
+            textures.append(newTexture)
+        }
+        
+        self.particles = textures.compactMap { SKSpriteNode(texture: $0) }
+        
+        self.particles.forEach {
+            self.configure($0)
+        }
+    }
+    
+    static func configure(_ node: SKSpriteNode) {
+        // TODO: Configure node on completion
+        
+        node.scale(to: .init(width: 60, height: 60))
+    }
+    
+    static func getParticle() -> SKSpriteNode {
+        
+        return self.particles.randomElement()!.copy() as! SKSpriteNode
+    }
+    
+    static func getAction() -> SKAction {
+        
+        let fade = SKAction.fadeAlpha(to: 0.5, duration: 0.5)
+        let rotate = SKAction.rotate(byAngle: .pi / 4 * ( Bool.random() ? 1 : -1), duration: 0.5)
+        let translate = SKAction.move(by: CGVector(dx: .random(in: 80...130) * ( Bool.random() ? 1 : -1), dy: .random(in: 50...80)), duration: 0.5)
+        let remove = SKAction.removeFromParent()
+        
+        let group = SKAction.group([fade, rotate, translate])
+        
+        return SKAction.sequence([group, remove])
+        
+    }
 }

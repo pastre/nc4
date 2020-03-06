@@ -43,6 +43,8 @@ class EnemyGroupFactory<T>: GameObjectFactory {
         
         enemies.forEach { $0.configure() }
         
+        clonedNode.position = CGPoint(x: 0, y: self.scene.getBounds().height)
+        
         return EnemyGroup(enemies: enemies,clonedNode, self.scene)
     }
     

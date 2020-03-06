@@ -27,7 +27,7 @@ class Tail: AbstractGameObject {
         let distance = nodePos - playerPos
         let theta = atan(distance.y / distance.x) + (distance.x > 0 ? .pi / 2 : -.pi / 2 )
         
-        self.node.zRotation = theta
+//        self.node.zRotation = theta
         self.node.position.x -= distance.x * CGFloat(speed)
     }
 }

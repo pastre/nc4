@@ -17,6 +17,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerNode: SKSpriteNode!
     var scoreNode: SKLabelNode!
+    
+    var backgroundSpawner: BackgroundSpawner!
     var player: Player!
     var currentEnemyGroup: EnemyGroup?
     var enemyFactory: EnemyGroupFactory<EnemyGroup>!
@@ -48,6 +50,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         self.player = Player(playerNode, self)
+        self.backgroundSpawner = BackgroundSpawner(scene: self)
+        
+        self.configureBg()
+    }
+    
+    func configureBg() {
+        let texture = SKTexture(radialGradientWithColors: [.init(white: 0.4, alpha: 1), .init(white: 0.2, alpha: 1)], locations: [0, 1], size: self.size )
+        let bgNode = SKSpriteNode(texture: texture)
+        
+        bgNode.zPosition = -100
+        
+        self.addChild(bgNode)
     }
     
     
@@ -210,13 +224,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func getBounds() -> CGRect {
-        return CGRect(x: -self.scene!.size.width / 2, y: -self.scene!.size.height / 2, width: self.scene!.size.width / 2, height: self.scene!.size.height / 2)
+        return CGRect(x: -self.size.width / 2, y: -self.size.height / 2, width: self.size.width / 2, height: self.size.height / 2)
     }
     
     func getUpdateables() -> [Updateable] {
         return [
             self.player,
-            self.coinSpawner
+            self.coinSpawner,
+            self.backgroundSpawner
         ]
     }
     

@@ -59,7 +59,7 @@ class Player: AbstractGameObject, Lifeable {
         
         self.tail.append(tail)
         
-        node.position = CGPoint(x: self.tail.last?.node.position.x ?? self.node.position.x, y: self.node.position.y + CGFloat( -20 * self.tail.count))
+        node.position = CGPoint(x: self.tail.last?.node.position.x ?? self.node.position.x, y: self.node.position.y + CGFloat( -35 * self.tail.count))
                 
         self.scene.addChild(node)
     }
@@ -76,15 +76,12 @@ class Player: AbstractGameObject, Lifeable {
     
     
     
-    func getTailNode() -> SKShapeNode {
-        let node = SKShapeNode(circleOfRadius: 10)
-        let emojiNode = SKLabelNode(text: "😍")
-        emojiNode.fontSize = 10
+    func getTailNode() -> SKSpriteNode {
+        let node = self.scene.childNode(withName: "tail")!.copy() as! SKSpriteNode
         
-        node.fillColor = .clear
+        node.removeFromParent()
         node.name = "tail"
-        
-        node.addChild(emojiNode)
+
         return node
     }
 }
