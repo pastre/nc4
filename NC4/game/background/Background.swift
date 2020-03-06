@@ -9,61 +9,18 @@
 import SpriteKit
 
 class Background: AbstractGameObject {
-
+    var shouldGoDown: Bool = true
     
     override func update(_ deltaTime: TimeInterval) {
-
-        self.node.position.y -= CGFloat(deltaTime) * 50
-        
-    }
-}
-
-class BackgroundSpawner: SceneSupplicant, Updateable {
-    internal init(scene: GameScene?) {
-        self.scene = scene
-    }
-    
-    var scene: GameScene!
-    var nodes: [Background]! = [Background]()
-    
-    
-    func update(_ deltaTime: TimeInterval) {
-        if Int.random(in: 0...100) <= 1 {
-            self.spawn()
+        self.wiggle(deltaTime)
+        if shouldGoDown {
+            self.node.position.y -= CGFloat(deltaTime) * 50
         }
         
-        self.nodes.forEach { $0.update(deltaTime) }
     }
     
-    func spawn() {
-        let newNode = self.getBgNode()
-        let newBg = Background(newNode, self.scene)
+    func wiggle(_ deltaTime: TimeInterval) {
         
-        self.scene.addChild(newNode)
-        self.nodes.append(newBg)
-        
-        let fadeIn = SKAction.fadeIn(withDuration: .random(in: 1...3))
-        
-        let fadeOut = SKAction.fadeOut(withDuration: .random(in: 10...30))
-        
-        newNode.run(SKAction.sequence([fadeIn, fadeOut, .removeFromParent()]))
     }
-    
-    func getBgNode() -> SKShapeNode {
-//        let path = randomBezierPath(50, height: 50)
-
-        
-        let node = SKShapeNode(circleOfRadius: .random(in:  5...20))
-        
-        node.fillColor = UIColor.black.withAlphaComponent(0.5)
-        node.strokeColor = .clear
-        
-        node.position.y = self.scene.getBounds().height
-        node.position.x = .random(in: self.scene.getBounds().minX...self.scene.getBounds().width)
-        
-        return node
-    }
-    
-    
-    
 }
+
