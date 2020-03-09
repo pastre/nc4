@@ -25,6 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var coinSpawner: CoinSpawner!
 
     var vc: GameViewController?
+    var speedManager = SpeedManager()
     
     private var lastUpdate = TimeInterval()
     private var lastTouchPos: CGPoint?
@@ -234,7 +235,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return [
             self.player,
             self.coinSpawner,
-            self.backgroundSpawner
+            self.backgroundSpawner,
+            self.speedManager
         ]
     }
     

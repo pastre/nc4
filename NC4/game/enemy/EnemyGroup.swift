@@ -34,7 +34,7 @@ class EnemyGroup: AbstractGameObject {
             }
         } else {
             // Goes down
-            let deltaY = CGFloat(deltaTime) * 100
+            let deltaY = CGFloat(deltaTime) * self.scene.speedManager.getCurrentSpeed()
             self.node.position.y -= deltaY
         }
         

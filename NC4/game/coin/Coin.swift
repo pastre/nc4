@@ -31,7 +31,7 @@ class Coin: AbstractGameObject, Lifeable {
     
     override func update(_ deltaTime: TimeInterval) {
 
-        let deltaY = CGFloat(deltaTime) * 100
+        let deltaY = CGFloat(deltaTime) * self.scene.speedManager.getCurrentSpeed()
         
         self.node.position.y -= deltaY
     }

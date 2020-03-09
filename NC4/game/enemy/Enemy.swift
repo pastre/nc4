@@ -24,6 +24,7 @@ class Enemy: AbstractGameObject, Lifeable {
         self.lastContact += deltaTime
         
         self.getLabelNode().text = "\(self.lifes!)"
+        self.minContactThreshold = TimeInterval(0.3 * self.scene.speedManager.getProgress())
     }
     
     func canCollide() -> Bool {
@@ -44,7 +45,9 @@ class Enemy: AbstractGameObject, Lifeable {
     
     func animateCollisionParticle() {
         let particleNode = EnemyHitParticleLoader.getParticle()
-        let action = EnemyHitParticleLoader.getAction()
+        let actionDuration = self.scene.speedManager.getProgress()
+        
+        let action = EnemyHitParticleLoader.getAction(Double(actionDuration))
         
         self.node.addChild(particleNode)
         
@@ -113,11 +116,11 @@ class EnemyHitParticleLoader {
         return self.particles.randomElement()!.copy() as! SKSpriteNode
     }
     
-    static func getAction() -> SKAction {
+    static func getAction(_ durationMultiplier: Double) -> SKAction {
         
-        let fade = SKAction.fadeAlpha(to: 0.5, duration: 0.5)
-        let rotate = SKAction.rotate(byAngle: .pi / 4 * ( Bool.random() ? 1 : -1), duration: 0.5)
-        let translate = SKAction.move(by: CGVector(dx: .random(in: 80...130) * ( Bool.random() ? 1 : -1), dy: .random(in: 50...80)), duration: 0.5)
+        let fade = SKAction.fadeAlpha(to: 0.5, duration: 0.5 * durationMultiplier)
+        let rotate = SKAction.rotate(byAngle: .pi / 4 * ( Bool.random() ? 1 : -1), duration: 0.5 * durationMultiplier)
+        let translate = SKAction.move(by: CGVector(dx: .random(in: 80...130) * ( Bool.random() ? 1 : -1), dy: .random(in: 50...80)), duration: 0.5 * durationMultiplier)
         let remove = SKAction.removeFromParent()
         
         let group = SKAction.group([fade, rotate, translate])

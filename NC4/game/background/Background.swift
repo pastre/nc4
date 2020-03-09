@@ -14,7 +14,7 @@ class Background: AbstractGameObject {
     override func update(_ deltaTime: TimeInterval) {
         self.wiggle(deltaTime)
         if shouldGoDown {
-            self.node.position.y -= CGFloat(deltaTime) * 50
+            self.node.position.y -= CGFloat(deltaTime) * self.scene.speedManager.getCurrentSpeed() / 4
         }
         
     }
