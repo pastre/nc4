@@ -11,8 +11,10 @@ import SpriteKit
 
 class Player: AbstractGameObject, Lifeable {
     
-    var lifes: Int! = 10
+    var lifes: Int! = 1000
     var tail: [Tail]
+    let generator =  UIImpactFeedbackGenerator(style: .heavy)
+//    let generator =  UIImpactFeedbackGenerator(style: .soft)
     
     override init(_ node: SKNode, _ scene: GameScene) {
         self.tail = [Tail]()
@@ -22,12 +24,16 @@ class Player: AbstractGameObject, Lifeable {
             self.increaseTail()
         }
         
+        
+        
     }
     
     func onLifeTaken() {
         self.lifes -= 1
         self.decreaseTail()
         self.scene.playerDidScore()
+
+        generator.impactOccurred()
     }
     
     func onLifePicked(_ amount: Int) {

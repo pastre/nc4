@@ -13,6 +13,7 @@ class EnemyGroup: AbstractGameObject {
     var collidingEnemies: [Enemy] = [Enemy]()
     var enemies: [Enemy]!
     
+    
     init(enemies: [Enemy], _ node: SKNode, _ scene: GameScene) {
         super.init(node, scene)
         self.enemies = enemies
@@ -32,6 +33,8 @@ class EnemyGroup: AbstractGameObject {
                     self.collidingEnemies.removeAll { $0.lifes == 0}
                 }
             }
+            
+
         } else {
             // Goes down
             let deltaY = CGFloat(deltaTime) * self.scene.speedManager.getCurrentSpeed()
