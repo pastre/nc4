@@ -27,11 +27,12 @@
 		D7B80D512410248B0089F65C /* CoinSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B80D502410248B0089F65C /* CoinSpawner.swift */; };
 		D7B80D532410660C0089F65C /* Tail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B80D522410660C0089F65C /* Tail.swift */; };
 		D7B80D55241066260089F65C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B80D54241066260089F65C /* Utils.swift */; };
-		D7C1E0232412F47400F92B61 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1E0222412F47400F92B61 /* Background.swift */; };
-		D7C1E025241304C800F92B61 /* BackgroundSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1E024241304C800F92B61 /* BackgroundSpawner.swift */; };
 		D7F16A0B2416E4C50063877B /* SpeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A0A2416E4C50063877B /* SpeedManager.swift */; };
 		D7F16A0D2417124C0063877B /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A0C2417124C0063877B /* StartButton.swift */; };
 		D7F16A0F2417F2B40063877B /* StorageFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A0E2417F2B40063877B /* StorageFacade.swift */; };
+		D7F16A1124184B4D0063877B /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A1024184B4D0063877B /* ThemeManager.swift */; };
+		D7F16A14241851DB0063877B /* ZPositoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A13241851DB0063877B /* ZPositoinManager.swift */; };
+		D7F16A1624185A140063877B /* EnemySpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A1524185A140063877B /* EnemySpawner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,11 +58,12 @@
 		D7B80D502410248B0089F65C /* CoinSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSpawner.swift; sourceTree = "<group>"; };
 		D7B80D522410660C0089F65C /* Tail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tail.swift; sourceTree = "<group>"; };
 		D7B80D54241066260089F65C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		D7C1E0222412F47400F92B61 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
-		D7C1E024241304C800F92B61 /* BackgroundSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSpawner.swift; sourceTree = "<group>"; };
 		D7F16A0A2416E4C50063877B /* SpeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedManager.swift; sourceTree = "<group>"; };
 		D7F16A0C2417124C0063877B /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
 		D7F16A0E2417F2B40063877B /* StorageFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageFacade.swift; sourceTree = "<group>"; };
+		D7F16A1024184B4D0063877B /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		D7F16A13241851DB0063877B /* ZPositoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZPositoinManager.swift; sourceTree = "<group>"; };
+		D7F16A1524185A140063877B /* EnemySpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemySpawner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +97,10 @@
 			isa = PBXGroup;
 			children = (
 				D718CF30240FF096007A1833 /* game */,
+				D7F16A12241851C00063877B /* utils */,
 				D718CF10240EE433007A1833 /* GameScene.swift */,
 				D718CF0C240EE433007A1833 /* GameScene.sks */,
 				D718CF12240EE433007A1833 /* GameViewController.swift */,
-				D7B80D54241066260089F65C /* Utils.swift */,
 				D718CF14240EE433007A1833 /* Main.storyboard */,
 				D718CF0A240EE433007A1833 /* AppDelegate.swift */,
 				D718CF17240EE438007A1833 /* Assets.xcassets */,
@@ -112,13 +114,11 @@
 		D718CF30240FF096007A1833 /* game */ = {
 			isa = PBXGroup;
 			children = (
-				D7C1E0212412F46A00F92B61 /* background */,
 				D7B80D59241066A40089F65C /* abstract */,
 				D7B80D56241066830089F65C /* coin */,
 				D7B80D58241066950089F65C /* enemy */,
 				D7B80D5A241066B80089F65C /* player */,
-				D7F16A0A2416E4C50063877B /* SpeedManager.swift */,
-				D7F16A0E2417F2B40063877B /* StorageFacade.swift */,
+				D7F16A1024184B4D0063877B /* ThemeManager.swift */,
 			);
 			path = game;
 			sourceTree = "<group>";
@@ -139,6 +139,7 @@
 				D718CF2C240FF041007A1833 /* Enemy.swift */,
 				D718CF2A240FF024007A1833 /* EnemyGroup.swift */,
 				D718CF28240FF003007A1833 /* EnemyGroupFactory.swift */,
+				D7F16A1524185A140063877B /* EnemySpawner.swift */,
 			);
 			path = enemy;
 			sourceTree = "<group>";
@@ -163,13 +164,15 @@
 			path = player;
 			sourceTree = "<group>";
 		};
-		D7C1E0212412F46A00F92B61 /* background */ = {
+		D7F16A12241851C00063877B /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				D7C1E0222412F47400F92B61 /* Background.swift */,
-				D7C1E024241304C800F92B61 /* BackgroundSpawner.swift */,
+				D7F16A0A2416E4C50063877B /* SpeedManager.swift */,
+				D7F16A0E2417F2B40063877B /* StorageFacade.swift */,
+				D7B80D54241066260089F65C /* Utils.swift */,
+				D7F16A13241851DB0063877B /* ZPositoinManager.swift */,
 			);
-			path = background;
+			path = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,22 +252,23 @@
 				D7F16A0D2417124C0063877B /* StartButton.swift in Sources */,
 				D718CF13240EE433007A1833 /* GameViewController.swift in Sources */,
 				D718CF2F240FF05D007A1833 /* Lifeable.swift in Sources */,
-				D7C1E0232412F47400F92B61 /* Background.swift in Sources */,
+				D7F16A14241851DB0063877B /* ZPositoinManager.swift in Sources */,
 				D75E60722411335C000A320D /* GameEventListener.swift in Sources */,
 				D7B80D512410248B0089F65C /* CoinSpawner.swift in Sources */,
+				D7F16A1124184B4D0063877B /* ThemeManager.swift in Sources */,
 				D7B80D55241066260089F65C /* Utils.swift in Sources */,
 				D7F16A0B2416E4C50063877B /* SpeedManager.swift in Sources */,
 				D718CF25240EE547007A1833 /* Player.swift in Sources */,
 				D718CF29240FF003007A1833 /* EnemyGroupFactory.swift in Sources */,
 				D7B80D532410660C0089F65C /* Tail.swift in Sources */,
 				D718CF2D240FF041007A1833 /* Enemy.swift in Sources */,
+				D7F16A1624185A140063877B /* EnemySpawner.swift in Sources */,
 				D718CF27240EF730007A1833 /* ContactMask.swift in Sources */,
 				D718CF2B240FF024007A1833 /* EnemyGroup.swift in Sources */,
 				D7F16A0F2417F2B40063877B /* StorageFacade.swift in Sources */,
 				D7B80D4F241024330089F65C /* CoinFactory.swift in Sources */,
 				D7B80D4D2410241B0089F65C /* Coin.swift in Sources */,
 				D718CF0B240EE433007A1833 /* AppDelegate.swift in Sources */,
-				D7C1E025241304C800F92B61 /* BackgroundSpawner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

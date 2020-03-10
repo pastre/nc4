@@ -1,0 +1,9 @@
+//
+//  EnemySpawner.swift
+//  NC4
+//
+//  Created by Bruno Pastre on 10/03/20.
+//  Copyright © 2020 Bruno Pastre. All rights reserved.
+//
+
+import Foundation

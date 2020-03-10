@@ -15,14 +15,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerNode: SKSpriteNode!
     var scoreNode: SKLabelNode!
     
-//    var backgroundSpawner: BackgroundSpawner!
+    var enemySpawner: EnemySpawner!
     var player: Player!
-    var currentEnemyGroup: EnemyGroup?
-    var enemyFactory: EnemyGroupFactory<EnemyGroup>!
     var coinSpawner: CoinSpawner!
 
     var vc: GameViewController?
     var speedManager = SpeedManager()
+    var themeManager: ThemeManager!
     
     private var lastUpdate = TimeInterval()
     private var lastTouchPos: CGPoint?
@@ -49,10 +48,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+        
+        self.themeManager = ThemeManager(self)
+        self.enemySpawner = EnemySpawner(scene: self)
+        
         self.score = 0
         self.physicsWorld.contactDelegate = self
         
-        self.enemyFactory = EnemyGroupFactory(scene: self)
         self.coinSpawner = CoinSpawner(scene: self)
         
         self.playerNode = self.childNode(withName: "player") as! SKSpriteNode
@@ -104,33 +106,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.getUpdateables().forEach { $0.update(deltaTime) }
         
-        if let enemyGroup = self.currentEnemyGroup {
-            
-            enemyGroup.update(deltaTime)
 
-            self.coinSpawner.shouldMoveCoins = !enemyGroup.isInContact()
-//            self.backgroundSpawner.shouldRun = !enemyGroup.isInContact()
-            
-            
-            if enemyGroup.isOutOfScreen(self.getBounds()) {
-                enemyGroup.despawn()
-                self.currentEnemyGroup = nil
-            }
-        } else {
-            self.spawnEnemyGroup()
-        }
     }
     
     
-    func spawnEnemyGroup() {
-        let newEnemyGroup = self.enemyFactory.getGameObject()
-        
-        self.addChild(newEnemyGroup.node)
-        
-        newEnemyGroup.node.position.y = self.getBounds().height
-        
-        self.currentEnemyGroup = newEnemyGroup
-    }
     
     // MARK: - Collision methods
     func didBegin(_ contact: SKPhysicsContact) {
@@ -181,14 +160,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playerCollisionStarted(playerNode: SKNode, other: SKNode) {
         if other.name!.contains("enemy")  {
-            guard let group = self.currentEnemyGroup else { return }
+            guard let group = self.enemySpawner.currentEnemyGroup else { return }
             group.onContact(with: other as! SKSpriteNode)
         }
         
     }
     
     func playerCollisionCompleted(playerNode: SKNode, other: SKNode) {
-        self.currentEnemyGroup?.onContactStopped(with: other as! SKSpriteNode)
+        self.enemySpawner.currentEnemyGroup?.onContactStopped(with: other as! SKSpriteNode)
         
     }
 
@@ -254,8 +233,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return [
             self.player,
             self.coinSpawner,
+            self.themeManager,
 //            self.backgroundSpawner,
-            self.speedManager
+            self.speedManager,
+            self.enemySpawner
         ]
     }
     
