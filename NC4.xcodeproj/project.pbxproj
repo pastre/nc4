@@ -30,6 +30,7 @@
 		D7C1E0232412F47400F92B61 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1E0222412F47400F92B61 /* Background.swift */; };
 		D7C1E025241304C800F92B61 /* BackgroundSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1E024241304C800F92B61 /* BackgroundSpawner.swift */; };
 		D7F16A0B2416E4C50063877B /* SpeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A0A2416E4C50063877B /* SpeedManager.swift */; };
+		D7F16A0D2417124C0063877B /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A0C2417124C0063877B /* StartButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		D7C1E0222412F47400F92B61 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		D7C1E024241304C800F92B61 /* BackgroundSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSpawner.swift; sourceTree = "<group>"; };
 		D7F16A0A2416E4C50063877B /* SpeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedManager.swift; sourceTree = "<group>"; };
+		D7F16A0C2417124C0063877B /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				D718CF17240EE438007A1833 /* Assets.xcassets */,
 				D718CF19240EE438007A1833 /* LaunchScreen.storyboard */,
 				D718CF1C240EE438007A1833 /* Info.plist */,
+				D7F16A0C2417124C0063877B /* StartButton.swift */,
 			);
 			path = NC4;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			files = (
 				D718CF23240EE48E007A1833 /* GameObject.swift in Sources */,
 				D718CF11240EE433007A1833 /* GameScene.swift in Sources */,
+				D7F16A0D2417124C0063877B /* StartButton.swift in Sources */,
 				D718CF13240EE433007A1833 /* GameViewController.swift in Sources */,
 				D718CF2F240FF05D007A1833 /* Lifeable.swift in Sources */,
 				D7C1E0232412F47400F92B61 /* Background.swift in Sources */,
