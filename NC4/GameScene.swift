@@ -15,7 +15,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerNode: SKSpriteNode!
     var scoreNode: SKLabelNode!
     
-    var backgroundSpawner: BackgroundSpawner!
+//    var backgroundSpawner: BackgroundSpawner!
     var player: Player!
     var currentEnemyGroup: EnemyGroup?
     var enemyFactory: EnemyGroupFactory<EnemyGroup>!
@@ -63,14 +63,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
         
         self.player = Player(playerNode, self)
-        self.backgroundSpawner = BackgroundSpawner(scene: self)
+//        self.backgroundSpawner = BackgroundSpawner(scene: self)
         
         self.configureBg()
     }
     
     func configureBg() {
-        let texture = SKTexture(radialGradientWithColors: [.init(white: 0.4, alpha: 1), .init(white: 0.2, alpha: 1)], locations: [0, 1], size: self.size )
-        let bgNode = SKSpriteNode(texture: texture)
+//        let texture = SKTexture(radialGradientWithColors: [.init(white: 0.4, alpha: 1), .init(white: 0.2, alpha: 1)], locations: [0, 1], size: self.size )
+        let bgNode = SKSpriteNode(color: .init(hue: 166.360, saturation: 0.21, brightness: 0.8, alpha: 1), size: self.size)
         
         bgNode.zPosition = -100
         
@@ -109,7 +109,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             enemyGroup.update(deltaTime)
 
             self.coinSpawner.shouldMoveCoins = !enemyGroup.isInContact()
-            self.backgroundSpawner.shouldRun = !enemyGroup.isInContact()
+//            self.backgroundSpawner.shouldRun = !enemyGroup.isInContact()
             
             
             if enemyGroup.isOutOfScreen(self.getBounds()) {
@@ -254,7 +254,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return [
             self.player,
             self.coinSpawner,
-            self.backgroundSpawner,
+//            self.backgroundSpawner,
             self.speedManager
         ]
     }
