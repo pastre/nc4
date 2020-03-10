@@ -15,13 +15,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerNode: SKSpriteNode!
     var scoreNode: SKLabelNode!
     
+    var vc: GameViewController?
+    
+    var themeManager: ThemeManager!
     var enemySpawner: EnemySpawner!
     var player: Player!
     var coinSpawner: CoinSpawner!
-
-    var vc: GameViewController?
     var speedManager = SpeedManager()
-    var themeManager: ThemeManager!
     
     private var lastUpdate = TimeInterval()
     private var lastTouchPos: CGPoint?
@@ -236,7 +236,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.themeManager,
 //            self.backgroundSpawner,
             self.speedManager,
-            self.enemySpawner
+//            self.enemySpawner
         ]
     }
     

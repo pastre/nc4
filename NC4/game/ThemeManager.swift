@@ -13,13 +13,14 @@ class ThemeManager: Updateable, SceneSupplicant {
     
     var scene: GameScene!
     var currentThemes =  [SKSpriteNode]()
+    var shouldMove: Bool = true
     
     init(_ scene: GameScene) {
         self.scene = scene
     }
     
     func update(_ deltaTime: TimeInterval) {
-        let dY = CGFloat(deltaTime) * self.scene.speedManager.getCurrentSpeed()
+        let dY = self.shouldMove ?  CGFloat(deltaTime) * self.scene.speedManager.getCurrentSpeed() : 0
         
         self.currentThemes.forEach { node in
             node.position.y -= dY
@@ -43,13 +44,13 @@ class ThemeManager: Updateable, SceneSupplicant {
     }
     
     func spawnIfPossible() {
-        if self.currentThemes.count >= 2 { return }
+        if self.currentThemes.count >= 3 { return }
         if self.currentThemes.count == 0 {
             self.spawnNewTheme()
             return
         }
         
-        guard let node = self.currentThemes.first else { return }
+        guard let node = self.currentThemes.last else { return }
         
         if self.scene.getBounds().height - node.position.y > node.size.height / 2 {
             self.spawnNewTheme()
@@ -77,6 +78,7 @@ class ThemeManager: Updateable, SceneSupplicant {
         
         return node
     }
+    
 }
 
 
