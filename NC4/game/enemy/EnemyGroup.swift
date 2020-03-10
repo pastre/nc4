@@ -11,13 +11,34 @@ import SpriteKit
 class EnemyGroup: AbstractGameObject {
     
     var collidingEnemies: [Enemy] = [Enemy]()
-//    var lastContactTimestamp: TimeInterval?
     var enemies: [Enemy]!
     
     
     init(enemies: [Enemy], _ node: SKNode, _ scene: GameScene) {
         super.init(node, scene)
         self.enemies = enemies
+        
+        self.balanceEnemies()
+        self.unzeroEnemies()
+    }
+    
+    func unzeroEnemies() {
+        self.enemies.forEach {
+            if $0.lifes == 0 {
+                $0.lifes += 1
+            }
+        }
+    }
+    
+    func balanceEnemies() {
+        let pLifes = self.scene.player.getLifeCount()
+        for enemy in enemies {
+            if enemy.lifes <= pLifes { return }
+        }
+        
+        print("Rebalanced enemies!")
+        
+        enemies.randomElement()!.lifes =  pLifes == 0 ? 1 : pLifes
     }
     
     override func update(_ deltaTime: TimeInterval) {

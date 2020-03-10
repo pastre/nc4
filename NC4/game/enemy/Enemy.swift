@@ -12,10 +12,11 @@ class Enemy: AbstractGameObject, Lifeable {
     var lifes: Int! = 0
     var lastContact: TimeInterval! = TimeInterval(2)
     var minContactThreshold = TimeInterval(0.2)
-    
-    
+
     func configure() {
-        self.lifes = .random(in: 5...10)
+        let currentNodeCount = self.scene.player.getLifeCount()
+        
+        self.lifes = .random(in: (currentNodeCount / 2)...(currentNodeCount  * 2))
         
         self.getTextureNode().texture = self.getRandomTexture()
         

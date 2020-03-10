@@ -97,6 +97,10 @@ class Player: AbstractGameObject, Lifeable {
 
         return node
     }
+    
+    func getLifeCount() -> Int {
+        return self.tail.count
+    }
 }
 
 
