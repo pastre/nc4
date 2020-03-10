@@ -119,3 +119,8 @@ func offScreenPoint(_ width: CGFloat, _ height: CGFloat) -> CGPoint {
     
     return CGPoint(x: xPoint, y: yPoint)
 }
+
+
+func abs(_ f: CGFloat) -> CGFloat{
+    return f * (f < 0 ? -1 : 1)
+}

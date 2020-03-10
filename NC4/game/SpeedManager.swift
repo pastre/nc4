@@ -12,7 +12,7 @@ class SpeedManager: Updateable {
     
     private var currentSpeed: CGFloat!
     var currentAngle: CGFloat! = -.pi/2
-    let acceleration: CGFloat = 0.1
+    let acceleration: CGFloat = 0.01
     let maxVelocity: CGFloat = 900
     let minVelocity: CGFloat = 100
     var radius: CGFloat!

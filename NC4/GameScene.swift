@@ -9,9 +9,6 @@
 import SpriteKit
 import GameplayKit
 
-func abs(_ f: CGFloat) -> CGFloat{
-    return f * (f < 0 ? -1 : 1)
-}
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     

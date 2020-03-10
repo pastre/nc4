@@ -14,6 +14,7 @@ class Player: AbstractGameObject, Lifeable {
     var lifes: Int! = 1000
     var tail: [Tail]
     let generator =  UIImpactFeedbackGenerator(style: .heavy)
+    var playerDefaultPosition: CGPoint?
 //    let generator =  UIImpactFeedbackGenerator(style: .soft)
     
     override init(_ node: SKNode, _ scene: GameScene) {
@@ -24,6 +25,7 @@ class Player: AbstractGameObject, Lifeable {
             self.increaseTail()
         }
         
+        self.playerDefaultPosition = node.position
         
         
     }
@@ -51,6 +53,10 @@ class Player: AbstractGameObject, Lifeable {
         self.getPointsNode().text = "\(self.lifes!)"
         
         self.tail.forEach { $0.update(deltaTime) }
+        
+        if let pos = self.playerDefaultPosition {
+            self.node.position.y = pos.y
+        }
     }
     
     func isDead() -> Bool {
