@@ -11,6 +11,7 @@ import SpriteKit
 class EnemyGroup: AbstractGameObject {
     
     var collidingEnemies: [Enemy] = [Enemy]()
+//    var lastContactTimestamp: TimeInterval?
     var enemies: [Enemy]!
     
     

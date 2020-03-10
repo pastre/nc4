@@ -11,11 +11,11 @@ import SpriteKit
 
 class Player: AbstractGameObject, Lifeable {
     
-    var lifes: Int! = 1000
+    var lifes: Int! = 10
     var tail: [Tail]
     let generator =  UIImpactFeedbackGenerator(style: .heavy)
     var playerDefaultPosition: CGPoint?
-//    let generator =  UIImpactFeedbackGenerator(style: .soft)
+    
     
     override init(_ node: SKNode, _ scene: GameScene) {
         self.tail = [Tail]()
@@ -54,7 +54,8 @@ class Player: AbstractGameObject, Lifeable {
         
         self.tail.forEach { $0.update(deltaTime) }
         
-        if let pos = self.playerDefaultPosition {
+        
+        if let pos = self.playerDefaultPosition, abs(self.node.position.y - pos.y ) > 20 {
             self.node.position.y = pos.y
         }
     }

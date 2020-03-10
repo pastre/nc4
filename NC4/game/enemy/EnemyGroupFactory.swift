@@ -39,17 +39,48 @@ class EnemyGroupFactory<T>: GameObjectFactory {
         
         clonedNode.children.forEach { self.configurePhysics(on: $0 as! SKSpriteNode) }
         
-        let enemies = clonedNode.children.map { Enemy($0, self.scene)}
+        let enemies = clonedNode.children.filter( { $0.name == "enemy" } ).map { Enemy($0, self.scene)}
         
         enemies.forEach { $0.configure() }
         
         clonedNode.position = CGPoint(x: 0, y: self.scene.getBounds().height)
         
+        if let node = clonedNode.childNode(withName: "wall") as? SKSpriteNode {
+            self.configureWall(on: node)
+        }
+        
         return EnemyGroup(enemies: enemies,clonedNode, self.scene)
     }
     
 
+    fileprivate func configureWall(on node: SKSpriteNode) {
+        let body = self.getDefaultPhysicsBody(node)
+        
+        body.categoryBitMask = ContactMask.wall.rawValue
+        body.collisionBitMask = ContactMask.player.rawValue
+        body.contactTestBitMask = ContactMask.none.rawValue
+        
+        node.physicsBody = body
+        
+    }
+    
     func configurePhysics(on node: SKSpriteNode) {
+        let body = self.getDefaultPhysicsBody(node)
+        
+        body.categoryBitMask = ContactMask.enemy.rawValue
+        body.collisionBitMask = ContactMask.none.rawValue
+        body.contactTestBitMask = ContactMask.player.rawValue
+        body.mass = .infinity
+        
+//        if let wallBody = node.childNode(withName: "wall")?.physicsBody {
+//            configureWall(wallBody)
+//        }
+        
+        node.physicsBody = body
+    }
+    
+    func getDefaultPhysicsBody(_ node: SKSpriteNode) -> SKPhysicsBody {
+        
         let body = SKPhysicsBody(rectangleOf: node.size )
         
         body.affectedByGravity = false
@@ -57,17 +88,11 @@ class EnemyGroupFactory<T>: GameObjectFactory {
         body.pinned = false
         
         body.isDynamic = false
-        body.categoryBitMask = ContactMask.enemy.rawValue
-        body.collisionBitMask = ContactMask.none.rawValue
-        body.contactTestBitMask = ContactMask.player.rawValue
-        body.mass = .infinity
+
         
-        if let wallBody = node.childNode(withName: "wall")?.physicsBody {
-            wallBody.categoryBitMask = ContactMask.wall.rawValue
-            wallBody.collisionBitMask = ContactMask.player.rawValue
-            wallBody.contactTestBitMask = ContactMask.none.rawValue
-        }
-        
-        node.physicsBody = body
+        return body
     }
+    
+    
+
 }

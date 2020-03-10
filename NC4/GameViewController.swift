@@ -12,7 +12,7 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
-    var scene: SKScene?
+    var scene: GameScene?
     
     
     @IBOutlet weak var playButton: UIButton!
@@ -36,7 +36,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         self.loadScene()
-        self.scene?.isPaused = true
+        self.scene?.realPaused = true
         
         self.skView.ignoresSiblingOrder = true
         
@@ -64,13 +64,13 @@ class GameViewController: UIViewController {
     
     func onGameOver() {
         self.loadScene()
-        self.scene?.isPaused = true
+        self.scene?.realPaused = true
         self.playButton.isHidden = false
         
     }
     
     @IBAction func onPlay(_ sender: Any) {
-        self.scene?.isPaused = false
+        self.scene?.realPaused = false
         
         self.playButton.isHidden = true
     }

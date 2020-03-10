@@ -28,8 +28,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var lastTouchPos: CGPoint?
     private var currentDeltaTime: TimeInterval!
     var lastContact: SKPhysicsContact?
+    var lastContactTimestamp: TimeInterval?
     
     var score: Int!
+    
+    
+    var realPaused: Bool = false {
+        didSet {
+            self.isPaused = realPaused
+        }
+    }
+    
+    override var isPaused: Bool {
+        didSet {
+            if (self.isPaused == false && self.realPaused == true) {
+                self.isPaused = true
+            }
+        }
+    }
     
     override func didMove(to view: SKView) {
         self.score = 0
@@ -44,8 +60,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
         playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
         playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
-        
-        
         
         self.player = Player(playerNode, self)
         self.backgroundSpawner = BackgroundSpawner(scene: self)
@@ -62,6 +76,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(bgNode)
     }
     
+    
+    override func didSimulatePhysics() {
+        
+        self.playerNode.position.x = clamp(self.playerNode.position.x, self.getBounds().minX, self.getBounds().width)
+    }
     
     override func update(_ currentTime: TimeInterval) {
         
@@ -123,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if self.hasPickedCoin(nodeB) { return }
         
         
-        guard contact.contactNormal.dx == 0 else {
+        guard contact.contactNormal.dx <= 0.01 else {
             self.lastContact = contact
             return
         }
@@ -164,10 +183,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             guard let group = self.currentEnemyGroup else { return }
             group.onContact(with: other as! SKSpriteNode)
         }
+        
     }
     
     func playerCollisionCompleted(playerNode: SKNode, other: SKNode) {
         self.currentEnemyGroup?.onContactStopped(with: other as! SKSpriteNode)
+        
     }
 
     

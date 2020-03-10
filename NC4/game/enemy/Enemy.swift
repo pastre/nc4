@@ -11,7 +11,7 @@ import SpriteKit
 class Enemy: AbstractGameObject, Lifeable {
     var lifes: Int! = 0
     var lastContact: TimeInterval! = TimeInterval(2)
-    var minContactThreshold = TimeInterval(0.3)
+    var minContactThreshold = TimeInterval(0.2)
     
     
     func configure() {
@@ -25,7 +25,7 @@ class Enemy: AbstractGameObject, Lifeable {
         self.lastContact += deltaTime
         
         self.getLabelNode().text = "\(self.lifes!)"
-        self.minContactThreshold = TimeInterval(0.3 * self.scene.speedManager.getProgress())
+        self.minContactThreshold = TimeInterval(0.2 * self.scene.speedManager.getProgress())
     }
     
     func canCollide() -> Bool {
