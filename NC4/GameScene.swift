@@ -143,10 +143,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if self.hasPickedCoin(nodeB) { return }
         
         
-        guard contact.contactNormal.dx <= 0.01 else {
-            self.lastContact = contact
-            return
-        }
+//        guard contact.contactNormal.dx <= 0.01 else {
+//            self.lastContact = contact
+//            return
+//        }
         
         if nodeA.name == "player" {
             self.playerCollisionStarted(playerNode: nodeA, other: nodeB)
@@ -260,21 +260,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func configureScoreLabel() {
+        defer { self.positionLabel() }
         if self.realPaused {
             self.setHighscoreLabel()
             return
         }
         
         self.setScoreLabel()
-        
     }
     
-    func setHighscoreLabel() {
+    func positionLabel() {
+        self.scoreNode.position = CGPoint(
+            x: self.getBounds().origin.x + (self.scoreNode.frame.width / 2) + 20,
+            y: self.getBounds().height - (self.scoreNode.frame.height) - 60)
+    }
+    
+    
+    private func setHighscoreLabel() {
         let score = StorageFacade.instance.getHighScore()
         self.scoreNode.text = "High score: \(score)"
     }
     
-    func setScoreLabel() {
+    private func setScoreLabel() {
         self.scoreNode.text = "Score: 0"
     }
 }

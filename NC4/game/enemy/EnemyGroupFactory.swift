@@ -45,23 +45,11 @@ class EnemyGroupFactory<T>: GameObjectFactory {
         
         clonedNode.position = CGPoint(x: 0, y: self.scene.getBounds().height)
         
-        if let node = clonedNode.childNode(withName: "wall") as? SKSpriteNode {
-            self.configureWall(on: node)
-        }
+//        if let node = clonedNode.childNode(withName: "wall") as? SKSpriteNode {
+//            self.configureWall(on: node)
+//        }
         
         return EnemyGroup(enemies: enemies,clonedNode, self.scene)
-    }
-    
-
-    fileprivate func configureWall(on node: SKSpriteNode) {
-        let body = self.getDefaultPhysicsBody(node)
-        
-        body.categoryBitMask = ContactMask.wall.rawValue
-        body.collisionBitMask = ContactMask.player.rawValue
-        body.contactTestBitMask = ContactMask.none.rawValue
-        
-        node.physicsBody = body
-        
     }
     
     func configurePhysics(on node: SKSpriteNode) {
@@ -72,9 +60,18 @@ class EnemyGroupFactory<T>: GameObjectFactory {
         body.contactTestBitMask = ContactMask.player.rawValue
         body.mass = .infinity
         
-//        if let wallBody = node.childNode(withName: "wall")?.physicsBody {
-//            configureWall(wallBody)
-//        }
+        if let wallNode = node.childNode(withName: "wall") {
+
+            let body = self.getDefaultPhysicsBody(node)
+            
+            body.categoryBitMask = ContactMask.wall.rawValue
+            body.collisionBitMask = ContactMask.player.rawValue
+            body.contactTestBitMask = ContactMask.none.rawValue
+            
+            
+            wallNode.physicsBody = body
+            print("Configured body")
+        }
         
         node.physicsBody = body
     }
