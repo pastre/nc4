@@ -31,6 +31,7 @@
 		D7C1E025241304C800F92B61 /* BackgroundSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1E024241304C800F92B61 /* BackgroundSpawner.swift */; };
 		D7F16A0B2416E4C50063877B /* SpeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A0A2416E4C50063877B /* SpeedManager.swift */; };
 		D7F16A0D2417124C0063877B /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A0C2417124C0063877B /* StartButton.swift */; };
+		D7F16A0F2417F2B40063877B /* StorageFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A0E2417F2B40063877B /* StorageFacade.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		D7C1E024241304C800F92B61 /* BackgroundSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSpawner.swift; sourceTree = "<group>"; };
 		D7F16A0A2416E4C50063877B /* SpeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedManager.swift; sourceTree = "<group>"; };
 		D7F16A0C2417124C0063877B /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
+		D7F16A0E2417F2B40063877B /* StorageFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageFacade.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				D7B80D58241066950089F65C /* enemy */,
 				D7B80D5A241066B80089F65C /* player */,
 				D7F16A0A2416E4C50063877B /* SpeedManager.swift */,
+				D7F16A0E2417F2B40063877B /* StorageFacade.swift */,
 			);
 			path = game;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				D718CF2D240FF041007A1833 /* Enemy.swift in Sources */,
 				D718CF27240EF730007A1833 /* ContactMask.swift in Sources */,
 				D718CF2B240FF024007A1833 /* EnemyGroup.swift in Sources */,
+				D7F16A0F2417F2B40063877B /* StorageFacade.swift in Sources */,
 				D7B80D4F241024330089F65C /* CoinFactory.swift in Sources */,
 				D7B80D4D2410241B0089F65C /* Coin.swift in Sources */,
 				D718CF0B240EE433007A1833 /* AppDelegate.swift in Sources */,

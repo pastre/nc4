@@ -35,6 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var realPaused: Bool = false {
         didSet {
+            self.configureScoreLabel()
             self.isPaused = realPaused
         }
     }
@@ -258,4 +259,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ]
     }
     
+    func configureScoreLabel() {
+        if self.realPaused {
+            self.setHighscoreLabel()
+            return
+        }
+        
+        self.setScoreLabel()
+        
+    }
+    
+    func setHighscoreLabel() {
+        let score = StorageFacade.instance.getHighScore()
+        self.scoreNode.text = "High score: \(score)"
+    }
+    
+    func setScoreLabel() {
+        self.scoreNode.text = "Score: 0"
+    }
 }

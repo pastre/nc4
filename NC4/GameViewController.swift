@@ -39,10 +39,8 @@ class GameViewController: UIViewController {
         self.scene?.realPaused = true
         
         self.skView.ignoresSiblingOrder = true
-        
         self.skView.showsFPS = true
         self.skView.showsNodeCount = true
-//        self.skView.showsPhysics = true
         
     }
 
@@ -51,10 +49,12 @@ class GameViewController: UIViewController {
     }
     
     func onGameOver() {
+        
+        StorageFacade.instance.updateScoreIfNeeded(to: self.scene!.score)
+        
         self.loadScene()
         self.scene?.realPaused = true
         self.playButton.isHidden = false
-        
     }
     
     @IBAction func onPlay(_ sender: Any) {
