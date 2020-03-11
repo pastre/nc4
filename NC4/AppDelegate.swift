@@ -17,6 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         EnemyHitParticleLoader.load()
+        
+        // DEBUG TO FIND FONT NAMES
+//        for name in UIFont.familyNames {
+//            print(name)
+//            if let nameString = name as? String {
+//                print(UIFont.fontNames(forFamilyName: nameString))
+//            }
+//        }
+//
+        
         return true
     }
 

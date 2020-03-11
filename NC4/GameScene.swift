@@ -51,6 +51,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Scene Configuration
     override func didMove(to view: SKView) {
+        self.changeFonts()
         
         self.score = 0
         self.physicsWorld.contactDelegate = self
@@ -264,5 +265,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private func setScoreLabel() {
         self.scoreNode.text = "Score: 0"
+    }
+    
+    func changeFonts() {
+        visit { (node) -> () in
+            if let label = node as? SKLabelNode {
+                label.fontName = "NCT Torin"
+                
+//                label.fontSize = 20
+            }
+        }
+    }
+}
+
+
+extension SKNode {
+    func visit(logic: (_ node:SKNode) -> ()) {
+        logic(self)
+        children.forEach { $0.visit(logic: logic) }
     }
 }
