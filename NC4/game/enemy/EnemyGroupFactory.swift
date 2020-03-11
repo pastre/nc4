@@ -60,6 +60,7 @@ class EnemyGroupFactory<T>: GameObjectFactory {
         body.collisionBitMask = ContactMask.none.rawValue
         body.contactTestBitMask = ContactMask.player.rawValue
         body.mass = .infinity
+        body.pinned = true
         
         if let wallNode = node.childNode(withName: "wall") {
 

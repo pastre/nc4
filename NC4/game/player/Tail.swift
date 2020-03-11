@@ -16,6 +16,8 @@ class Tail: AbstractGameObject {
         super.init(node, scene)
         self.index = index
         self.player = player
+        
+        self.node.zPosition = ZPosition.player.rawValue
     }
     
     override func update(_ deltaTime: TimeInterval) {

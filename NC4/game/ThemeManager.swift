@@ -40,11 +40,12 @@ class ThemeManager: Updateable, SceneSupplicant {
         
         if node.position.y + node.size.height / 2 < self.scene.getBounds().minY {
             node.removeFromParent()
+            
         }
     }
     
     func spawnIfPossible() {
-        if self.currentThemes.count >= 3 { return }
+        
         if self.currentThemes.count == 0 {
             self.spawnNewTheme()
             return
@@ -71,10 +72,13 @@ class ThemeManager: Updateable, SceneSupplicant {
     }
 
     func getRandomTheme() -> SKSpriteNode {
-        let node = self.scene.childNode(withName: "theme\(Int.random(in: 1...1))")!.copy() as! SKSpriteNode
+        let themeCount = 1
+        let node = self.scene.childNode(withName: "theme\(Int.random(in: 1...themeCount))")!.copy() as! SKSpriteNode
         
         node.removeFromParent()
         node.zPosition = ZPosition.background.rawValue
+        let size = self.scene.getBounds().width * 2
+        node.scale(to: CGSize(width: size, height: size))
         
         return node
     }

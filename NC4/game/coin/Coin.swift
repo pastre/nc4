@@ -24,6 +24,7 @@ class Coin: AbstractGameObject, Lifeable {
             .random(in: (
                 scene.getBounds().minX + 10)...(scene.getBounds().width - 10)), y:
             scene.getBounds().height)
+        node.zPosition = ZPosition.coin.rawValue
         
         self.getLabelNode().text = "\(self.lifes!)"
     }

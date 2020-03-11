@@ -11,4 +11,6 @@ import SpriteKit
 enum ZPosition: CGFloat {
     
     case background = -98
+    case coin = 99
+    case player = 100
 }

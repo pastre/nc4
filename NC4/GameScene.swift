@@ -47,31 +47,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    // MARK: Scene Configuration
     override func didMove(to view: SKView) {
-        
-        self.themeManager = ThemeManager(self)
-        self.enemySpawner = EnemySpawner(scene: self)
         
         self.score = 0
         self.physicsWorld.contactDelegate = self
         
         self.coinSpawner = CoinSpawner(scene: self)
+        self.themeManager = ThemeManager(self)
+        self.enemySpawner = EnemySpawner(scene: self)
         
-        self.playerNode = self.childNode(withName: "player") as! SKSpriteNode
-        self.scoreNode = self.childNode(withName: "score") as! SKLabelNode
+        self.playerNode = (self.childNode(withName: "player") as! SKSpriteNode)
+        self.scoreNode = (self.childNode(withName: "score") as! SKLabelNode)
         
         playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
         playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
         playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
         
         self.player = Player(playerNode, self)
-//        self.backgroundSpawner = BackgroundSpawner(scene: self)
         
         self.configureBg()
     }
     
     func configureBg() {
-//        let texture = SKTexture(radialGradientWithColors: [.init(white: 0.4, alpha: 1), .init(white: 0.2, alpha: 1)], locations: [0, 1], size: self.size )
+        
         let bgNode = SKSpriteNode(color: .init(hue: 166.360, saturation: 0.21, brightness: 0.8, alpha: 1), size: self.size)
         
         bgNode.zPosition = -100
@@ -79,7 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(bgNode)
     }
     
-    
+    // MARK: - Scene overrides
     override func didSimulatePhysics() {
         
         self.playerNode.position.x = clamp(self.playerNode.position.x, self.getBounds().minX, self.getBounds().width)
@@ -120,12 +119,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if self.hasPickedCoin(nodeA) { return }
         if self.hasPickedCoin(nodeB) { return }
-        
-        
-//        guard contact.contactNormal.dx <= 0.01 else {
-//            self.lastContact = contact
-//            return
-//        }
         
         if nodeA.name == "player" {
             self.playerCollisionStarted(playerNode: nodeA, other: nodeB)
@@ -224,6 +217,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
+    // MARK: - Helpers
     
     func getBounds() -> CGRect {
         return CGRect(x: -self.size.width / 2, y: -self.size.height / 2, width: self.size.width / 2, height: self.size.height / 2)
@@ -236,9 +230,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.themeManager,
 //            self.backgroundSpawner,
             self.speedManager,
-//            self.enemySpawner
+            self.enemySpawner
         ]
     }
+    
+    // MARK: - ScoreLabel methods
     
     func configureScoreLabel() {
         defer { self.positionLabel() }

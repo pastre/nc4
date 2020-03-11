@@ -20,6 +20,7 @@ class Enemy: AbstractGameObject, Lifeable {
         
         self.getTextureNode().texture = self.getRandomTexture()
         
+        
     }
     
     override func update(_ deltaTime: TimeInterval) {

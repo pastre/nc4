@@ -27,6 +27,7 @@ class Player: AbstractGameObject, Lifeable {
         
         self.playerDefaultPosition = node.position
         
+        self.node.zPosition = ZPosition.player.rawValue
         
     }
     
