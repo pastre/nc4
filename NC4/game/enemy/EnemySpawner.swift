@@ -27,8 +27,11 @@ class EnemySpawner: Updateable, SceneSupplicant {
             
             enemyGroup.update(deltaTime)
             
-            self.scene.coinSpawner.shouldMoveCoins = !enemyGroup.isInContact()
-            self.scene.themeManager.shouldMove = !enemyGroup.isInContact()
+            let shouldMove = !enemyGroup.isInContact()
+            self.scene.coinSpawner.shouldMoveCoins = shouldMove
+            self.scene.themeManager.shouldMove = shouldMove
+            self.scene.sickPeopleManager.shouldMove = shouldMove
+            
             
             if enemyGroup.isOutOfScreen(self.scene.getBounds()) {
                 enemyGroup.despawn()

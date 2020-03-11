@@ -52,8 +52,9 @@ class Enemy: AbstractGameObject, Lifeable {
         
         let action = EnemyHitParticleLoader.getAction(Double(actionDuration))
         
-        self.node.addChild(particleNode)
+        particleNode.position = self.node.position.translated(by: .init(dx: 0, dy: 20))
         
+        self.scene.sickPeopleManager.managePerson(node: particleNode)
         particleNode.run(action)
     }
     
@@ -121,14 +122,25 @@ class EnemyHitParticleLoader {
     
     static func getAction(_ durationMultiplier: Double) -> SKAction {
         
-        let fade = SKAction.fadeAlpha(to: 0.5, duration: 0.5 * durationMultiplier)
+//        let fade = SKAction.fadeAlpha(to: 0.5, duration: 0.5 * durationMultiplier)
         let rotate = SKAction.rotate(byAngle: .pi / 4 * ( Bool.random() ? 1 : -1), duration: 0.5 * durationMultiplier)
         let translate = SKAction.move(by: CGVector(dx: .random(in: 80...130) * ( Bool.random() ? 1 : -1), dy: .random(in: 50...80)), duration: 0.5 * durationMultiplier)
         let remove = SKAction.removeFromParent()
         
-        let group = SKAction.group([fade, rotate, translate])
-        
+        let group = SKAction.group([
+//            fade,
+            rotate,
+            translate
+        ])
+        return group
         return SKAction.sequence([group, remove])
         
+    }
+}
+
+
+extension CGPoint {
+    func translated(by vector: CGVector) -> CGPoint {
+        return CGPoint(x: self.x + vector.dx, y: self.y + vector.dy)
     }
 }

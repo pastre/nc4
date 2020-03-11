@@ -22,6 +22,7 @@
 		D718CF2D240FF041007A1833 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF2C240FF041007A1833 /* Enemy.swift */; };
 		D718CF2F240FF05D007A1833 /* Lifeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF2E240FF05D007A1833 /* Lifeable.swift */; };
 		D75E60722411335C000A320D /* GameEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E60712411335C000A320D /* GameEventListener.swift */; };
+		D78A5BCC2419616100CDA3DA /* SickPeopleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78A5BCB2419616100CDA3DA /* SickPeopleManager.swift */; };
 		D7B80D4D2410241B0089F65C /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B80D4C2410241B0089F65C /* Coin.swift */; };
 		D7B80D4F241024330089F65C /* CoinFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B80D4E241024330089F65C /* CoinFactory.swift */; };
 		D7B80D512410248B0089F65C /* CoinSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B80D502410248B0089F65C /* CoinSpawner.swift */; };
@@ -53,6 +54,7 @@
 		D718CF2C240FF041007A1833 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		D718CF2E240FF05D007A1833 /* Lifeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifeable.swift; sourceTree = "<group>"; };
 		D75E60712411335C000A320D /* GameEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventListener.swift; sourceTree = "<group>"; };
+		D78A5BCB2419616100CDA3DA /* SickPeopleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SickPeopleManager.swift; sourceTree = "<group>"; };
 		D7B80D4C2410241B0089F65C /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		D7B80D4E241024330089F65C /* CoinFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinFactory.swift; sourceTree = "<group>"; };
 		D7B80D502410248B0089F65C /* CoinSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSpawner.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				D7B80D58241066950089F65C /* enemy */,
 				D7B80D5A241066B80089F65C /* player */,
 				D7F16A1024184B4D0063877B /* ThemeManager.swift */,
+				D78A5BCB2419616100CDA3DA /* SickPeopleManager.swift */,
 			);
 			path = game;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				D718CF29240FF003007A1833 /* EnemyGroupFactory.swift in Sources */,
 				D7B80D532410660C0089F65C /* Tail.swift in Sources */,
 				D718CF2D240FF041007A1833 /* Enemy.swift in Sources */,
+				D78A5BCC2419616100CDA3DA /* SickPeopleManager.swift in Sources */,
 				D7F16A1624185A140063877B /* EnemySpawner.swift in Sources */,
 				D718CF27240EF730007A1833 /* ContactMask.swift in Sources */,
 				D718CF2B240FF024007A1833 /* EnemyGroup.swift in Sources */,

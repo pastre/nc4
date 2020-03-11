@@ -15,8 +15,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerNode: SKSpriteNode!
     var scoreNode: SKLabelNode!
     
+    
     var vc: GameViewController?
     
+    var sickPeopleManager: SickPeopleManager!
     var themeManager: ThemeManager!
     var enemySpawner: EnemySpawner!
     var player: Player!
@@ -53,6 +55,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.score = 0
         self.physicsWorld.contactDelegate = self
         
+        self.sickPeopleManager = SickPeopleManager(scene: self)
         self.coinSpawner = CoinSpawner(scene: self)
         self.themeManager = ThemeManager(self)
         self.enemySpawner = EnemySpawner(scene: self)
@@ -230,7 +233,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.themeManager,
 //            self.backgroundSpawner,
             self.speedManager,
-            self.enemySpawner
+            self.enemySpawner,
+            self.sickPeopleManager
         ]
     }
     
