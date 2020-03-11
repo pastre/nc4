@@ -15,6 +15,9 @@ class GameViewController: UIViewController {
     var scene: GameScene?
     
     
+    @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var leaderboardButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var skView: SKView!
     
@@ -55,13 +58,28 @@ class GameViewController: UIViewController {
         
         self.loadScene()
         self.scene?.realPaused = true
-        self.playButton.isHidden = false
+        self.showUI()
     }
     
     @IBAction func onPlay(_ sender: Any) {
         self.scene?.realPaused = false
+        self.hideUI()
+    }
+    
+    func hideUI() {
         
         self.playButton.isHidden = true
+        self.logoImageView.isHidden = true
+        self.settingsButton.isHidden = true
+        self.leaderboardButton.isHidden = true
+    }
+    
+    func showUI () {
+        
+        self.playButton.isHidden = false
+        self.logoImageView.isHidden = false
+        self.settingsButton.isHidden = false
+        self.leaderboardButton.isHidden = false
     }
     
 }

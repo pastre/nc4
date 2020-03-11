@@ -103,10 +103,10 @@
 				D718CF10240EE433007A1833 /* GameScene.swift */,
 				D718CF0C240EE433007A1833 /* GameScene.sks */,
 				D718CF12240EE433007A1833 /* GameViewController.swift */,
+				D718CF14240EE433007A1833 /* Main.storyboard */,
 				D718CF0A240EE433007A1833 /* AppDelegate.swift */,
 				D718CF17240EE438007A1833 /* Assets.xcassets */,
 				D718CF1C240EE438007A1833 /* Info.plist */,
-				D718CF14240EE433007A1833 /* Main.storyboard */,
 				D718CF19240EE438007A1833 /* LaunchScreen.storyboard */,
 				D78A5BCD24198BCC00CDA3DA /* NCTTorin-Light.ttf */,
 			);

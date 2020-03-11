@@ -6,6 +6,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="NCTTorin-Light.ttf">
+            <string>NCTTorin-Light</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -18,32 +23,62 @@
                             <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMv-1u-Aha">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </skView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Yo-U5-s3i">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="58"/>
-                                <state key="normal" title="Play">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Yo-U5-s3i">
+                                <rect key="frame" x="0.0" y="20" width="414" height="842"/>
+                                <fontDescription key="fontDescription" name="NCTTorin-Light" family="NCT Torin" pointSize="73"/>
+                                <state key="normal" title="Tap to play">
+                                    <color key="titleColor" red="0.37604188919999998" green="0.38793185349999998" blue="0.40870141980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="onPlay:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Zke-65-PT7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCe-oA-fKT">
+                                <rect key="frame" x="41.5" y="84" width="62" height="62"/>
+                                <state key="normal" image="settings"/>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stamp" translatesAutoresizingMaskIntoConstraints="NO" id="5YR-6v-glv">
+                                <rect key="frame" x="41.5" y="206" width="331" height="217.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5YR-6v-glv" secondAttribute="height" multiplier="592:389" id="wnA-Qc-OoS"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Fz-eK-UFi">
+                                <rect key="frame" x="310.5" y="84" width="62" height="62"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4Fz-eK-UFi" secondAttribute="height" multiplier="1:1" id="jWI-iI-EJH"/>
+                                </constraints>
+                                <state key="normal" image="leaderboards"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="JCe-oA-fKT" firstAttribute="height" secondItem="4Fz-eK-UFi" secondAttribute="height" id="3SM-j5-xXz"/>
                             <constraint firstItem="tMv-1u-Aha" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="7iG-jF-6gA"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="tMv-1u-Aha" secondAttribute="trailing" id="Dvz-kS-7ex"/>
-                            <constraint firstItem="7Yo-U5-s3i" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" id="Oub-CB-Sim"/>
+                            <constraint firstItem="7Yo-U5-s3i" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" constant="20" symbolic="YES" id="IWd-Yk-zD8"/>
+                            <constraint firstItem="4Fz-eK-UFi" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="40" id="PRi-z6-GJu"/>
+                            <constraint firstItem="4Fz-eK-UFi" firstAttribute="width" secondItem="4qk-I5-YsI" secondAttribute="width" multiplier="0.15" id="Qmh-5H-xzD"/>
+                            <constraint firstItem="7Yo-U5-s3i" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="RHZ-Lx-OYi"/>
                             <constraint firstItem="tMv-1u-Aha" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="RgG-8Q-fbC"/>
+                            <constraint firstItem="5YR-6v-glv" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="SdL-I2-vVf"/>
                             <constraint firstAttribute="bottom" secondItem="tMv-1u-Aha" secondAttribute="bottom" id="UfN-bV-wwa"/>
-                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="7Yo-U5-s3i" secondAttribute="bottom" id="b99-xn-A17"/>
-                            <constraint firstItem="7Yo-U5-s3i" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="tDO-id-elb"/>
-                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="7Yo-U5-s3i" secondAttribute="trailing" id="zRx-jJ-on9"/>
+                            <constraint firstItem="5YR-6v-glv" firstAttribute="width" secondItem="4qk-I5-YsI" secondAttribute="width" multiplier="0.8" id="cKx-3m-m6W"/>
+                            <constraint firstItem="7Yo-U5-s3i" firstAttribute="bottom" secondItem="4qk-I5-YsI" secondAttribute="bottom" id="iph-oH-LN3"/>
+                            <constraint firstItem="JCe-oA-fKT" firstAttribute="centerY" secondItem="4Fz-eK-UFi" secondAttribute="centerY" id="lrn-cv-1U2"/>
+                            <constraint firstItem="5YR-6v-glv" firstAttribute="top" secondItem="JCe-oA-fKT" secondAttribute="bottom" constant="60" id="qX2-Hi-8M2"/>
+                            <constraint firstItem="JCe-oA-fKT" firstAttribute="leading" secondItem="5YR-6v-glv" secondAttribute="leading" id="sj1-Dx-IrD"/>
+                            <constraint firstItem="7Yo-U5-s3i" firstAttribute="trailing" secondItem="4qk-I5-YsI" secondAttribute="trailing" id="woN-0S-fNf"/>
+                            <constraint firstItem="4Fz-eK-UFi" firstAttribute="trailing" secondItem="5YR-6v-glv" secondAttribute="trailing" id="yVI-5s-Qed"/>
+                            <constraint firstItem="JCe-oA-fKT" firstAttribute="width" secondItem="4Fz-eK-UFi" secondAttribute="width" id="yks-gB-bBw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                     <connections>
+                        <outlet property="leaderboardButton" destination="4Fz-eK-UFi" id="vb8-G8-cOR"/>
+                        <outlet property="logoImageView" destination="5YR-6v-glv" id="rnh-6u-fMw"/>
                         <outlet property="playButton" destination="7Yo-U5-s3i" id="XEZ-8y-4As"/>
+                        <outlet property="settingsButton" destination="JCe-oA-fKT" id="RJh-3L-ssm"/>
                         <outlet property="skView" destination="tMv-1u-Aha" id="TVd-qb-tFc"/>
                     </connections>
                 </viewController>
@@ -52,4 +87,9 @@
             <point key="canvasLocation" x="140.57971014492756" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="leaderboards" width="98" height="98"/>
+        <image name="settings" width="98" height="98"/>
+        <image name="stamp" width="592" height="389"/>
+    </resources>
 </document>
