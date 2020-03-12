@@ -73,6 +73,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.configureBg()
         
         self.themeManager.configureStartTheme()
+        AudioManager.shared.update()
     }
     
     func configureBg() {
