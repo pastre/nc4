@@ -168,9 +168,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.enemySpawner.currentEnemyGroup?.onContactStopped(with: other as! SKSpriteNode)
         
     }
-
     
-    // MARK:  Player helper function
+    
+    // MARK: - Player helper function
     
     func playerDidScore() {
         self.score += 1

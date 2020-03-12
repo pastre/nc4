@@ -58,6 +58,7 @@ class GameCenterFacade: NSObject, GKLocalPlayerListener {
     
     func isAuthenticated() -> Bool { self.authVc == nil && self.player.isAuthenticated }
     
+    
     func onScore(_ value: Int) {
         guard self.isAuthenticated() else { return }
         
@@ -70,6 +71,34 @@ class GameCenterFacade: NSObject, GKLocalPlayerListener {
                 return
             }
             print("[GameCenter] Reported new walking record")
+        }
+    }
+    
+    func loadFromGamecenter() {
+        guard self.isAuthenticated() else { return }
+        
+        let leaderboard = GKLeaderboard(players: [self.player])
+        
+        leaderboard.timeScope = .allTime
+        leaderboard.identifier = Leaderboard.score.rawValue
+        
+        leaderboard.loadScores { (scores, error) in
+            guard let scores = scores else {
+                if let error = error {
+                    print("Teve erro!", error)
+                }
+                print("No scores")
+                return
+                
+            }
+            if let score = scores.first {
+                let value = Int(score.value)
+                
+                if !StorageFacade.instance.updateScoreIfNeeded(to: value) {
+                    self.onScore(StorageFacade.instance.getHighScore())
+                }
+            }
+            
         }
     }
 }

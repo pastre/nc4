@@ -15,7 +15,7 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="NC4" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Corona_Attack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,21 +64,69 @@
                                     <action selector="onLeaderboard:" destination="BV1-FR-VrT" eventType="touchUpInside" id="vXz-Lf-fcv"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HuB-oi-3Ef">
+                                <rect key="frame" x="87" y="272" width="240" height="362"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You infected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rse-t1-p3K">
+                                        <rect key="frame" x="-4.5" y="0.0" width="249.5" height="93.5"/>
+                                        <color key="tintColor" red="0.37604188919999998" green="0.38793185349999998" blue="0.40870141980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="NCTTorin-Light" family="NCT Torin" pointSize="45"/>
+                                        <color key="textColor" red="0.1757379174" green="0.29281780120000001" blue="0.70094615220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="102" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TM-Aw-fgJ">
+                                        <rect key="frame" x="-5" y="93.5" width="250.5" height="175"/>
+                                        <color key="tintColor" red="0.37604188919999998" green="0.38793185349999998" blue="0.40870141980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="NCTTorin-Light" family="NCT Torin" pointSize="150"/>
+                                        <color key="textColor" red="0.37604188919999998" green="0.38793185349999998" blue="0.40870141980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="people" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbq-UX-xUK">
+                                        <rect key="frame" x="-2" y="268.5" width="244.5" height="93.5"/>
+                                        <color key="tintColor" red="0.37604188919999998" green="0.38793185349999998" blue="0.40870141980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="NCTTorin-Light" family="NCT Torin" pointSize="80"/>
+                                        <color key="textColor" red="0.1757379174" green="0.29281780120000001" blue="0.70094615220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="hbq-UX-xUK" firstAttribute="top" secondItem="5TM-Aw-fgJ" secondAttribute="bottom" id="1yu-zy-h9A"/>
+                                    <constraint firstItem="Rse-t1-p3K" firstAttribute="centerX" secondItem="5TM-Aw-fgJ" secondAttribute="centerX" id="PnK-cU-bed"/>
+                                    <constraint firstItem="5TM-Aw-fgJ" firstAttribute="centerY" secondItem="HuB-oi-3Ef" secondAttribute="centerY" id="Qin-uw-nt2"/>
+                                    <constraint firstItem="5TM-Aw-fgJ" firstAttribute="width" secondItem="HuB-oi-3Ef" secondAttribute="width" multiplier="1.04375" id="R1L-C6-hZM"/>
+                                    <constraint firstItem="5TM-Aw-fgJ" firstAttribute="top" secondItem="Rse-t1-p3K" secondAttribute="bottom" id="Zdu-Aw-cfj"/>
+                                    <constraint firstItem="Rse-t1-p3K" firstAttribute="top" secondItem="HuB-oi-3Ef" secondAttribute="top" id="diV-WQ-fZk"/>
+                                    <constraint firstItem="hbq-UX-xUK" firstAttribute="centerX" secondItem="5TM-Aw-fgJ" secondAttribute="centerX" id="i02-dY-SY4"/>
+                                    <constraint firstItem="5TM-Aw-fgJ" firstAttribute="centerX" secondItem="HuB-oi-3Ef" secondAttribute="centerX" id="tsn-bo-Ud1"/>
+                                    <constraint firstAttribute="bottom" secondItem="hbq-UX-xUK" secondAttribute="bottom" id="wQK-7Z-qIg"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High score: 100" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqI-zn-thj">
+                                <rect key="frame" x="124" y="126" width="166" height="27"/>
+                                <fontDescription key="fontDescription" name="NCTTorin-Light" family="NCT Torin" pointSize="23"/>
+                                <color key="textColor" red="0.12109669699293693" green="0.31714895190211756" blue="0.95572509765625002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="IqI-zn-thj" firstAttribute="leading" secondItem="JCe-oA-fKT" secondAttribute="trailing" id="0e0-kD-aSy"/>
                             <constraint firstItem="JCe-oA-fKT" firstAttribute="height" secondItem="4Fz-eK-UFi" secondAttribute="height" id="3SM-j5-xXz"/>
                             <constraint firstItem="tMv-1u-Aha" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="7iG-jF-6gA"/>
                             <constraint firstItem="dnr-II-78h" firstAttribute="centerX" secondItem="JCe-oA-fKT" secondAttribute="centerX" id="9jD-gu-wVi"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="tMv-1u-Aha" secondAttribute="trailing" id="Dvz-kS-7ex"/>
                             <constraint firstItem="7Yo-U5-s3i" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" constant="20" symbolic="YES" id="IWd-Yk-zD8"/>
+                            <constraint firstItem="IqI-zn-thj" firstAttribute="trailing" secondItem="4Fz-eK-UFi" secondAttribute="leading" id="LMn-8X-y7Q"/>
                             <constraint firstItem="4Fz-eK-UFi" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="20" id="PRi-z6-GJu"/>
                             <constraint firstItem="dnr-II-78h" firstAttribute="height" secondItem="JCe-oA-fKT" secondAttribute="height" id="Qep-h9-PUg"/>
                             <constraint firstItem="4Fz-eK-UFi" firstAttribute="width" secondItem="4qk-I5-YsI" secondAttribute="width" multiplier="0.15" id="Qmh-5H-xzD"/>
                             <constraint firstItem="7Yo-U5-s3i" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="RHZ-Lx-OYi"/>
                             <constraint firstItem="tMv-1u-Aha" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="RgG-8Q-fbC"/>
                             <constraint firstItem="5YR-6v-glv" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="SdL-I2-vVf"/>
+                            <constraint firstItem="HuB-oi-3Ef" firstAttribute="centerY" secondItem="4qk-I5-YsI" secondAttribute="centerY" id="SxL-hz-Qpq"/>
                             <constraint firstAttribute="bottom" secondItem="tMv-1u-Aha" secondAttribute="bottom" id="UfN-bV-wwa"/>
+                            <constraint firstItem="IqI-zn-thj" firstAttribute="top" secondItem="4Fz-eK-UFi" secondAttribute="bottom" id="bG7-pt-Q5T"/>
                             <constraint firstItem="5YR-6v-glv" firstAttribute="width" secondItem="4qk-I5-YsI" secondAttribute="width" multiplier="0.7" id="cKx-3m-m6W"/>
                             <constraint firstItem="dnr-II-78h" firstAttribute="centerY" secondItem="JCe-oA-fKT" secondAttribute="centerY" id="ev3-De-VpJ"/>
                             <constraint firstItem="5YR-6v-glv" firstAttribute="bottom" secondItem="7Yo-U5-s3i" secondAttribute="centerY" id="hJH-Ug-ddp"/>
@@ -86,6 +134,7 @@
                             <constraint firstItem="JCe-oA-fKT" firstAttribute="centerY" secondItem="4Fz-eK-UFi" secondAttribute="centerY" id="lrn-cv-1U2"/>
                             <constraint firstItem="JCe-oA-fKT" firstAttribute="leading" secondItem="5YR-6v-glv" secondAttribute="leading" id="sj1-Dx-IrD"/>
                             <constraint firstItem="7Yo-U5-s3i" firstAttribute="trailing" secondItem="4qk-I5-YsI" secondAttribute="trailing" id="woN-0S-fNf"/>
+                            <constraint firstItem="HuB-oi-3Ef" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="wxj-TY-zNN"/>
                             <constraint firstItem="4Fz-eK-UFi" firstAttribute="trailing" secondItem="5YR-6v-glv" secondAttribute="trailing" id="yVI-5s-Qed"/>
                             <constraint firstItem="dnr-II-78h" firstAttribute="width" secondItem="JCe-oA-fKT" secondAttribute="width" id="yWJ-GD-jyO"/>
                             <constraint firstItem="JCe-oA-fKT" firstAttribute="width" secondItem="4Fz-eK-UFi" secondAttribute="width" id="yks-gB-bBw"/>
@@ -94,10 +143,13 @@
                     </view>
                     <connections>
                         <outlet property="audioImage" destination="dnr-II-78h" id="LVh-uQ-ajg"/>
+                        <outlet property="gameOverView" destination="HuB-oi-3Ef" id="8si-yT-Kfz"/>
                         <outlet property="leaderboardButton" destination="4Fz-eK-UFi" id="vb8-G8-cOR"/>
                         <outlet property="logoImageView" destination="5YR-6v-glv" id="rnh-6u-fMw"/>
                         <outlet property="playButton" destination="7Yo-U5-s3i" id="XEZ-8y-4As"/>
+                        <outlet property="scoreLabel" destination="5TM-Aw-fgJ" id="m9r-c5-xBI"/>
                         <outlet property="skView" destination="tMv-1u-Aha" id="TVd-qb-tFc"/>
+                        <outlet property="topScoreLabel" destination="IqI-zn-thj" id="M5F-5N-rAW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

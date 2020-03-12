@@ -120,6 +120,18 @@ class EnemyHitParticleLoader {
         return self.particles.randomElement()!.copy() as! SKSpriteNode
     }
     
+//    static func getPhysicalParticle() -> SKSpriteNode {
+//        let baseParticle = self.getParticle()
+//        
+//        let body = SKPhysicsBody(texture: baseParticle.texture!, size: baseParticle.texture!.size())
+//        
+//        body.pinned = false
+//        body.affectedByGravity = true
+//        body.
+//        
+//        return baseParticle
+//    }
+//    
     static func getAction(_ durationMultiplier: Double) -> SKAction {
         
         

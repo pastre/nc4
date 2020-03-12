@@ -29,10 +29,12 @@ class StorageFacade {
         UserDefaults.standard.set(newVal, forKey: StorageKeys.highScore.rawValue)
     }
     
-    func updateScoreIfNeeded(to newVal: Int) {
+    func updateScoreIfNeeded(to newVal: Int) -> Bool {
         if newVal > self.getHighScore() {
             self.setHighScore(to: newVal)
         }
+        
+        return newVal > self.getHighScore()
     }
     
     func isAudioDisabled() -> Bool { UserDefaults.standard.bool(forKey: StorageKeys.audioEnabled.rawValue) }

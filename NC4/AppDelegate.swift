@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GameCenterFacade.instance.auth()
         
-        
         return true
     }
 

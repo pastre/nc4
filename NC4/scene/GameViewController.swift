@@ -21,6 +21,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     @IBOutlet weak var leaderboardButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var skView: SKView!
+    @IBOutlet weak var gameOverView: UIView!
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var topScoreLabel: UILabel!
     
     var shouldDisplayGameCenter: Bool = false
     
@@ -28,6 +31,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     // MARK: -  UIViewController methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.gameOverView.isHidden = true
         
         self.loadScene()
         self.scene?.realPaused = true
@@ -57,6 +62,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         self.logoImageView.isHidden = true
         self.audioImage.isHidden = true
         self.leaderboardButton.isHidden = true
+        self.gameOverView.isHidden = true
+        self.topScoreLabel.isHidden = true
+        
     }
     func showUI () {
         
@@ -64,6 +72,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         self.logoImageView.isHidden = false
         self.audioImage.isHidden = false
         self.leaderboardButton.isHidden = false
+        self.topScoreLabel.isHidden = false
     }
     
     func updateSoundIcon() {
@@ -74,6 +83,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         } else {
             self.audioImage.image = UIImage(systemName: "speaker.3.fill")
         }
+    }
+    
+    func updateHighscoreLabel() {
+        let highScore = StorageFacade.instance.getHighScore()
+        
+        self.topScoreLabel.text = "High score: \(highScore)"
     }
     
     // MARK: - Game methods
@@ -87,8 +102,16 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         
         self.loadScene()
         self.scene?.realPaused = true
+        
+        
         self.showUI()
+        self.updateHighscoreLabel()
+        
+        self.gameOverView.isHidden = false
+        self.scoreLabel.text = "\(gameScore)"
+        
     }
+    
     
     //MARK: - View helpers
     
@@ -163,6 +186,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         if self.shouldDisplayGameCenter {
             self.presentGameCenter()
         }
+        
+        
+        GameCenterFacade.instance.loadFromGamecenter()
     }
+    
+    
     
 }
