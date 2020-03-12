@@ -65,8 +65,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     
     // MARK: - Game methods
     func onGameOver() {
+        guard let gameScore = self.scene?.score else { return }
         
-        StorageFacade.instance.updateScoreIfNeeded(to: self.scene!.score)
+        StorageFacade.instance.updateScoreIfNeeded(to: gameScore)
+        GameCenterFacade.instance.onScore(gameScore)
         
         self.loadScene()
         self.scene?.realPaused = true

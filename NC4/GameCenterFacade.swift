@@ -56,8 +56,20 @@ class GameCenterFacade: NSObject, GKLocalPlayerListener {
         return gkVC
     }
     
-    func isAuthenticated() -> Bool {
+    func isAuthenticated() -> Bool { self.authVc == nil && self.player.isAuthenticated }
+    
+    func onScore(_ value: Int) {
+        guard self.isAuthenticated() else { return }
         
-        return self.authVc == nil && self.player.isAuthenticated
+        let score = GKScore(leaderboardIdentifier: Leaderboard.score.rawValue)
+        score.value = Int64(value)
+        
+        GKScore.report([score]) { (error) in
+            if let error = error {
+                print("Erro ao reportar o record!", error)
+                return
+            }
+            print("[GameCenter] Reported new walking record")
+        }
     }
 }

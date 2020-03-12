@@ -72,7 +72,6 @@ class EnemyGroupFactory<T>: GameObjectFactory {
             
             
             wallNode.physicsBody = body
-            print("Configured body")
         }
         
         node.physicsBody = body
