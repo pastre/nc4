@@ -30,7 +30,14 @@ class SickPeopleManager: Updateable, SceneSupplicant {
     
 
     func clearUnusedNodes() {
-        // TODO
+        let threshold = self.scene.getBounds().height
+        for node in self.sickPeopleNodes {
+            if node.position.y < -threshold {
+                node.removeFromParent()
+            }
+        }
+        
+        self.sickPeopleNodes = self.sickPeopleNodes.filter { $0.parent != nil }
     }
     
     func managePerson(node: SKSpriteNode) {
