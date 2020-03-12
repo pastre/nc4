@@ -23,6 +23,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     
     var shouldDisplayGameCenter: Bool = false
     
+    
+    // MARK: -  UIViewController methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,13 +39,64 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.onAuthSuccess), name: kAuthSuccess, object: nil)
         
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.configureLeaderboardsButton()
     }
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
+    // MARK: - UI & HUD methods
+    func hideUI() {
+        
+        self.playButton.isHidden = true
+        self.logoImageView.isHidden = true
+        self.settingsButton.isHidden = true
+        self.leaderboardButton.isHidden = true
+    }
+    func showUI () {
+        
+        self.playButton.isHidden = false
+        self.logoImageView.isHidden = false
+        self.settingsButton.isHidden = false
+        self.leaderboardButton.isHidden = false
+    }
     
+    // MARK: - Game methods
+    func onGameOver() {
+        
+        StorageFacade.instance.updateScoreIfNeeded(to: self.scene!.score)
+        
+        self.loadScene()
+        self.scene?.realPaused = true
+        self.showUI()
+    }
+    
+    //MARK: - View helpers
+    
+    func loadScene() {
+        // Load the SKScene from 'GameScene.sks'
+
+        if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
+           
+            scene.size = view.bounds.size
+            scene.scaleMode = .aspectFit
+            scene.vc = self
+            self.scene = scene
+            // Present the scene
+            self.skView.presentScene(scene)
+        }
+    }
+    func presentGameCenter() {
+        guard let vc = GameCenterFacade.instance.getGameCenterVc() else { return }
+        
+        self.shouldDisplayGameCenter = false
+        
+        vc.gameCenterDelegate = self
+        
+        self.present(vc, animated: true, completion: nil)
+    }
     func configureLeaderboardsButton() {
         if GameCenterFacade.instance.isAuthenticated() {
             self.leaderboardButton.layer.removeAllAnimations()
@@ -56,20 +109,14 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         }, completion: nil)
         
     }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
+    
+    // MARK: - GKGameCenterControllerDelegate
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
     }
     
-    func onGameOver() {
-        
-        StorageFacade.instance.updateScoreIfNeeded(to: self.scene!.score)
-        
-        self.loadScene()
-        self.scene?.realPaused = true
-        self.showUI()
-    }
     
+    // MARK: - Button callbacks
     @IBAction func onPlay(_ sender: Any) {
         self.scene?.realPaused = false
         self.hideUI()
@@ -85,37 +132,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         self.presentGameCenter()
     }
     
-    func hideUI() {
-        
-        self.playButton.isHidden = true
-        self.logoImageView.isHidden = true
-        self.settingsButton.isHidden = true
-        self.leaderboardButton.isHidden = true
-    }
-    
-    func showUI () {
-        
-        self.playButton.isHidden = false
-        self.logoImageView.isHidden = false
-        self.settingsButton.isHidden = false
-        self.leaderboardButton.isHidden = false
-    }
-    
-    
-    func loadScene() {
-        // Load the SKScene from 'GameScene.sks'
-
-        if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
-           
-            scene.size = view.bounds.size
-            scene.scaleMode = .aspectFit
-            scene.vc = self
-            self.scene = scene
-            // Present the scene
-            self.skView.presentScene(scene)
-        }
-    }
-    
     @objc func onAuthSuccess() {
         self.leaderboardButton.layer.removeAllAnimations()
         self.leaderboardButton.transform = .identity
@@ -123,22 +139,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         if self.shouldDisplayGameCenter {
             self.presentGameCenter()
         }
-    }
-    
-    func presentGameCenter() {
-        guard let vc = GameCenterFacade.instance.getGameCenterVc() else { return }
-        
-        self.shouldDisplayGameCenter = false
-        
-        vc.gameCenterDelegate = self
-        
-        self.present(vc, animated: true, completion: nil)
-    }
-    
-    
-    // MARK: - GKGameCenterControllerDelegate
-    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        gameCenterViewController.dismiss(animated: true, completion: nil)
     }
     
 }
