@@ -33,9 +33,20 @@
                                     <action selector="onPlay:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Zke-65-PT7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCe-oA-fKT">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speaker.slash.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dnr-II-78h">
+                                <rect key="frame" x="62" y="65" width="62" height="60.5"/>
+                                <color key="tintColor" red="0.37604188919999998" green="0.38793185349999998" blue="0.40870141980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCe-oA-fKT">
                                 <rect key="frame" x="62" y="64" width="62" height="62"/>
-                                <state key="normal" image="settings"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="tintColor" red="0.37604188919999998" green="0.38793185349999998" blue="0.40870141980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="onSound:" destination="BV1-FR-VrT" eventType="touchUpInside" id="06R-Ic-Ypp"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5YR-6v-glv">
                                 <rect key="frame" x="62" y="230.5" width="290" height="190.5"/>
@@ -58,30 +69,34 @@
                         <constraints>
                             <constraint firstItem="JCe-oA-fKT" firstAttribute="height" secondItem="4Fz-eK-UFi" secondAttribute="height" id="3SM-j5-xXz"/>
                             <constraint firstItem="tMv-1u-Aha" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="7iG-jF-6gA"/>
+                            <constraint firstItem="dnr-II-78h" firstAttribute="centerX" secondItem="JCe-oA-fKT" secondAttribute="centerX" id="9jD-gu-wVi"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="tMv-1u-Aha" secondAttribute="trailing" id="Dvz-kS-7ex"/>
                             <constraint firstItem="7Yo-U5-s3i" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" constant="20" symbolic="YES" id="IWd-Yk-zD8"/>
                             <constraint firstItem="4Fz-eK-UFi" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="20" id="PRi-z6-GJu"/>
+                            <constraint firstItem="dnr-II-78h" firstAttribute="height" secondItem="JCe-oA-fKT" secondAttribute="height" id="Qep-h9-PUg"/>
                             <constraint firstItem="4Fz-eK-UFi" firstAttribute="width" secondItem="4qk-I5-YsI" secondAttribute="width" multiplier="0.15" id="Qmh-5H-xzD"/>
                             <constraint firstItem="7Yo-U5-s3i" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="RHZ-Lx-OYi"/>
                             <constraint firstItem="tMv-1u-Aha" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="RgG-8Q-fbC"/>
                             <constraint firstItem="5YR-6v-glv" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="SdL-I2-vVf"/>
                             <constraint firstAttribute="bottom" secondItem="tMv-1u-Aha" secondAttribute="bottom" id="UfN-bV-wwa"/>
                             <constraint firstItem="5YR-6v-glv" firstAttribute="width" secondItem="4qk-I5-YsI" secondAttribute="width" multiplier="0.7" id="cKx-3m-m6W"/>
+                            <constraint firstItem="dnr-II-78h" firstAttribute="centerY" secondItem="JCe-oA-fKT" secondAttribute="centerY" id="ev3-De-VpJ"/>
                             <constraint firstItem="5YR-6v-glv" firstAttribute="bottom" secondItem="7Yo-U5-s3i" secondAttribute="centerY" id="hJH-Ug-ddp"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="7Yo-U5-s3i" secondAttribute="bottom" constant="40" id="iph-oH-LN3"/>
                             <constraint firstItem="JCe-oA-fKT" firstAttribute="centerY" secondItem="4Fz-eK-UFi" secondAttribute="centerY" id="lrn-cv-1U2"/>
                             <constraint firstItem="JCe-oA-fKT" firstAttribute="leading" secondItem="5YR-6v-glv" secondAttribute="leading" id="sj1-Dx-IrD"/>
                             <constraint firstItem="7Yo-U5-s3i" firstAttribute="trailing" secondItem="4qk-I5-YsI" secondAttribute="trailing" id="woN-0S-fNf"/>
                             <constraint firstItem="4Fz-eK-UFi" firstAttribute="trailing" secondItem="5YR-6v-glv" secondAttribute="trailing" id="yVI-5s-Qed"/>
+                            <constraint firstItem="dnr-II-78h" firstAttribute="width" secondItem="JCe-oA-fKT" secondAttribute="width" id="yWJ-GD-jyO"/>
                             <constraint firstItem="JCe-oA-fKT" firstAttribute="width" secondItem="4Fz-eK-UFi" secondAttribute="width" id="yks-gB-bBw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                     <connections>
+                        <outlet property="audioImage" destination="dnr-II-78h" id="LVh-uQ-ajg"/>
                         <outlet property="leaderboardButton" destination="4Fz-eK-UFi" id="vb8-G8-cOR"/>
                         <outlet property="logoImageView" destination="5YR-6v-glv" id="rnh-6u-fMw"/>
                         <outlet property="playButton" destination="7Yo-U5-s3i" id="XEZ-8y-4As"/>
-                        <outlet property="settingsButton" destination="JCe-oA-fKT" id="RJh-3L-ssm"/>
                         <outlet property="skView" destination="tMv-1u-Aha" id="TVd-qb-tFc"/>
                     </connections>
                 </viewController>
@@ -92,6 +107,6 @@
     </scenes>
     <resources>
         <image name="leaderboards" width="98" height="98"/>
-        <image name="settings" width="98" height="98"/>
+        <image name="speaker.slash.fill" catalog="system" width="64" height="62"/>
     </resources>
 </document>

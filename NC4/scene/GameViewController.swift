@@ -16,7 +16,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     var scene: GameScene?
     
     @IBOutlet weak var logoImageView: UIImageView!
-    @IBOutlet weak var settingsButton: UIButton!
+    
+    @IBOutlet weak var audioImage: UIImageView!
     @IBOutlet weak var leaderboardButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var skView: SKView!
@@ -42,6 +43,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.configureLeaderboardsButton()
+        
+        self.updateSoundIcon()
     }
     override var prefersStatusBarHidden: Bool {
         return true
@@ -52,15 +55,25 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         
         self.playButton.isHidden = true
         self.logoImageView.isHidden = true
-        self.settingsButton.isHidden = true
+        self.audioImage.isHidden = true
         self.leaderboardButton.isHidden = true
     }
     func showUI () {
         
         self.playButton.isHidden = false
         self.logoImageView.isHidden = false
-        self.settingsButton.isHidden = false
+        self.audioImage.isHidden = false
         self.leaderboardButton.isHidden = false
+    }
+    
+    func updateSoundIcon() {
+        
+        if StorageFacade.instance.isAudioDisabled() {
+            
+            self.audioImage.image = UIImage(systemName: "speaker.slash.fill")
+        } else {
+            self.audioImage.image = UIImage(systemName: "speaker.3.fill")
+        }
     }
     
     // MARK: - Game methods
@@ -134,6 +147,13 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         }
         
         self.presentGameCenter()
+    }
+    
+    @IBAction func onSound(_ sender: Any) {
+        
+        StorageFacade.instance.setAudioDisabled(to: !StorageFacade.instance.isAudioDisabled())
+        self.updateSoundIcon()
+        AudioManager.shared.update()
     }
     
     @objc func onAuthSuccess() {

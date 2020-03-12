@@ -28,8 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GameCenterFacade.instance.auth()
         
         
-        AudioManager.shared.play(song: .theme)
-        
         return true
     }
 

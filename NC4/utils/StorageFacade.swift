@@ -17,7 +17,7 @@ class StorageFacade {
     
     enum StorageKeys: String {
         case highScore
-        case configuredGameCenter
+        case audioEnabled
     }
     
     func getHighScore() -> Int {
@@ -34,4 +34,8 @@ class StorageFacade {
             self.setHighScore(to: newVal)
         }
     }
+    
+    func isAudioDisabled() -> Bool { UserDefaults.standard.bool(forKey: StorageKeys.audioEnabled.rawValue) }
+    func setAudioDisabled(to newValue: Bool) { UserDefaults.standard.set(newValue, forKey: StorageKeys.audioEnabled.rawValue) }
+    
 }

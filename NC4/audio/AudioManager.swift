@@ -42,4 +42,12 @@ class AudioManager{
         introsWithLoops.forEach( { $0.value.stop() } )
     }
     
+    
+    func enable() {
+        
+    }
+    
+    func disable() {
+        
+    }
 }
