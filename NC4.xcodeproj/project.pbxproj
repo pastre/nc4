@@ -101,11 +101,9 @@
 			isa = PBXGroup;
 			children = (
 				D718CF30240FF096007A1833 /* game */,
+				D7BED039241AA7F3008A861D /* scene */,
 				D7F16A12241851C00063877B /* utils */,
-				D718CF12240EE433007A1833 /* GameViewController.swift */,
 				D7925EBA2419AC9C00B940CE /* GameCenterFacade.swift */,
-				D718CF0C240EE433007A1833 /* GameScene.sks */,
-				D718CF10240EE433007A1833 /* GameScene.swift */,
 				D718CF14240EE433007A1833 /* Main.storyboard */,
 				D718CF0A240EE433007A1833 /* AppDelegate.swift */,
 				D718CF17240EE438007A1833 /* Assets.xcassets */,
@@ -168,6 +166,16 @@
 				D7B80D522410660C0089F65C /* Tail.swift */,
 			);
 			path = player;
+			sourceTree = "<group>";
+		};
+		D7BED039241AA7F3008A861D /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				D718CF0C240EE433007A1833 /* GameScene.sks */,
+				D718CF10240EE433007A1833 /* GameScene.swift */,
+				D718CF12240EE433007A1833 /* GameViewController.swift */,
+			);
+			path = scene;
 			sourceTree = "<group>";
 		};
 		D7F16A12241851C00063877B /* utils */ = {

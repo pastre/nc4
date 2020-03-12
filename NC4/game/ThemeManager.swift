@@ -67,7 +67,6 @@ class ThemeManager: Updateable, SceneSupplicant {
         )
         
         self.scene.addChild(node)
-        
         self.currentThemes.append(node)
     }
 
@@ -81,6 +80,29 @@ class ThemeManager: Updateable, SceneSupplicant {
         node.scale(to: CGSize(width: size, height: size))
         
         return node
+    }
+    
+    func configureStartTheme() {
+        
+        let nodeH = self.getRandomTheme().size.height
+        let sceneH = self.scene.getBounds().height
+        
+        let baseY = sceneH - (nodeH / 2)
+        
+        
+        for i in 0...2 {
+            let y = baseY - CGFloat(i) * nodeH
+            let node = self.getRandomTheme()
+            
+            node.position = CGPoint(
+                x: 0,
+                y: y
+            )
+            
+            self.scene.addChild(node)
+            self.currentThemes.append(node)
+        }
+
     }
     
 }

@@ -14,8 +14,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerNode: SKSpriteNode!
     var scoreNode: SKLabelNode!
-    
-    
+
     var vc: GameViewController?
     
     var sickPeopleManager: SickPeopleManager!
@@ -62,6 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.enemySpawner = EnemySpawner(scene: self)
         
         self.playerNode = (self.childNode(withName: "player") as! SKSpriteNode)
+        
         self.scoreNode = (self.childNode(withName: "score") as! SKLabelNode)
         
         playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
@@ -71,6 +71,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.player = Player(playerNode, self)
         
         self.configureBg()
+        
+        self.themeManager.configureStartTheme()
     }
     
     func configureBg() {
@@ -108,10 +110,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         self.getUpdateables().forEach { $0.update(deltaTime) }
-        
 
     }
-    
     
     
     // MARK: - Collision methods
