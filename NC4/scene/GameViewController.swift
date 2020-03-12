@@ -21,7 +21,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     @IBOutlet weak var leaderboardButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var skView: SKView!
-    @IBOutlet weak var gameOverView: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var topScoreLabel: UILabel!
     
@@ -32,7 +31,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.gameOverView.isHidden = true
+        self.scoreLabel.isHidden = true
         
         self.loadScene()
         self.scene?.realPaused = true
@@ -49,6 +48,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         super.viewWillAppear(animated)
         self.configureLeaderboardsButton()
         
+        self.updateHighscoreLabel()
         self.updateSoundIcon()
     }
     override var prefersStatusBarHidden: Bool {
@@ -62,7 +62,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         self.logoImageView.isHidden = true
         self.audioImage.isHidden = true
         self.leaderboardButton.isHidden = true
-        self.gameOverView.isHidden = true
+        self.scoreLabel.isHidden = true
         self.topScoreLabel.isHidden = true
         
     }
@@ -107,8 +107,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         self.showUI()
         self.updateHighscoreLabel()
         
-        self.gameOverView.isHidden = false
-        self.scoreLabel.text = "\(gameScore)"
+        self.scoreLabel.isHidden = false
+        self.scoreLabel.text = "Last score: \(gameScore)"
         
     }
     
