@@ -47,7 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D718CF07240EE433007A1833 /* NC4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NC4.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D718CF07240EE433007A1833 /* Corona Attack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corona Attack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D718CF0A240EE433007A1833 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D718CF0C240EE433007A1833 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		D718CF10240EE433007A1833 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		D718CF08240EE433007A1833 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D718CF07240EE433007A1833 /* NC4.app */,
+				D718CF07240EE433007A1833 /* Corona Attack.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,7 +249,7 @@
 			);
 			name = NC4;
 			productName = NC4;
-			productReference = D718CF07240EE433007A1833 /* NC4.app */;
+			productReference = D718CF07240EE433007A1833 /* Corona Attack.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -481,7 +481,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = QM43B7QRF9;
 				INFOPLIST_FILE = NC4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -489,7 +489,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.pastre.nc4;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Corona Attack";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -500,7 +500,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = QM43B7QRF9;
 				INFOPLIST_FILE = NC4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -508,7 +508,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.pastre.nc4;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Corona Attack";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
