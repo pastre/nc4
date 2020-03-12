@@ -244,10 +244,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func configureScoreLabel() {
         defer { self.positionLabel() }
         if self.realPaused {
-            self.setHighscoreLabel()
+            self.scoreNode.isHidden = true
             return
         }
-        
+
+        self.scoreNode.isHidden = false
         self.setScoreLabel()
     }
     

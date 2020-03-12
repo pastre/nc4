@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GameKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,14 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         EnemyHitParticleLoader.load()
         
-        // DEBUG TO FIND FONT NAMES
-//        for name in UIFont.familyNames {
-//            print(name)
-//            if let nameString = name as? String {
-//                print(UIFont.fontNames(forFamilyName: nameString))
-//            }
-//        }
-//
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()!
+        
+        window?.rootViewController = vc
+        
+        GameCenterFacade.instance.auth()
+        
         
         return true
     }

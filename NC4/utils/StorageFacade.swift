@@ -17,12 +17,13 @@ class StorageFacade {
     
     enum StorageKeys: String {
         case highScore
-        
+        case configuredGameCenter
     }
     
     func getHighScore() -> Int {
         return UserDefaults.standard.integer(forKey: StorageKeys.highScore.rawValue)
     }
+    
     
     private func setHighScore(to newVal: Int) {
         UserDefaults.standard.set(newVal, forKey: StorageKeys.highScore.rawValue)
