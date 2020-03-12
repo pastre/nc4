@@ -178,6 +178,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func movePlayer(_ dx: CGFloat) {
 
+        if self.currentDeltaTime == nil { return }
         let vx = (abs(dx) > 1 ? dx : 0) / CGFloat(self.currentDeltaTime)
         
         self.playerNode.physicsBody?.velocity = CGVector(dx: vx, dy: 0)
@@ -265,7 +266,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func setScoreLabel() {
-        self.scoreNode.text = "Score: 0"
+        self.scoreNode.text = "Infections: 0"
     }
     
     func changeFonts() {

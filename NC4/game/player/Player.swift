@@ -36,6 +36,7 @@ class Player: AbstractGameObject, Lifeable {
         self.decreaseTail()
         self.scene.playerDidScore()
 
+        AudioManager.shared.play(soundEffect: .infect)
         generator.impactOccurred()
     }
     
@@ -44,6 +45,8 @@ class Player: AbstractGameObject, Lifeable {
         for _ in 1...amount {
             self.increaseTail()
         }
+        
+        AudioManager.shared.play(soundEffect: .pick)
     }
     
     func getPointsNode() -> SKLabelNode {

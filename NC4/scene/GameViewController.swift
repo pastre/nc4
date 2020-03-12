@@ -67,6 +67,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     func onGameOver() {
         guard let gameScore = self.scene?.score else { return }
         
+        AudioManager.shared.play(soundEffect: .gameOver)
+        
         StorageFacade.instance.updateScoreIfNeeded(to: gameScore)
         GameCenterFacade.instance.onScore(gameScore)
         

@@ -122,10 +122,14 @@ class EnemyHitParticleLoader {
     
     static func getAction(_ durationMultiplier: Double) -> SKAction {
         
-//        let fade = SKAction.fadeAlpha(to: 0.5, duration: 0.5 * durationMultiplier)
+        
         let rotate = SKAction.rotate(byAngle: .pi / 4 * ( Bool.random() ? 1 : -1), duration: 0.5 * durationMultiplier)
-        let translate = SKAction.move(by: CGVector(dx: .random(in: 80...130) * ( Bool.random() ? 1 : -1), dy: .random(in: 50...80)), duration: 0.5 * durationMultiplier)
-        let remove = SKAction.removeFromParent()
+        let translate = SKAction.move(
+            by: CGVector(
+                dx: .random(in: 60...150) * ( Bool.random() ? 1 : -1),
+                dy: .random(in: 30...100)),
+            duration: 0.5 * durationMultiplier
+        )
         
         let group = SKAction.group([
 //            fade,
@@ -133,7 +137,7 @@ class EnemyHitParticleLoader {
             translate
         ])
         return group
-        return SKAction.sequence([group, remove])
+//        return SKAction.sequence([group, remove])
         
     }
 }
