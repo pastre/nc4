@@ -12,20 +12,20 @@ import GameKit
 import GoogleMobileAds
 
 
-class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADRewardBasedVideoAdDelegate {
-    // MARK: - GADRewardBasedVideoAdDelegate
-    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didRewardUserWith reward: GADAdReward) {
-        print("Reward is", reward)
-        
-        self.onAdCompleted()
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADInterstitialDelegate {
+    // MARK: - GADInterstitialDelegate
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+      print("interstitialDidDismissScreen")
+        self.loadAd()
     }
-    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd,
-        didFailToLoadWithError error: Error) {
-      print("Reward based video ad failed to load.")
+    
+    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
+      print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
     }
     
 
     var scene: GameScene?
+    var interstitial: GADInterstitial!
     
     @IBOutlet weak var logoImageView: UIImageView!
     
@@ -42,7 +42,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADR
     // MARK: -  UIViewController methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.scoreLabel.isHidden = true
         
         self.loadScene()
@@ -138,19 +138,19 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADR
     func loadAd() {
         
         print("Loading ad")
-        GADRewardBasedVideoAd.sharedInstance().delegate = self
-         //TEST AD
-//        GADRewardBasedVideoAd.sharedInstance().load(GADRequest(),
-//        withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
+        
+        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        self.interstitial.delegate = self
+        
+        let request = GADRequest()
+        interstitial.load(request)
+        
         print("Loading ad")
-        //REAL AD
-        GADRewardBasedVideoAd.sharedInstance().load(GADRequest(),
-        withAdUnitID: "ca-app-pub-3760704996981292/5214330633")
     }
     
     func presentAd() {
-        if GADRewardBasedVideoAd.sharedInstance().isReady == true {
-          GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: self)
+        if self.interstitial.isReady {
+            self.interstitial.present(fromRootViewController: self)
             print("presenting ad")
         } else {
             print("Tried to present fucking ad, but it didnt load")
