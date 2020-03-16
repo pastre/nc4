@@ -49,7 +49,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         self.scene?.realPaused = true
         
         self.skView.ignoresSiblingOrder = true
-//        self.skView.showsFPS = true
+        self.skView.showsFPS = true
 //        self.skView.showsNodeCount = true
 //        self.skView.showsPhysics = true
         
@@ -114,8 +114,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     
     func onGameOver() {
         guard let gameScore = self.scene?.score else { return }
-        
-        AudioManager.shared.play(soundEffect: .gameOver)
+        DispatchQueue.global().async {
+            AudioManager.shared.play(soundEffect: .gameOver)
+        }
         
         StorageFacade.instance.updateScoreIfNeeded(to: gameScore)
         GameCenterFacade.instance.onScore(gameScore)

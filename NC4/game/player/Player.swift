@@ -36,7 +36,9 @@ class Player: AbstractGameObject, Lifeable {
         self.decreaseTail()
         self.scene.playerDidScore()
 
-        AudioManager.shared.play(soundEffect: .infect)
+        DispatchQueue.global().async {
+             AudioManager.shared.play(soundEffect: .infect)
+        }
         generator.impactOccurred()
     }
     
@@ -45,8 +47,11 @@ class Player: AbstractGameObject, Lifeable {
         for _ in 1...amount {
             self.increaseTail()
         }
+        DispatchQueue.global().async {
+            
         
-        AudioManager.shared.play(soundEffect: .pick)
+            AudioManager.shared.play(soundEffect: .pick)
+        }
     }
     
     func getPointsNode() -> SKLabelNode {
