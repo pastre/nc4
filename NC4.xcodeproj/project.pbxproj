@@ -139,8 +139,7 @@
 				D7B80D56241066830089F65C /* coin */,
 				D7B80D58241066950089F65C /* enemy */,
 				D7B80D5A241066B80089F65C /* player */,
-				D7F16A1024184B4D0063877B /* ThemeManager.swift */,
-				D78A5BCB2419616100CDA3DA /* SickPeopleManager.swift */,
+				D7C6BF26241FBB9E00607B2D /* view */,
 			);
 			path = game;
 			sourceTree = "<group>";
@@ -218,6 +217,15 @@
 				D718CF12240EE433007A1833 /* GameViewController.swift */,
 			);
 			path = scene;
+			sourceTree = "<group>";
+		};
+		D7C6BF26241FBB9E00607B2D /* view */ = {
+			isa = PBXGroup;
+			children = (
+				D7F16A1024184B4D0063877B /* ThemeManager.swift */,
+				D78A5BCB2419616100CDA3DA /* SickPeopleManager.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		D7F16A12241851C00063877B /* utils */ = {
