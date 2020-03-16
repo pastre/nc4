@@ -91,4 +91,7 @@ class EnemyGroup: AbstractGameObject {
         return self.collidingEnemies.count > 0
     }
     
+    func getEnemyArea() -> SKSpriteNode {
+        return self.node.childNode(withName: "enemyArea") as! SKSpriteNode
+    }
 }
