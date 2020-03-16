@@ -25,11 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Configures firebase
         FirebaseApp.configure()
         
-        // Configures ads
+        // Configures ads 
 
         GADMobileAds.sharedInstance().start { (status) in
             print("Initialized ads!")
         }
+        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["16e43876ab970d8a769187172612033f" ]
         
         // Loads starting vc
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

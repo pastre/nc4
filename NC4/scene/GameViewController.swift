@@ -9,8 +9,20 @@
 import UIKit
 import SpriteKit
 import GameKit
+import GoogleMobileAds
 
-class GameViewController: UIViewController, GKGameCenterControllerDelegate {
+
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADRewardBasedVideoAdDelegate {
+    // MARK: - GADRewardBasedVideoAdDelegate
+    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didRewardUserWith reward: GADAdReward) {
+        print("Reward is", reward)
+        
+        self.onAdCompleted()
+    }
+    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd,
+        didFailToLoadWithError error: Error) {
+      print("Reward based video ad failed to load.")
+    }
     
 
     var scene: GameScene?
@@ -51,6 +63,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         self.updateHighscoreLabel()
         self.updateSoundIcon()
     }
+
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -92,6 +106,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     }
     
     // MARK: - Game methods
+    
+    func onGameStart() {
+        
+        self.loadAd()
+    }
+    
     func onGameOver() {
         guard let gameScore = self.scene?.score else { return }
         
@@ -100,6 +120,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         StorageFacade.instance.updateScoreIfNeeded(to: gameScore)
         GameCenterFacade.instance.onScore(gameScore)
         
+        self.presentAd()
         self.loadScene()
         self.scene?.realPaused = true
         
@@ -112,6 +133,34 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         
     }
     
+    // MARK: - Ad methods
+    
+    func loadAd() {
+        
+        print("Loading ad")
+        GADRewardBasedVideoAd.sharedInstance().delegate = self
+         //TEST AD
+//        GADRewardBasedVideoAd.sharedInstance().load(GADRequest(),
+//        withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
+        print("Loading ad")
+        //REAL AD
+        GADRewardBasedVideoAd.sharedInstance().load(GADRequest(),
+        withAdUnitID: "ca-app-pub-3760704996981292/5214330633")
+    }
+    
+    func presentAd() {
+        if GADRewardBasedVideoAd.sharedInstance().isReady == true {
+          GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: self)
+            print("presenting ad")
+        } else {
+            print("Tried to present fucking ad, but it didnt load")
+        }
+    }
+    
+    func onAdCompleted() {
+        
+        
+    }
     
     //MARK: - View helpers
     
@@ -128,6 +177,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
             self.skView.presentScene(scene)
         }
     }
+    
     func presentGameCenter() {
         guard let vc = GameCenterFacade.instance.getGameCenterVc() else { return }
         
@@ -158,6 +208,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     
     // MARK: - Button callbacks
     @IBAction func onPlay(_ sender: Any) {
+        self.loadAd()
         self.scene?.realPaused = false
         self.hideUI()
     }
