@@ -8,6 +8,8 @@
 
 import UIKit
 import GameKit
+import Firebase
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,14 +19,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // Loads particles
         EnemyHitParticleLoader.load()
         
+        // Configures firebase
+        FirebaseApp.configure()
         
+        // Loads starting vc
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateInitialViewController()!
         
         window?.rootViewController = vc
         
+        
+        // Loads gamecenter
         GameCenterFacade.instance.auth()
         
         return true

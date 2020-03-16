@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A497B8DC29C60356D43D951 /* Pods_NC4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB9DB4C247A83087B704D63 /* Pods_NC4.framework */; };
 		D718CF0B240EE433007A1833 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF0A240EE433007A1833 /* AppDelegate.swift */; };
 		D718CF0D240EE433007A1833 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D718CF0C240EE433007A1833 /* GameScene.sks */; };
 		D718CF11240EE433007A1833 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF10240EE433007A1833 /* GameScene.swift */; };
@@ -39,6 +40,7 @@
 		D7B80D512410248B0089F65C /* CoinSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B80D502410248B0089F65C /* CoinSpawner.swift */; };
 		D7B80D532410660C0089F65C /* Tail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B80D522410660C0089F65C /* Tail.swift */; };
 		D7B80D55241066260089F65C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B80D54241066260089F65C /* Utils.swift */; };
+		D7B8E2E1241FD7B90049CF4B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D7B8E2E0241FD7B90049CF4B /* GoogleService-Info.plist */; };
 		D7F16A0B2416E4C50063877B /* SpeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A0A2416E4C50063877B /* SpeedManager.swift */; };
 		D7F16A0F2417F2B40063877B /* StorageFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A0E2417F2B40063877B /* StorageFacade.swift */; };
 		D7F16A1124184B4D0063877B /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16A1024184B4D0063877B /* ThemeManager.swift */; };
@@ -47,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		628ACA5066C866935454E5F3 /* Pods-NC4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NC4.release.xcconfig"; path = "Target Support Files/Pods-NC4/Pods-NC4.release.xcconfig"; sourceTree = "<group>"; };
 		D718CF07240EE433007A1833 /* Corona Attack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corona Attack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D718CF0A240EE433007A1833 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D718CF0C240EE433007A1833 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -81,11 +84,14 @@
 		D7B80D502410248B0089F65C /* CoinSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSpawner.swift; sourceTree = "<group>"; };
 		D7B80D522410660C0089F65C /* Tail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tail.swift; sourceTree = "<group>"; };
 		D7B80D54241066260089F65C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		D7B8E2E0241FD7B90049CF4B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D7F16A0A2416E4C50063877B /* SpeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedManager.swift; sourceTree = "<group>"; };
 		D7F16A0E2417F2B40063877B /* StorageFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageFacade.swift; sourceTree = "<group>"; };
 		D7F16A1024184B4D0063877B /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		D7F16A13241851DB0063877B /* ZPositoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZPositoinManager.swift; sourceTree = "<group>"; };
 		D7F16A1524185A140063877B /* EnemySpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemySpawner.swift; sourceTree = "<group>"; };
+		F3327BB0C5C42F6990C0F464 /* Pods-NC4.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NC4.debug.xcconfig"; path = "Target Support Files/Pods-NC4/Pods-NC4.debug.xcconfig"; sourceTree = "<group>"; };
+		FDB9DB4C247A83087B704D63 /* Pods_NC4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NC4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,17 +99,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A497B8DC29C60356D43D951 /* Pods_NC4.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8EA06902E8C97C1B6777A2B7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3327BB0C5C42F6990C0F464 /* Pods-NC4.debug.xcconfig */,
+				628ACA5066C866935454E5F3 /* Pods-NC4.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B8D1B06789DB9A9FD7DFDF49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FDB9DB4C247A83087B704D63 /* Pods_NC4.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D718CEFE240EE433007A1833 = {
 			isa = PBXGroup;
 			children = (
 				D718CF09240EE433007A1833 /* NC4 */,
 				D718CF08240EE433007A1833 /* Products */,
+				8EA06902E8C97C1B6777A2B7 /* Pods */,
+				B8D1B06789DB9A9FD7DFDF49 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +154,7 @@
 				D718CF17240EE438007A1833 /* Assets.xcassets */,
 				D718CF1C240EE438007A1833 /* Info.plist */,
 				D718CF19240EE438007A1833 /* LaunchScreen.storyboard */,
+				D7B8E2E0241FD7B90049CF4B /* GoogleService-Info.plist */,
 				D78A5BCD24198BCC00CDA3DA /* NCTTorin-Light.ttf */,
 			);
 			path = NC4;
@@ -247,9 +275,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D718CF1F240EE438007A1833 /* Build configuration list for PBXNativeTarget "NC4" */;
 			buildPhases = (
+				7BC02952E3ED47D09202DF0D /* [CP] Check Pods Manifest.lock */,
 				D718CF03240EE433007A1833 /* Sources */,
 				D718CF04240EE433007A1833 /* Frameworks */,
 				D718CF05240EE433007A1833 /* Resources */,
+				63FF24AED0CE1FB4F2412375 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -305,12 +335,55 @@
 				D718CF18240EE438007A1833 /* Assets.xcassets in Resources */,
 				D78A5BCE24198BD200CDA3DA /* NCTTorin-Light.ttf in Resources */,
 				D79DC9B1241ABD0400C586C4 /* gameOver.wav in Resources */,
+				D7B8E2E1241FD7B90049CF4B /* GoogleService-Info.plist in Resources */,
 				D718CF1B240EE438007A1833 /* LaunchScreen.storyboard in Resources */,
 				D7A396C8241ACE480040D980 /* Deixando Vírus.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		63FF24AED0CE1FB4F2412375 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NC4/Pods-NC4-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NC4/Pods-NC4-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NC4/Pods-NC4-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7BC02952E3ED47D09202DF0D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NC4-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D718CF03240EE433007A1833 /* Sources */ = {
@@ -486,6 +559,7 @@
 		};
 		D718CF20240EE438007A1833 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3327BB0C5C42F6990C0F464 /* Pods-NC4.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -505,6 +579,7 @@
 		};
 		D718CF21240EE438007A1833 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 628ACA5066C866935454E5F3 /* Pods-NC4.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
