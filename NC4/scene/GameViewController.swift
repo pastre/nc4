@@ -138,8 +138,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     func loadAd() {
         
         print("Loading ad")
+        // TEST AD
+//        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
         
-        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        // READ AD
+        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3760704996981292/8000561485")
+        
         self.interstitial.delegate = self
         
         let request = GADRequest()
