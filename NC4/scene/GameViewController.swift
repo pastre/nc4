@@ -37,8 +37,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         self.scene?.realPaused = true
         
         self.skView.ignoresSiblingOrder = true
-        self.skView.showsFPS = true
-        self.skView.showsNodeCount = true
+//        self.skView.showsFPS = true
+//        self.skView.showsNodeCount = true
 //        self.skView.showsPhysics = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.onAuthSuccess), name: kAuthSuccess, object: nil)
