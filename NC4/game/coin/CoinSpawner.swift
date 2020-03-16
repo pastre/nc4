@@ -16,7 +16,7 @@ class CoinSpawner: SceneSupplicant, Updateable {
     
     let spawnThreshold = TimeInterval(2)
     
-    var currentSpawnTimer = TimeInterval(4)
+    var currentSpawnTimer = TimeInterval(0)
     var shouldMoveCoins: Bool = true
     
     
