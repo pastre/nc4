@@ -32,5 +32,7 @@
 	<string>1:600575057960:ios:a665d2111239c969b0d51d</string>
 	<key>DATABASE_URL</key>
 	<string>https://nano-challenge-4.firebaseio.com</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-3760704996981292~8588746666</string>
 </dict>
 </plist>

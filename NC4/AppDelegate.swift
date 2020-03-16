@@ -9,7 +9,7 @@
 import UIKit
 import GameKit
 import Firebase
-
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Configures firebase
         FirebaseApp.configure()
+        
+        // Configures ads
+
+        GADMobileAds.sharedInstance().start { (status) in
+            print("Initialized ads!")
+        }
         
         // Loads starting vc
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
