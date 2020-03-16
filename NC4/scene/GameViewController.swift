@@ -49,7 +49,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         self.scene?.realPaused = true
         
         self.skView.ignoresSiblingOrder = true
-        self.skView.showsFPS = true
+//        self.skView.showsFPS = true
 //        self.skView.showsNodeCount = true
 //        self.skView.showsPhysics = true
         
