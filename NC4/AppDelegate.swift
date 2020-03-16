@@ -8,6 +8,8 @@
 
 import UIKit
 import GameKit
+import Firebase
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,14 +19,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // Loads particles
         EnemyHitParticleLoader.load()
         
+        // Configures firebase
+        FirebaseApp.configure()
         
+        // Configures ads 
+
+        GADMobileAds.sharedInstance().start { (status) in
+            print("Initialized ads!")
+        }
+        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["16e43876ab970d8a769187172612033f" ]
+        
+        // Loads starting vc
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateInitialViewController()!
         
         window?.rootViewController = vc
         
+        
+        // Loads gamecenter
         GameCenterFacade.instance.auth()
         
         return true

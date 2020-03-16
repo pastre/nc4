@@ -9,11 +9,23 @@
 import UIKit
 import SpriteKit
 import GameKit
+import GoogleMobileAds
 
-class GameViewController: UIViewController, GKGameCenterControllerDelegate {
+
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADInterstitialDelegate {
+    // MARK: - GADInterstitialDelegate
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+      print("interstitialDidDismissScreen")
+        self.loadAd()
+    }
+    
+    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
+      print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
     
 
     var scene: GameScene?
+    var interstitial: GADInterstitial!
     
     @IBOutlet weak var logoImageView: UIImageView!
     
@@ -30,7 +42,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     // MARK: -  UIViewController methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.scoreLabel.isHidden = true
         
         self.loadScene()
@@ -51,6 +63,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         self.updateHighscoreLabel()
         self.updateSoundIcon()
     }
+
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -92,14 +106,22 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     }
     
     // MARK: - Game methods
+    
+    func onGameStart() {
+        
+        self.loadAd()
+    }
+    
     func onGameOver() {
         guard let gameScore = self.scene?.score else { return }
-        
-        AudioManager.shared.play(soundEffect: .gameOver)
+        DispatchQueue.global().async {
+            AudioManager.shared.play(soundEffect: .gameOver)
+        }
         
         StorageFacade.instance.updateScoreIfNeeded(to: gameScore)
         GameCenterFacade.instance.onScore(gameScore)
         
+        self.presentAd()
         self.loadScene()
         self.scene?.realPaused = true
         
@@ -112,6 +134,38 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         
     }
     
+    // MARK: - Ad methods
+    
+    func loadAd() {
+        
+        print("Loading ad")
+        // TEST AD
+//        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        
+        // READ AD
+        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3760704996981292/8000561485")
+        
+        self.interstitial.delegate = self
+        
+        let request = GADRequest()
+        interstitial.load(request)
+        
+        print("Loading ad")
+    }
+    
+    func presentAd() {
+        if self.interstitial.isReady {
+            self.interstitial.present(fromRootViewController: self)
+            print("presenting ad")
+        } else {
+            print("Tried to present fucking ad, but it didnt load")
+        }
+    }
+    
+    func onAdCompleted() {
+        
+        
+    }
     
     //MARK: - View helpers
     
@@ -128,6 +182,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
             self.skView.presentScene(scene)
         }
     }
+    
     func presentGameCenter() {
         guard let vc = GameCenterFacade.instance.getGameCenterVc() else { return }
         
@@ -158,6 +213,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     
     // MARK: - Button callbacks
     @IBAction func onPlay(_ sender: Any) {
+        self.loadAd()
         self.scene?.realPaused = false
         self.hideUI()
     }
