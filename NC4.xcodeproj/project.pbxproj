@@ -24,6 +24,7 @@
 		D718CF2F240FF05D007A1833 /* Lifeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF2E240FF05D007A1833 /* Lifeable.swift */; };
 		D75E60722411335C000A320D /* GameEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E60712411335C000A320D /* GameEventListener.swift */; };
 		D76FD8E5241FDF1500820880 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D76FD8E4241FDF1500820880 /* GoogleService-Info.plist */; };
+		D77A612524217F0F00DD69C0 /* EnemyHitParticleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */; };
 		D78A5BCC2419616100CDA3DA /* SickPeopleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78A5BCB2419616100CDA3DA /* SickPeopleManager.swift */; };
 		D78A5BCE24198BD200CDA3DA /* NCTTorin-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D78A5BCD24198BCC00CDA3DA /* NCTTorin-Light.ttf */; };
 		D7925EBB2419AC9C00B940CE /* GameCenterFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7925EBA2419AC9C00B940CE /* GameCenterFacade.swift */; };
@@ -68,6 +69,7 @@
 		D718CF2E240FF05D007A1833 /* Lifeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifeable.swift; sourceTree = "<group>"; };
 		D75E60712411335C000A320D /* GameEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventListener.swift; sourceTree = "<group>"; };
 		D76FD8E4241FDF1500820880 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyHitParticleLoader.swift; sourceTree = "<group>"; };
 		D78A5BCB2419616100CDA3DA /* SickPeopleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SickPeopleManager.swift; sourceTree = "<group>"; };
 		D78A5BCD24198BCC00CDA3DA /* NCTTorin-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NCTTorin-Light.ttf"; sourceTree = "<group>"; };
 		D7925EBA2419AC9C00B940CE /* GameCenterFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterFacade.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				D718CF2A240FF024007A1833 /* EnemyGroup.swift */,
 				D718CF28240FF003007A1833 /* EnemyGroupFactory.swift */,
 				D7F16A1524185A140063877B /* EnemySpawner.swift */,
+				D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */,
 			);
 			path = enemy;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				D718CF2F240FF05D007A1833 /* Lifeable.swift in Sources */,
 				D7F16A14241851DB0063877B /* ZPositoinManager.swift in Sources */,
 				D75E60722411335C000A320D /* GameEventListener.swift in Sources */,
+				D77A612524217F0F00DD69C0 /* EnemyHitParticleLoader.swift in Sources */,
 				D7B80D512410248B0089F65C /* CoinSpawner.swift in Sources */,
 				D7F16A1124184B4D0063877B /* ThemeManager.swift in Sources */,
 				D79DC9AB241ABC7B00C586C4 /* Song.swift in Sources */,

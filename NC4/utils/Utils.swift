@@ -19,6 +19,13 @@ func clamp<T: Comparable>(_ value: T, _ floor: T, _ roof: T) -> T {
     return min(max(value, floor), roof)
 }
 
+extension CGPoint {
+    func translated(by vector: CGVector) -> CGPoint {
+        return CGPoint(x: self.x + vector.dx, y: self.y + vector.dy)
+    }
+}
+
+
 extension CGSize {
     static func * (_ a: CGSize, _ b: CGFloat) -> CGSize {
         return CGSize(width: a.width * (b), height: a.height * CGFloat(b))
