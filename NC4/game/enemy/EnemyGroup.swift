@@ -13,6 +13,17 @@ class EnemyGroup: AbstractGameObject {
     var collidingEnemies: [Enemy] = [Enemy]()
     var enemies: [Enemy]!
     
+        let textures = [
+            "school",
+            "bank",
+            "market",
+            "cafe",
+            "gas",
+            "hospital",
+            "hotel",
+            "police"
+        ]
+        
     
     init(enemies: [Enemy], _ node: SKNode, _ scene: GameScene) {
         super.init(node, scene)
@@ -20,6 +31,34 @@ class EnemyGroup: AbstractGameObject {
         
         self.balanceEnemies()
         self.unzeroEnemies()
+        self.balanceSkins()
+    }
+    
+    func balanceSkins() {
+        var skins = [String]()
+        var possibleSkins = self.textures.map { $0 }
+        
+        for _ in self.enemies {
+            guard let newSkin = possibleSkins.randomElement() else { continue }
+            
+            skins.append(newSkin)
+            possibleSkins.removeAll { $0 == newSkin }
+        }
+        
+        for (i, enemy) in enemies.enumerated() {
+            let node = enemy.getTextureNode()
+            
+            let newTexture = SKTexture(imageNamed: skins[i])
+            
+            let ratio: CGFloat =  CGFloat(newTexture.cgImage().width) / CGFloat(newTexture.cgImage().height)
+            
+            print("Ratio, ", ratio)
+            
+            node.texture = newTexture
+//            node.scale(to: CGSize(width: node.size.width, height: node.size.height * ratio))
+        }
+        print("------------")
+        
     }
     
     func unzeroEnemies() {

@@ -19,7 +19,7 @@ class Enemy: AbstractGameObject, Lifeable {
         
         self.lifes = .random(in: (currentNodeCount / 2)...(currentNodeCount  * 2))
         
-        self.getTextureNode().texture = self.getRandomTexture()
+//        self.getTextureNode().texture = Enemy.getRandomTexture()
         
         
     }
@@ -81,9 +81,4 @@ class Enemy: AbstractGameObject, Lifeable {
         return self.node.childNode(withName: "texture") as! SKSpriteNode
     }
     
-    func getRandomTexture() -> SKTexture {
-        let textures = [ "school", "bank", "market"]
-        
-        return SKTexture(imageNamed: textures.randomElement()!)
-    }
 }
