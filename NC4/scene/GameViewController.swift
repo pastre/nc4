@@ -37,7 +37,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     @IBOutlet weak var topScoreLabel: UILabel!
     
     var shouldDisplayGameCenter: Bool = false
-    
+    var shouldDisplayWarning: Bool = true
     
     // MARK: -  UIViewController methods
     override func viewDidLoad() {
@@ -62,6 +62,24 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         
         self.updateHighscoreLabel()
         self.updateSoundIcon()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        guard self.shouldDisplayWarning else { return }
+        if !StorageFacade.instance.hasDisplayedDisclaimer() {
+            
+            let alert = UIAlertController(title: "Warning!", message: "This is humorous content with no intention of disrespecting the real importance of fighting the real virus. We highly recommend you always consult apps and sources approved by WHO (World Health Organization).", preferredStyle: .alert )
+            
+            alert.addAction(UIAlertAction(title: "Never show this again", style: .destructive, handler: { (_) in
+                StorageFacade.instance.setDisclaimerDisplayed()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
+                self.shouldDisplayWarning = false
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
     
