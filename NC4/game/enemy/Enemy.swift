@@ -81,4 +81,7 @@ class Enemy: AbstractGameObject, Lifeable {
         return self.node.childNode(withName: "texture") as! SKSpriteNode
     }
     
+    func getTipNode() -> SKSpriteNode {
+        return self.getLabelNode().childNode(withName: "labelBg") as! SKSpriteNode
+    }
 }

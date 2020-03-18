@@ -61,6 +61,22 @@ class EnemyGroup: AbstractGameObject {
         
     }
     
+    
+    // Changes the backgorund of the square that indicates the amount of points a player has
+    func balanceBackgroundTipColor() {
+        let colors: [UIColor] = [
+            #colorLiteral(red: 0.5254901961, green: 0.7333333333, blue: 0.8470588235, alpha: 1),
+            #colorLiteral(red: 0.4431372549, green: 0.5019607843, blue: 0.6745098039, alpha: 1),
+            #colorLiteral(red: 0.2549019608, green: 0.3960784314, blue: 0.5411764706, alpha: 1),
+            #colorLiteral(red: 0.2549019608, green: 0.2509803922, blue: 0.4509803922, alpha: 1),
+            #colorLiteral(red: 0.137254902, green: 0.04705882353, blue: 0.2, alpha: 1),
+            ].map { $0.withAlphaComponent(0.5) }
+        
+        
+        
+        
+    }
+    
     func unzeroEnemies() {
         self.enemies.forEach {
             if $0.lifes == 0 {
@@ -133,4 +149,5 @@ class EnemyGroup: AbstractGameObject {
     func getEnemyArea() -> SKSpriteNode {
         return self.node.childNode(withName: "enemyArea") as! SKSpriteNode
     }
+    
 }

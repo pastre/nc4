@@ -51,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		628ACA5066C866935454E5F3 /* Pods-NC4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NC4.release.xcconfig"; path = "Target Support Files/Pods-NC4/Pods-NC4.release.xcconfig"; sourceTree = "<group>"; };
+		D71421172422E33500D3D0D8 /* LucidaGrande.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = LucidaGrande.ttc; sourceTree = "<group>"; };
 		D718CF07240EE433007A1833 /* Corona Attack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corona Attack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D718CF0A240EE433007A1833 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D718CF0C240EE433007A1833 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -156,6 +157,7 @@
 				D718CF1C240EE438007A1833 /* Info.plist */,
 				D718CF19240EE438007A1833 /* LaunchScreen.storyboard */,
 				D76FD8E4241FDF1500820880 /* GoogleService-Info.plist */,
+				D71421172422E33500D3D0D8 /* LucidaGrande.ttc */,
 				D78A5BCD24198BCC00CDA3DA /* NCTTorin-Light.ttf */,
 			);
 			path = NC4;

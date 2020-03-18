@@ -24,6 +24,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>LucidaGrande.ttc</string>
 		<string>NCTTorin-Light.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

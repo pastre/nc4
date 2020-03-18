@@ -172,7 +172,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     }
     
     func presentAd() {
-        
+        #if DEBUG
+            return
+        #endif
         if self.interstitial.isReady {
             self.interstitial.present(fromRootViewController: self)
             print("presenting ad")

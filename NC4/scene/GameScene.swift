@@ -273,8 +273,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func changeFonts() {
         visit { (node) -> () in
             if let label = node as? SKLabelNode {
-                label.fontName = "NCT Torin"
-                
+//                label.fontName = "NCT Torin"
+//                label.fontName = "HoeflerText-Black"
+//                label.addStroke(color: .black, width: 4)
 //                label.fontSize = 20
             }
         }
