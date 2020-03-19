@@ -32,6 +32,7 @@ class EnemyGroup: AbstractGameObject {
         self.balanceEnemies()
         self.unzeroEnemies()
         self.balanceSkins()
+        self.balanceBackgroundTipColor()
     }
     
     func balanceSkins() {
@@ -70,10 +71,47 @@ class EnemyGroup: AbstractGameObject {
             #colorLiteral(red: 0.2549019608, green: 0.3960784314, blue: 0.5411764706, alpha: 1),
             #colorLiteral(red: 0.2549019608, green: 0.2509803922, blue: 0.4509803922, alpha: 1),
             #colorLiteral(red: 0.137254902, green: 0.04705882353, blue: 0.2, alpha: 1),
-            ].map { $0.withAlphaComponent(0.5) }
+            ].map { $0.withAlphaComponent(0.75) }
+        var processedLifes: [Int] = []
+        var processedNodes: [SKSpriteNode] = []
+        var sorted: [Int] = self.enemies.map { $0.lifes }
         
+        sorted.sort { (i1, i2) -> Bool in
+            i1 < i2
+        }
         
+        for enemy in enemies {
+            guard let lifeIndex = sorted.firstIndex(of: enemy.lifes) else { continue }
+            let bgNode = enemy.getTipNode()
+//            let colorNode = SKShapeNode(rect: CGRect(origin: .zero, size: bgNode.size), cornerRadius: 8)
+            
+//            colorNode.fillColor = colors[lifeIndex]
+//            colorNode.strokeColor = .clear
+//            colorNode.yScale = 1 / bgNode.yScale
+//            colorNode.xScale = 1 / bgNode.xScale
+//            colorNode.position = .zero
+            
+            bgNode.color = colors[lifeIndex]
+            
+//            bgNode.addChild(colorNode)
+        }
         
+//        for (i, life) in sorted.enumerated()  {
+//            let bgNode = enemies[i]
+//
+//
+//            if let replica = processedLifes.firstIndex(of: life) {
+//                let node = processedNodes[replica]
+//                bgNode.color = node.color
+//                continue
+//            }
+//
+//
+//
+//            processedLifes.append(life)
+//            processedNodes.append(bgNode)
+//        }
+//
         
     }
     
@@ -87,6 +125,8 @@ class EnemyGroup: AbstractGameObject {
     
     func balanceEnemies() {
         let pLifes = self.scene.player.getLifeCount()
+        
+        
         for enemy in enemies {
             if enemy.lifes <= pLifes { return }
         }
