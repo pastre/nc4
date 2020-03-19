@@ -68,7 +68,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         guard self.shouldDisplayWarning else { return }
         if !StorageFacade.instance.hasDisplayedDisclaimer() {
             
-            let alert = UIAlertController(title: "Warning!", message: "This is humorous content with no intention of disrespecting the real importance of fighting the real virus. We highly recommend you always consult apps and sources approved by WHO (World Health Organization).", preferredStyle: .alert )
+            let alert = UIAlertController(title: "Warning!", message: "This is completely fictional content, totally unrelated to any real situation, person or organization.", preferredStyle: .alert )
             
             alert.addAction(UIAlertAction(title: "Never show this again", style: .destructive, handler: { (_) in
                 StorageFacade.instance.setDisclaimerDisplayed()
@@ -78,7 +78,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
                 self.shouldDisplayWarning = false
             }))
             
-//            self.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
     }
 
