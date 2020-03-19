@@ -78,7 +78,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
                 self.shouldDisplayWarning = false
             }))
             
-            self.present(alert, animated: true, completion: nil)
+//            self.present(alert, animated: true, completion: nil)
         }
     }
 
