@@ -14,7 +14,7 @@ class EnemyHitParticleLoader {
     
     static func load() {
         var textures = [SKTexture]()
-        for i in 1...16 {
+        for i in 1...18 {
             let newTexture = SKTexture(imageNamed: "impact\(i)")
             textures.append(newTexture)
         }

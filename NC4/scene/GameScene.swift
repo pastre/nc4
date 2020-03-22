@@ -67,7 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
         playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
         playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
-        
+        playerNode.scale(to: .init(width: 40, height: 50))
         self.player = Player(playerNode, self)
         
         self.configureBg()
