@@ -16,19 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    fileprivate func debugFonts() {
+
+                for name in UIFont.familyNames {
+                    print(name)
+                    if let nameString = name as? String {
+        //                print(UIFont.fontNames(forFamilyName: nameString))
+                    }
+                }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        for name in UIFont.familyNames {
-            print(name)
-            if let nameString = name as? String {
-//                print(UIFont.fontNames(forFamilyName: nameString))
-            }
-        }
         
         // Loads particles
         EnemyHitParticleLoader.load()
+        
         
         // Configures firebase
         FirebaseApp.configure()

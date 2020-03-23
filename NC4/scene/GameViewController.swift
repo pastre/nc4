@@ -23,6 +23,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     
     func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
       print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
+        
+        Crashlytics.crashlytics().record(error: error)
     }
     
 

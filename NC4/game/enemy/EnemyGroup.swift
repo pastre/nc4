@@ -53,12 +53,12 @@ class EnemyGroup: AbstractGameObject {
             
             let ratio: CGFloat =  CGFloat(newTexture.cgImage().width) / CGFloat(newTexture.cgImage().height)
             
-            print("Ratio, ", ratio)
+//            print("Ratio, ", ratio)
             
             node.texture = newTexture
 //            node.scale(to: CGSize(width: node.size.width, height: node.size.height * ratio))
         }
-        print("------------")
+//        print("------------")
         
     }
     
