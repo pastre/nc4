@@ -174,7 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playerDidScore() {
         self.score += 1
-        self.scoreNode.text = "Infections: \(self.score!)"
+        self.scoreNode.text = "Kills: \(self.score!)"
     }
     
     func movePlayer(_ dx: CGFloat) {
@@ -267,7 +267,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func setScoreLabel() {
-        self.scoreNode.text = "Infections: 0"
+        self.scoreNode.text = "Kills: 0"
     }
     
     func changeFonts() {

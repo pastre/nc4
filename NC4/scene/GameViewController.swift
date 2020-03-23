@@ -10,12 +10,14 @@ import UIKit
 import SpriteKit
 import GameKit
 import GoogleMobileAds
-
+import Firebase
 
 class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADInterstitialDelegate {
     // MARK: - GADInterstitialDelegate
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
       print("interstitialDidDismissScreen")
+        
+        Analytics.logEvent("completedAdPresentation", parameters: nil)
         self.loadAd()
     }
     
@@ -38,6 +40,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     
     var shouldDisplayGameCenter: Bool = false
     var shouldDisplayWarning: Bool = true
+    
+    var gameStartedTimestamp: TimeInterval?
     
     // MARK: -  UIViewController methods
     override func viewDidLoad() {
@@ -132,8 +136,16 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     
     func onGameOver() {
         guard let gameScore = self.scene?.score else { return }
+        
         DispatchQueue.global().async {
             AudioManager.shared.play(soundEffect: .gameOver)
+        }
+        
+        let timestamp = Date().timeIntervalSince1970
+        if let startTs = self.gameStartedTimestamp {
+            let duration = timestamp - startTs
+            
+            Analytics.logEvent(AnalyticsEventLevelEnd, parameters: ["duration" : duration])
         }
         
         StorageFacade.instance.updateScoreIfNeeded(to: gameScore)
@@ -175,6 +187,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         #if DEBUG
             return
         #endif
+        Analytics.logEvent("showAd", parameters: nil)
         if self.interstitial.isReady {
             self.interstitial.present(fromRootViewController: self)
             print("presenting ad")
@@ -237,6 +250,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         self.loadAd()
         self.scene?.realPaused = false
         self.hideUI()
+        
+        self.gameStartedTimestamp = Date().timeIntervalSince1970
+        Analytics.logEvent(AnalyticsEventLevelStart, parameters: nil)
     }
     
     @IBAction func onLeaderboard(_ sender: Any) {
@@ -254,6 +270,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         StorageFacade.instance.setAudioDisabled(to: !StorageFacade.instance.isAudioDisabled())
         self.updateSoundIcon()
         AudioManager.shared.update()
+        
+        Analytics.logEvent("soundButton", parameters: ["isActive" : !StorageFacade.instance.isAudioDisabled()])
     }
     
     @objc func onAuthSuccess() {
