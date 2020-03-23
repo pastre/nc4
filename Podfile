@@ -8,4 +8,6 @@ target 'NC4' do
   # Pods for NC4
   pod 'Firebase/Analytics'
   pod 'Google-Mobile-Ads-SDK'
+  pod 'Firebase/Crashlytics'
+
 end
