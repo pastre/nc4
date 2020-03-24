@@ -107,6 +107,13 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Under development, coming soon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fD8-xF-CvY">
+                                <rect key="frame" x="78" y="709.5" width="258.5" height="20.5"/>
+                                <color key="backgroundColor" red="0.121096697" green="0.31714895189999998" blue="0.95572509770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -115,6 +122,7 @@
                             <constraint firstItem="tMv-1u-Aha" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="7iG-jF-6gA"/>
                             <constraint firstItem="011-DP-7oj" firstAttribute="leading" secondItem="fa5-w9-C5g" secondAttribute="leading" id="98Y-2Z-6qv"/>
                             <constraint firstItem="tMv-1u-Aha" firstAttribute="top" secondItem="IqI-zn-thj" secondAttribute="bottom" constant="-150" id="Al6-1u-9Y9"/>
+                            <constraint firstItem="fD8-xF-CvY" firstAttribute="centerX" secondItem="fa5-w9-C5g" secondAttribute="centerX" id="CCj-1m-C1x"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="tMv-1u-Aha" secondAttribute="trailing" id="Dvz-kS-7ex"/>
                             <constraint firstItem="011-DP-7oj" firstAttribute="bottom" secondItem="fa5-w9-C5g" secondAttribute="bottom" id="G2f-vy-a8a"/>
                             <constraint firstItem="011-DP-7oj" firstAttribute="trailing" secondItem="fa5-w9-C5g" secondAttribute="trailing" id="Gab-Mo-MXh"/>
@@ -129,11 +137,13 @@
                             <constraint firstItem="ZGc-ly-3Wz" firstAttribute="top" secondItem="fa5-w9-C5g" secondAttribute="bottom" constant="10" id="h3p-Yr-5T6"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="ZGc-ly-3Wz" secondAttribute="bottom" id="kcA-c8-LDQ"/>
                             <constraint firstItem="ZGc-ly-3Wz" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="sVt-oV-01U"/>
+                            <constraint firstItem="fa5-w9-C5g" firstAttribute="top" secondItem="fD8-xF-CvY" secondAttribute="bottom" constant="8" id="xBn-s7-ZI7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                     <connections>
                         <outlet property="bannerView" destination="ZGc-ly-3Wz" id="qwc-JN-ydI"/>
+                        <outlet property="comingSoonLabel" destination="fD8-xF-CvY" id="Zhx-ub-NAg"/>
                         <outlet property="configStackView" destination="011-DP-7oj" id="4Ju-Fr-gg2"/>
                         <outlet property="hudStackView" destination="fa5-w9-C5g" id="RL5-6Y-OIT"/>
                         <outlet property="leaderboardButton" destination="4Fz-eK-UFi" id="vb8-G8-cOR"/>

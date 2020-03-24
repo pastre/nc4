@@ -29,6 +29,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     @IBOutlet weak var vibrationButton: UIButton!
     @IBOutlet weak var soundButton: UIButton!
     
+    @IBOutlet weak var comingSoonLabel: UILabel!
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var hudStackView: UIStackView!
     @IBOutlet weak var configStackView: UIStackView!
@@ -101,6 +102,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
             
 //            self.present(alert, animated: true, completion: nil)
         }
+        
+        
     }
 
     
@@ -205,7 +208,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         
     }
     
-    //MARK: - View helpers
+    //MARK: - View methods
     
     func loadScene() {
         // Load the SKScene from 'GameScene.sks'
@@ -245,6 +248,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         
     }
     
+    
+    
     // MARK: - GKGameCenterControllerDelegate
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true, completion: nil)
@@ -269,20 +274,62 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         self.hudStackView.isHidden = self.isConfigOpened
         self.configStackView.isHidden = !self.isConfigOpened
     }
+
     
-    func updateStartGameIndicator() {
-        if self.isPlaying { self.configureGameIdle() }
-        else { self.configureGameRunning()}
+    func configureGameStartIndicator() {
         
+        let handImageView = UIImageView(image: UIImage(named: "hand"))
+        handImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let dx: CGFloat = self.view.frame.width * 0.2
+        
+        
+        Timer.scheduledTimer(withTimeInterval: 3.1, repeats: true) { (timer) in
+            guard !self.isPlaying else {
+                timer.invalidate()
+                return
+            }
+            
+
+            self.view.addSubview(handImageView)
+            handImageView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+            handImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+            
+            handImageView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.1).isActive = true
+//            handImageView.heightAnchor.constraint(equalTo: handImageView.widthAnchor,multiplier: 1 / 0.5500575374).isActive = true
+            
+            handImageView.heightAnchor.constraint(equalTo: handImageView.widthAnchor,multiplier: 1 ).isActive = true
+            
+            UIView.animate(withDuration: 0.3, delay: 0.5, options: [.curveEaseOut], animations: {
+                handImageView.transform = handImageView.transform.translatedBy(x: -dx, y: 0)
+            }) { (_) in
+                UIView.animate(withDuration: 0.6, delay: 0.3, options: [.curveEaseOut], animations: {
+                    handImageView.transform = handImageView.transform.translatedBy(x: 2 * dx, y: 0)
+                }) { (_) in
+                    UIView.animate(withDuration: 0.3, delay: 0.3, options: [.curveEaseOut], animations: {
+                        handImageView.alpha = 0
+//                        handImageView.transform = handImageView.transform.translatedBy(x: -dx, y: 0)
+                    }) { (_) in
+                        handImageView.transform = .identity
+                        handImageView.alpha = 1
+                        handImageView.removeFromSuperview()
+                    }
+                }
+            }
+            
+        }
     }
     
     func configureGameIdle() {
         guard self.startGamePanGesture == nil else{ return }
         
         let startGamePanGesture = UIPanGestureRecognizer(target: self, action: #selector(self.onPlay(_:)))
-        
         self.view.addGestureRecognizer(startGamePanGesture)
         self.startGamePanGesture = startGamePanGesture
+        
+        
+        self.configureGameStartIndicator()
+        
     }
     
     func configureGameRunning() {
@@ -310,6 +357,14 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
 
         self.vibrationButton.setImage(newIcon, for: .normal)
 
+    }
+    
+    func showComingSoonLabel() {
+        self.comingSoonLabel.alpha = 1
+        
+        UIView.animate(withDuration: 3, animations: {
+            self.comingSoonLabel.alpha = 0
+        }, completion: nil)
     }
 
     // MARK: - Button callbacks
@@ -351,10 +406,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     
     @IBAction func onSkinShop(_ sender: Any) {
         // TODO
+        self.showComingSoonLabel()
     }
     
     @IBAction func onRemoveAds(_ sender: Any) {
         // TODO
+        self.showComingSoonLabel()
     }
     
     @IBAction func onCloseConfig(_ sender: Any) {
