@@ -45,34 +45,64 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fa5-w9-C5g">
-                                <rect key="frame" x="47" y="701" width="320" height="64"/>
+                                <rect key="frame" x="47" y="738" width="320" height="64"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Fz-eK-UFi">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAm-wF-Pm8" userLabel="config">
                                         <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                        <state key="normal" image="settings"/>
+                                        <connections>
+                                            <action selector="onOpenConfig:" destination="BV1-FR-VrT" eventType="touchUpInside" id="uGh-7U-7qZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Fz-eK-UFi">
+                                        <rect key="frame" x="85.5" y="0.0" width="64" height="64"/>
                                         <state key="normal" image="leaderboards"/>
                                         <connections>
                                             <action selector="onLeaderboard:" destination="BV1-FR-VrT" eventType="touchUpInside" id="vXz-Lf-fcv"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAm-wF-Pm8">
-                                        <rect key="frame" x="85.5" y="0.0" width="64" height="64"/>
-                                        <state key="normal" image="settings"/>
-                                        <connections>
-                                            <action selector="onSound:" destination="BV1-FR-VrT" eventType="touchUpInside" id="82M-Mb-8xC"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxb-IV-fXC">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxb-IV-fXC" userLabel="adButton">
                                         <rect key="frame" x="170.5" y="0.0" width="64" height="64"/>
                                         <state key="normal" image="ads"/>
                                         <connections>
                                             <action selector="onRemoveAds:" destination="BV1-FR-VrT" eventType="touchUpInside" id="nBy-lA-i3j"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spS-RP-bIL">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spS-RP-bIL" userLabel="skinButton">
                                         <rect key="frame" x="256" y="0.0" width="64" height="64"/>
                                         <state key="normal" image="skins"/>
                                         <connections>
                                             <action selector="onSkinShop:" destination="BV1-FR-VrT" eventType="touchUpInside" id="D8G-nC-Pma"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="011-DP-7oj">
+                                <rect key="frame" x="47" y="738" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4C-P4-Xg0">
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                        <state key="normal" image="settingsOpened"/>
+                                        <connections>
+                                            <action selector="onCloseConfig:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Ghe-Sq-ohq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbg-tJ-DVo" userLabel="spacing">
+                                        <rect key="frame" x="85.5" y="0.0" width="64" height="64"/>
+                                        <state key="normal" image="settingsOpened"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDA-A2-IJs">
+                                        <rect key="frame" x="170.5" y="0.0" width="64" height="64"/>
+                                        <state key="normal" image="sound"/>
+                                        <connections>
+                                            <action selector="onSound:" destination="BV1-FR-VrT" eventType="touchUpInside" id="qTG-gZ-e0u"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYG-oo-qVW">
+                                        <rect key="frame" x="256" y="0.0" width="64" height="64"/>
+                                        <state key="normal" image="vibrate"/>
+                                        <connections>
+                                            <action selector="onVibrate:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Muc-sb-Imn"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -83,16 +113,20 @@
                             <constraint firstItem="fa5-w9-C5g" firstAttribute="trailing" secondItem="ZGc-ly-3Wz" secondAttribute="trailing" id="2Xj-HO-c2S"/>
                             <constraint firstItem="5TM-Aw-fgJ" firstAttribute="centerX" secondItem="IqI-zn-thj" secondAttribute="centerX" id="7Dq-j7-5ra"/>
                             <constraint firstItem="tMv-1u-Aha" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="7iG-jF-6gA"/>
+                            <constraint firstItem="011-DP-7oj" firstAttribute="leading" secondItem="fa5-w9-C5g" secondAttribute="leading" id="98Y-2Z-6qv"/>
                             <constraint firstItem="tMv-1u-Aha" firstAttribute="top" secondItem="IqI-zn-thj" secondAttribute="bottom" constant="-150" id="Al6-1u-9Y9"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="tMv-1u-Aha" secondAttribute="trailing" id="Dvz-kS-7ex"/>
+                            <constraint firstItem="011-DP-7oj" firstAttribute="bottom" secondItem="fa5-w9-C5g" secondAttribute="bottom" id="G2f-vy-a8a"/>
+                            <constraint firstItem="011-DP-7oj" firstAttribute="trailing" secondItem="fa5-w9-C5g" secondAttribute="trailing" id="Gab-Mo-MXh"/>
                             <constraint firstItem="fa5-w9-C5g" firstAttribute="leading" secondItem="ZGc-ly-3Wz" secondAttribute="leading" id="Hro-xd-ZgQ"/>
                             <constraint firstItem="tMv-1u-Aha" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="RgG-8Q-fbC"/>
                             <constraint firstAttribute="bottom" secondItem="tMv-1u-Aha" secondAttribute="bottom" id="UfN-bV-wwa"/>
                             <constraint firstItem="IqI-zn-thj" firstAttribute="centerX" secondItem="tMv-1u-Aha" secondAttribute="centerX" id="Xao-R8-n3d"/>
                             <constraint firstItem="5TM-Aw-fgJ" firstAttribute="top" secondItem="IqI-zn-thj" secondAttribute="bottom" constant="10" id="aOw-NT-IFC"/>
+                            <constraint firstItem="011-DP-7oj" firstAttribute="top" secondItem="fa5-w9-C5g" secondAttribute="top" id="dAx-HE-dRo"/>
                             <constraint firstItem="fa5-w9-C5g" firstAttribute="height" secondItem="4qk-I5-YsI" secondAttribute="height" multiplier="0.0782396" id="eIL-Nb-yx6"/>
                             <constraint firstItem="5TM-Aw-fgJ" firstAttribute="width" secondItem="IqI-zn-thj" secondAttribute="width" id="fSJ-HH-74Y"/>
-                            <constraint firstItem="ZGc-ly-3Wz" firstAttribute="top" secondItem="fa5-w9-C5g" secondAttribute="bottom" constant="47" id="h3p-Yr-5T6"/>
+                            <constraint firstItem="ZGc-ly-3Wz" firstAttribute="top" secondItem="fa5-w9-C5g" secondAttribute="bottom" constant="10" id="h3p-Yr-5T6"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="ZGc-ly-3Wz" secondAttribute="bottom" id="kcA-c8-LDQ"/>
                             <constraint firstItem="ZGc-ly-3Wz" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="sVt-oV-01U"/>
                         </constraints>
@@ -100,11 +134,14 @@
                     </view>
                     <connections>
                         <outlet property="bannerView" destination="ZGc-ly-3Wz" id="qwc-JN-ydI"/>
+                        <outlet property="configStackView" destination="011-DP-7oj" id="4Ju-Fr-gg2"/>
                         <outlet property="hudStackView" destination="fa5-w9-C5g" id="RL5-6Y-OIT"/>
                         <outlet property="leaderboardButton" destination="4Fz-eK-UFi" id="vb8-G8-cOR"/>
                         <outlet property="scoreLabel" destination="5TM-Aw-fgJ" id="m9r-c5-xBI"/>
                         <outlet property="skView" destination="tMv-1u-Aha" id="TVd-qb-tFc"/>
+                        <outlet property="soundButton" destination="HDA-A2-IJs" id="3cG-oC-zvJ"/>
                         <outlet property="topScoreLabel" destination="IqI-zn-thj" id="M5F-5N-rAW"/>
+                        <outlet property="vibrationButton" destination="aYG-oo-qVW" id="G1h-pE-E0N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -116,6 +153,9 @@
         <image name="ads" width="64" height="64"/>
         <image name="leaderboards" width="64" height="64"/>
         <image name="settings" width="64" height="64"/>
+        <image name="settingsOpened" width="64" height="64"/>
         <image name="skins" width="64" height="64"/>
+        <image name="sound" width="64" height="64"/>
+        <image name="vibrate" width="64" height="64"/>
     </resources>
 </document>

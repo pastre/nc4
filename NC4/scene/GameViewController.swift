@@ -18,8 +18,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     var scene: GameScene?
     var interstitial: GADInterstitial!
     
+    @IBOutlet weak var vibrationButton: UIButton!
+    @IBOutlet weak var soundButton: UIButton!
+    
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var hudStackView: UIStackView!
+    @IBOutlet weak var configStackView: UIStackView!
     @IBOutlet weak var leaderboardButton: UIButton!
     @IBOutlet weak var skView: SKView!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -27,6 +31,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     
     var shouldDisplayGameCenter: Bool = false
     var shouldDisplayWarning: Bool = true
+    var isConfigOpened = false
     
     var gameStartedTimestamp: TimeInterval?
     
@@ -35,6 +40,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         super.viewDidLoad()
 
         self.scoreLabel.isHidden = true
+        
+        self.bannerView.adUnitID = "ca-app-pub-3760704996981292/9199739307"
+        
+        self.bannerView.rootViewController = self
+        self.bannerView.load(GADRequest())
         
         self.loadScene()
         self.scene?.realPaused = true
@@ -82,6 +92,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     func hideUI() {
         
         self.hudStackView.isHidden = true
+        self.configStackView.isHidden = true
         self.leaderboardButton.isHidden = true
         self.scoreLabel.isHidden = true
         self.topScoreLabel.isHidden = true
@@ -271,10 +282,21 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         Analytics.logEvent("soundButton", parameters: ["isActive" : !StorageFacade.instance.isAudioDisabled()])
     }
     
+    @IBAction func onVibrate(_ sender: Any) {
+    }
+    
     @IBAction func onSkinShop(_ sender: Any) {
     }
     @IBAction func onRemoveAds(_ sender: Any) {
+        
     }
+    
+    @IBAction func onCloseConfig(_ sender: Any) {
+    }
+    
+    @IBAction func onOpenConfig(_ sender: Any) {
+    }
+    
     
     @objc func onAuthSuccess() {
         self.leaderboardButton.layer.removeAllAnimations()
