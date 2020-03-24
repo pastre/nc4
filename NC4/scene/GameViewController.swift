@@ -12,10 +12,18 @@ import GameKit
 import GoogleMobileAds
 import Firebase
 
-class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADInterstitialDelegate {
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
 
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("Recvd ad")
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("Failed to load banner!", error)
+    }
 
-    var scene: GameScene?
+    
+    var scene: GameScene!
     var interstitial: GADInterstitial!
     
     @IBOutlet weak var vibrationButton: UIButton!
@@ -32,8 +40,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     var shouldDisplayGameCenter: Bool = false
     var shouldDisplayWarning: Bool = true
     var isConfigOpened = false
+    var isPlaying: Bool {
+        self.startGamePanGesture == nil
+    }
     
     var gameStartedTimestamp: TimeInterval?
+    var startGamePanGesture: UIPanGestureRecognizer?
     
     // MARK: -  UIViewController methods
     override func viewDidLoad() {
@@ -42,6 +54,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         self.scoreLabel.isHidden = true
         
         self.bannerView.adUnitID = "ca-app-pub-3760704996981292/9199739307"
+        
+        #if DEBUG
+         self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        #endif
         
         self.bannerView.rootViewController = self
         self.bannerView.load(GADRequest())
@@ -56,13 +72,17 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.onAuthSuccess), name: kAuthSuccess, object: nil)
         
+        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.configureLeaderboardsButton()
+        self.configureGameIdle()
         
         self.updateHighscoreLabel()
         self.updateSoundIcon()
+        self.updateVibrationIcon()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -98,6 +118,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         self.topScoreLabel.isHidden = true
         
     }
+    
     func showUI () {
         
         self.hudStackView.isHidden = false
@@ -117,11 +138,13 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     func onGameStart() {
         
         self.loadAd()
+        self.configureGameRunning()
     }
     
     func onGameOver() {
         guard let gameScore = self.scene?.score else { return }
         
+        self.configureGameIdle()
         DispatchQueue.global().async {
             AudioManager.shared.play(soundEffect: .gameOver)
         }
@@ -140,13 +163,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         self.loadScene()
         self.scene?.realPaused = true
         
-        
         self.showUI()
         self.updateHighscoreLabel()
         
         self.scoreLabel.isHidden = false
         self.scoreLabel.text = "Last score: \(gameScore)"
-        
     }
     
     // MARK: - Ad methods
@@ -157,7 +178,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         // TEST AD
 //        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
         
-        // READ AD
+        // REAL AD
         self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3760704996981292/8000561485")
         
         self.interstitial.delegate = self
@@ -211,6 +232,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         
         self.present(vc, animated: true, completion: nil)
     }
+    
+    
     func configureLeaderboardsButton() {
         if GameCenterFacade.instance.isAuthenticated() {
             self.leaderboardButton.layer.removeAllAnimations()
@@ -249,7 +272,29 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         self.configStackView.isHidden = !self.isConfigOpened
     }
     
-
+    func updateStartGameIndicator() {
+        if self.isPlaying { self.configureGameIdle() }
+        else { self.configureGameRunning()}
+        
+    }
+    
+    func configureGameIdle() {
+        guard self.startGamePanGesture == nil else{ return }
+        
+        let startGamePanGesture = UIPanGestureRecognizer(target: self, action: #selector(self.onPlay(_:)))
+        
+        self.view.addGestureRecognizer(startGamePanGesture)
+        self.startGamePanGesture = startGamePanGesture
+    }
+    
+    func configureGameRunning() {
+        guard let gesture = self.startGamePanGesture else { return }
+        
+        self.view.removeGestureRecognizer(gesture)
+        
+        self.startGamePanGesture = nil
+    }
+    
     func updateSoundIcon() {
         let newIcon = UIImage(named: StorageFacade.instance.isAudioDisabled() ?
             "mute" : "sound"
@@ -270,11 +315,13 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     }
 
     // MARK: - Button callbacks
-    @IBAction func onPlay(_ sender: Any) {
+    @objc func onPlay(_ sender: Any) {
+        guard !self.isPlaying else  { return }
+        
         self.loadAd()
         self.scene?.realPaused = false
         self.hideUI()
-        
+        self.onGameStart()
         self.gameStartedTimestamp = Date().timeIntervalSince1970
         Analytics.logEvent(AnalyticsEventLevelStart, parameters: nil)
     }
