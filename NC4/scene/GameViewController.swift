@@ -18,11 +18,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     var scene: GameScene?
     var interstitial: GADInterstitial!
     
-    @IBOutlet weak var logoImageView: UIImageView!
-    
-    @IBOutlet weak var audioImage: UIImageView!
+    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var hudStackView: UIStackView!
     @IBOutlet weak var leaderboardButton: UIButton!
-    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var skView: SKView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var topScoreLabel: UILabel!
@@ -83,9 +81,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     // MARK: - UI & HUD methods
     func hideUI() {
         
-        self.playButton.isHidden = true
-        self.logoImageView.isHidden = true
-        self.audioImage.isHidden = true
+        self.hudStackView.isHidden = true
         self.leaderboardButton.isHidden = true
         self.scoreLabel.isHidden = true
         self.topScoreLabel.isHidden = true
@@ -93,21 +89,19 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     }
     func showUI () {
         
-        self.playButton.isHidden = false
-        self.logoImageView.isHidden = false
-        self.audioImage.isHidden = false
+        self.hudStackView.isHidden = false
         self.leaderboardButton.isHidden = false
         self.topScoreLabel.isHidden = false
     }
     
     func updateSoundIcon() {
         
-        if StorageFacade.instance.isAudioDisabled() {
-            
-            self.audioImage.image = UIImage(systemName: "speaker.slash.fill")
-        } else {
-            self.audioImage.image = UIImage(systemName: "speaker.3.fill")
-        }
+//        if StorageFacade.instance.isAudioDisabled() {
+//
+//            self.audioImage.image = UIImage(systemName: "speaker.slash.fill")
+//        } else {
+//            self.audioImage.image = UIImage(systemName: "speaker.3.fill")
+//        }
     }
     
     func updateHighscoreLabel() {
@@ -275,6 +269,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         AudioManager.shared.update()
         
         Analytics.logEvent("soundButton", parameters: ["isActive" : !StorageFacade.instance.isAudioDisabled()])
+    }
+    
+    @IBAction func onSkinShop(_ sender: Any) {
+    }
+    @IBAction func onRemoveAds(_ sender: Any) {
     }
     
     @objc func onAuthSuccess() {
