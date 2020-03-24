@@ -18,7 +18,7 @@ class GameCenterFacade: NSObject, GKLocalPlayerListener {
     static let instance = GameCenterFacade()
     
     enum Leaderboard: String {
-        case score
+        case score = "scores"
     }
     
     private override  init() {

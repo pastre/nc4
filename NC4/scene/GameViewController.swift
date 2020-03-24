@@ -305,11 +305,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     }
     
     @IBAction func onSkinShop(_ sender: Any) {
-        
+        // TODO
     }
     
     @IBAction func onRemoveAds(_ sender: Any) {
-        
+        // TODO
     }
     
     @IBAction func onCloseConfig(_ sender: Any) {
@@ -334,7 +334,5 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         
         GameCenterFacade.instance.loadFromGamecenter()
     }
-    
-    
     
 }
