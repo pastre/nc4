@@ -21,7 +21,7 @@ class EnemyGroup: AbstractGameObject {
             "gas",
             "hospital",
             "hotel",
-            "police"
+//            "police"
         ]
         
     

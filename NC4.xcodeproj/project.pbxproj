@@ -23,8 +23,8 @@
 		D718CF2D240FF041007A1833 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF2C240FF041007A1833 /* Enemy.swift */; };
 		D718CF2F240FF05D007A1833 /* Lifeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF2E240FF05D007A1833 /* Lifeable.swift */; };
 		D75E60722411335C000A320D /* GameEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E60712411335C000A320D /* GameEventListener.swift */; };
-		D76FD8E5241FDF1500820880 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D76FD8E4241FDF1500820880 /* GoogleService-Info.plist */; };
 		D77A612524217F0F00DD69C0 /* EnemyHitParticleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */; };
+		D77B38732429BA6A002B14B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */; };
 		D78A5BCC2419616100CDA3DA /* SickPeopleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78A5BCB2419616100CDA3DA /* SickPeopleManager.swift */; };
 		D78A5BCE24198BD200CDA3DA /* NCTTorin-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D78A5BCD24198BCC00CDA3DA /* NCTTorin-Light.ttf */; };
 		D7925EBB2419AC9C00B940CE /* GameCenterFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7925EBA2419AC9C00B940CE /* GameCenterFacade.swift */; };
@@ -69,8 +69,8 @@
 		D718CF2C240FF041007A1833 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		D718CF2E240FF05D007A1833 /* Lifeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifeable.swift; sourceTree = "<group>"; };
 		D75E60712411335C000A320D /* GameEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventListener.swift; sourceTree = "<group>"; };
-		D76FD8E4241FDF1500820880 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyHitParticleLoader.swift; sourceTree = "<group>"; };
+		D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D78A5BCB2419616100CDA3DA /* SickPeopleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SickPeopleManager.swift; sourceTree = "<group>"; };
 		D78A5BCD24198BCC00CDA3DA /* NCTTorin-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NCTTorin-Light.ttf"; sourceTree = "<group>"; };
 		D7925EBA2419AC9C00B940CE /* GameCenterFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterFacade.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 				D718CF17240EE438007A1833 /* Assets.xcassets */,
 				D718CF1C240EE438007A1833 /* Info.plist */,
 				D718CF19240EE438007A1833 /* LaunchScreen.storyboard */,
-				D76FD8E4241FDF1500820880 /* GoogleService-Info.plist */,
+				D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */,
 				D71421172422E33500D3D0D8 /* LucidaGrande.ttc */,
 				D78A5BCD24198BCC00CDA3DA /* NCTTorin-Light.ttf */,
 			);
@@ -333,8 +333,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D76FD8E5241FDF1500820880 /* GoogleService-Info.plist in Resources */,
 				D79DC9AF241ABCF000C586C4 /* theme.wav in Resources */,
+				D77B38732429BA6A002B14B7 /* GoogleService-Info.plist in Resources */,
 				D718CF16240EE433007A1833 /* Main.storyboard in Resources */,
 				D718CF0D240EE433007A1833 /* GameScene.sks in Resources */,
 				D79DC9B3241AC93200C586C4 /* infect.wav in Resources */,
@@ -593,7 +593,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.pastre.nc4;
+				PRODUCT_BUNDLE_IDENTIFIER = pastre.github.io.nano4;
 				PRODUCT_NAME = "Zombie Attack";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -613,7 +613,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.pastre.nc4;
+				PRODUCT_BUNDLE_IDENTIFIER = pastre.github.io.nano4;
 				PRODUCT_NAME = "Zombie Attack";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

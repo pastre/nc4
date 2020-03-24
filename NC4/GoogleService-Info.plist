@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>600575057960-67hlkc9nl2769datbimobuiihr42sh3p.apps.googleusercontent.com</string>
+	<string>600575057960-f6kq7unqrid8gg2avbisd4a25v6o1ll1.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.600575057960-67hlkc9nl2769datbimobuiihr42sh3p</string>
+	<string>com.googleusercontent.apps.600575057960-f6kq7unqrid8gg2avbisd4a25v6o1ll1</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCJoWCuZ9g3Tv27I0kf0DufHOxKUHRXogY</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>io.github.pastre.nc4</string>
+	<string>pastre.github.io.nano4</string>
 	<key>PROJECT_ID</key>
 	<string>nano-challenge-4</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:600575057960:ios:a665d2111239c969b0d51d</string>
+	<string>1:600575057960:ios:ccee5a1bcef17dfcb0d51d</string>
 	<key>DATABASE_URL</key>
 	<string>https://nano-challenge-4.firebaseio.com</string>
 	<key>ADMOB_APP_ID</key>
