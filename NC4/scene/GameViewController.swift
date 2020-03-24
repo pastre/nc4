@@ -9,11 +9,27 @@
 import UIKit
 import SpriteKit
 import GameKit
+import GoogleMobileAds
+import Firebase
 
-class GameViewController: UIViewController, GKGameCenterControllerDelegate {
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADInterstitialDelegate {
+    // MARK: - GADInterstitialDelegate
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+      print("interstitialDidDismissScreen")
+        
+        Analytics.logEvent("completedAdPresentation", parameters: nil)
+        self.loadAd()
+    }
+    
+    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
+      print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
+        
+        Crashlytics.crashlytics().record(error: error)
+    }
     
 
     var scene: GameScene?
+    var interstitial: GADInterstitial!
     
     @IBOutlet weak var logoImageView: UIImageView!
     
@@ -25,20 +41,22 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     @IBOutlet weak var topScoreLabel: UILabel!
     
     var shouldDisplayGameCenter: Bool = false
+    var shouldDisplayWarning: Bool = true
     
+    var gameStartedTimestamp: TimeInterval?
     
     // MARK: -  UIViewController methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.scoreLabel.isHidden = true
         
         self.loadScene()
         self.scene?.realPaused = true
         
         self.skView.ignoresSiblingOrder = true
-        self.skView.showsFPS = true
-        self.skView.showsNodeCount = true
+//        self.skView.showsFPS = true
+//        self.skView.showsNodeCount = true
 //        self.skView.showsPhysics = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.onAuthSuccess), name: kAuthSuccess, object: nil)
@@ -51,6 +69,26 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         self.updateHighscoreLabel()
         self.updateSoundIcon()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        guard self.shouldDisplayWarning else { return }
+        if !StorageFacade.instance.hasDisplayedDisclaimer() {
+            
+            let alert = UIAlertController(title: "Warning!", message: "This is completely fictional content, totally unrelated to any real situation, person or organization.", preferredStyle: .alert )
+            
+            alert.addAction(UIAlertAction(title: "Never show this again", style: .destructive, handler: { (_) in
+                StorageFacade.instance.setDisclaimerDisplayed()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
+                self.shouldDisplayWarning = false
+            }))
+            
+//            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -92,14 +130,30 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     }
     
     // MARK: - Game methods
+    
+    func onGameStart() {
+        
+        self.loadAd()
+    }
+    
     func onGameOver() {
         guard let gameScore = self.scene?.score else { return }
         
-        AudioManager.shared.play(soundEffect: .gameOver)
+        DispatchQueue.global().async {
+            AudioManager.shared.play(soundEffect: .gameOver)
+        }
+        
+        let timestamp = Date().timeIntervalSince1970
+        if let startTs = self.gameStartedTimestamp {
+            let duration = timestamp - startTs
+            
+            Analytics.logEvent(AnalyticsEventLevelEnd, parameters: ["duration" : duration])
+        }
         
         StorageFacade.instance.updateScoreIfNeeded(to: gameScore)
         GameCenterFacade.instance.onScore(gameScore)
         
+        self.presentAd()
         self.loadScene()
         self.scene?.realPaused = true
         
@@ -112,6 +166,42 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         
     }
     
+    // MARK: - Ad methods
+    
+    func loadAd() {
+        
+        print("Loading ad")
+        // TEST AD
+//        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        
+        // READ AD
+        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3760704996981292/8000561485")
+        
+        self.interstitial.delegate = self
+        
+        let request = GADRequest()
+        interstitial.load(request)
+        
+        print("Loading ad")
+    }
+    
+    func presentAd() {
+        #if DEBUG
+            return
+        #endif
+        Analytics.logEvent("showAd", parameters: nil)
+        if self.interstitial.isReady {
+            self.interstitial.present(fromRootViewController: self)
+            print("presenting ad")
+        } else {
+            print("Tried to present fucking ad, but it didnt load")
+        }
+    }
+    
+    func onAdCompleted() {
+        
+        
+    }
     
     //MARK: - View helpers
     
@@ -128,6 +218,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
             self.skView.presentScene(scene)
         }
     }
+    
     func presentGameCenter() {
         guard let vc = GameCenterFacade.instance.getGameCenterVc() else { return }
         
@@ -158,8 +249,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
     
     // MARK: - Button callbacks
     @IBAction func onPlay(_ sender: Any) {
+        self.loadAd()
         self.scene?.realPaused = false
         self.hideUI()
+        
+        self.gameStartedTimestamp = Date().timeIntervalSince1970
+        Analytics.logEvent(AnalyticsEventLevelStart, parameters: nil)
     }
     
     @IBAction func onLeaderboard(_ sender: Any) {
@@ -177,6 +272,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
         StorageFacade.instance.setAudioDisabled(to: !StorageFacade.instance.isAudioDisabled())
         self.updateSoundIcon()
         AudioManager.shared.update()
+        
+        Analytics.logEvent("soundButton", parameters: ["isActive" : !StorageFacade.instance.isAudioDisabled()])
     }
     
     @objc func onAuthSuccess() {

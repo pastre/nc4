@@ -19,6 +19,13 @@ func clamp<T: Comparable>(_ value: T, _ floor: T, _ roof: T) -> T {
     return min(max(value, floor), roof)
 }
 
+extension CGPoint {
+    func translated(by vector: CGVector) -> CGPoint {
+        return CGPoint(x: self.x + vector.dx, y: self.y + vector.dy)
+    }
+}
+
+
 extension CGSize {
     static func * (_ a: CGSize, _ b: CGFloat) -> CGSize {
         return CGSize(width: a.width * (b), height: a.height * CGFloat(b))
@@ -78,19 +85,19 @@ func randomBezierPath(_ width: CGFloat, height: CGFloat) -> UIBezierPath {
     let path = UIBezierPath()
     
     // Starting point
-//    path.move(to: offScreenPoint(width, height))
+    //    path.move(to: offScreenPoint(width, height))
     
     // Random curves
     let numberOfCurves = Int.random(in: 0..<4)
     for _ in 0...numberOfCurves {
-//        path.add
+        //        path.add
         
         path.addArc(withCenter: randomPoint(width, height), radius: .random(in: 5...30), startAngle: .random(in: (-CGFloat.pi / 2)...CGFloat.pi/2), endAngle: .random(in: (-CGFloat.pi / 2)...CGFloat.pi/2), clockwise: .random())
         
     }
     
     // Ending point
-//    path.addQuadCurve(to: offScreenPoint(width, height), controlPoint: offScreenPoint(width, height))
+    //    path.addQuadCurve(to: offScreenPoint(width, height), controlPoint: offScreenPoint(width, height))
     path.close()
     return path
 }
@@ -110,7 +117,7 @@ func offScreenPoint(_ width: CGFloat, _ height: CGFloat) -> CGPoint {
     xPoint = xPoint >= midWidth
         ? xPoint + midWidth
         : xPoint - midWidth
-
+    
     
     let midHeight: CGFloat = height / 2.0
     yPoint = yPoint >= midHeight
@@ -123,4 +130,23 @@ func offScreenPoint(_ width: CGFloat, _ height: CGFloat) -> CGPoint {
 
 func abs(_ f: CGFloat) -> CGFloat{
     return f * (f < 0 ? -1 : 1)
+}
+
+
+extension UIColor {
+   convenience init(red: Int, green: Int, blue: Int) {
+       assert(red >= 0 && red <= 255, "Invalid red component")
+       assert(green >= 0 && green <= 255, "Invalid green component")
+       assert(blue >= 0 && blue <= 255, "Invalid blue component")
+
+       self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+   }
+
+   convenience init(rgb: Int) {
+       self.init(
+           red: (rgb >> 16) & 0xFF,
+           green: (rgb >> 8) & 0xFF,
+           blue: rgb & 0xFF
+       )
+   }
 }

@@ -9,6 +9,7 @@
 import SpriteKit
 
 class Enemy: AbstractGameObject, Lifeable {
+    
     var lifes: Int! = 0
     var lastContact: TimeInterval! = TimeInterval(2)
     var minContactThreshold = TimeInterval(0.2)
@@ -18,7 +19,7 @@ class Enemy: AbstractGameObject, Lifeable {
         
         self.lifes = .random(in: (currentNodeCount / 2)...(currentNodeCount  * 2))
         
-        self.getTextureNode().texture = self.getRandomTexture()
+//        self.getTextureNode().texture = Enemy.getRandomTexture()
         
         
     }
@@ -80,83 +81,7 @@ class Enemy: AbstractGameObject, Lifeable {
         return self.node.childNode(withName: "texture") as! SKSpriteNode
     }
     
-    func getRandomTexture() -> SKTexture {
-        let textures = [ "school", "bank", "market"]
-        
-        return SKTexture(imageNamed: textures.randomElement()!)
-    }
-    
-    
-    
-}
-
-
-class EnemyHitParticleLoader {
-    
-    private static var particles: [SKSpriteNode]!
-    
-    static func load() {
-        var textures = [SKTexture]()
-        for i in 1...4 {
-            let newTexture = SKTexture(imageNamed: "impact\(i)")
-            textures.append(newTexture)
-        }
-        
-        self.particles = textures.compactMap { SKSpriteNode(texture: $0) }
-        
-        self.particles.forEach {
-            self.configure($0)
-        }
-    }
-    
-    static func configure(_ node: SKSpriteNode) {
-        // TODO: Configure node on completion
-        
-        node.scale(to: .init(width: 60, height: 60))
-    }
-    
-    static func getParticle() -> SKSpriteNode {
-        
-        return self.particles.randomElement()!.copy() as! SKSpriteNode
-    }
-    
-//    static func getPhysicalParticle() -> SKSpriteNode {
-//        let baseParticle = self.getParticle()
-//        
-//        let body = SKPhysicsBody(texture: baseParticle.texture!, size: baseParticle.texture!.size())
-//        
-//        body.pinned = false
-//        body.affectedByGravity = true
-//        body.
-//        
-//        return baseParticle
-//    }
-//    
-    static func getAction(_ durationMultiplier: Double) -> SKAction {
-        
-        
-        let rotate = SKAction.rotate(byAngle: .pi / 4 * ( Bool.random() ? 1 : -1), duration: 0.5 * durationMultiplier)
-        let translate = SKAction.move(
-            by: CGVector(
-                dx: .random(in: 60...150) * ( Bool.random() ? 1 : -1),
-                dy: .random(in: 30...100)),
-            duration: 0.5 * durationMultiplier
-        )
-        
-        let group = SKAction.group([
-//            fade,
-            rotate,
-            translate
-        ])
-        return group
-//        return SKAction.sequence([group, remove])
-        
-    }
-}
-
-
-extension CGPoint {
-    func translated(by vector: CGVector) -> CGPoint {
-        return CGPoint(x: self.x + vector.dx, y: self.y + vector.dy)
+    func getTipNode() -> SKSpriteNode {
+        return self.getLabelNode().childNode(withName: "labelBg") as! SKSpriteNode
     }
 }

@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A497B8DC29C60356D43D951 /* Pods_NC4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB9DB4C247A83087B704D63 /* Pods_NC4.framework */; };
 		D718CF0B240EE433007A1833 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF0A240EE433007A1833 /* AppDelegate.swift */; };
 		D718CF0D240EE433007A1833 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D718CF0C240EE433007A1833 /* GameScene.sks */; };
 		D718CF11240EE433007A1833 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF10240EE433007A1833 /* GameScene.swift */; };
@@ -22,6 +23,8 @@
 		D718CF2D240FF041007A1833 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF2C240FF041007A1833 /* Enemy.swift */; };
 		D718CF2F240FF05D007A1833 /* Lifeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF2E240FF05D007A1833 /* Lifeable.swift */; };
 		D75E60722411335C000A320D /* GameEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E60712411335C000A320D /* GameEventListener.swift */; };
+		D77A612524217F0F00DD69C0 /* EnemyHitParticleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */; };
+		D77B38732429BA6A002B14B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */; };
 		D78A5BCC2419616100CDA3DA /* SickPeopleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78A5BCB2419616100CDA3DA /* SickPeopleManager.swift */; };
 		D78A5BCE24198BD200CDA3DA /* NCTTorin-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D78A5BCD24198BCC00CDA3DA /* NCTTorin-Light.ttf */; };
 		D7925EBB2419AC9C00B940CE /* GameCenterFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7925EBA2419AC9C00B940CE /* GameCenterFacade.swift */; };
@@ -47,7 +50,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D718CF07240EE433007A1833 /* Corona Attack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corona Attack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		628ACA5066C866935454E5F3 /* Pods-NC4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NC4.release.xcconfig"; path = "Target Support Files/Pods-NC4/Pods-NC4.release.xcconfig"; sourceTree = "<group>"; };
+		D71421172422E33500D3D0D8 /* LucidaGrande.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = LucidaGrande.ttc; sourceTree = "<group>"; };
+		D718CF07240EE433007A1833 /* Zombie Attack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zombie Attack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D718CF0A240EE433007A1833 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D718CF0C240EE433007A1833 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		D718CF10240EE433007A1833 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -64,6 +69,8 @@
 		D718CF2C240FF041007A1833 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		D718CF2E240FF05D007A1833 /* Lifeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifeable.swift; sourceTree = "<group>"; };
 		D75E60712411335C000A320D /* GameEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventListener.swift; sourceTree = "<group>"; };
+		D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyHitParticleLoader.swift; sourceTree = "<group>"; };
+		D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D78A5BCB2419616100CDA3DA /* SickPeopleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SickPeopleManager.swift; sourceTree = "<group>"; };
 		D78A5BCD24198BCC00CDA3DA /* NCTTorin-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NCTTorin-Light.ttf"; sourceTree = "<group>"; };
 		D7925EBA2419AC9C00B940CE /* GameCenterFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterFacade.swift; sourceTree = "<group>"; };
@@ -86,6 +93,8 @@
 		D7F16A1024184B4D0063877B /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		D7F16A13241851DB0063877B /* ZPositoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZPositoinManager.swift; sourceTree = "<group>"; };
 		D7F16A1524185A140063877B /* EnemySpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemySpawner.swift; sourceTree = "<group>"; };
+		F3327BB0C5C42F6990C0F464 /* Pods-NC4.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NC4.debug.xcconfig"; path = "Target Support Files/Pods-NC4/Pods-NC4.debug.xcconfig"; sourceTree = "<group>"; };
+		FDB9DB4C247A83087B704D63 /* Pods_NC4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NC4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,24 +102,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A497B8DC29C60356D43D951 /* Pods_NC4.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8EA06902E8C97C1B6777A2B7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3327BB0C5C42F6990C0F464 /* Pods-NC4.debug.xcconfig */,
+				628ACA5066C866935454E5F3 /* Pods-NC4.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B8D1B06789DB9A9FD7DFDF49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FDB9DB4C247A83087B704D63 /* Pods_NC4.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D718CEFE240EE433007A1833 = {
 			isa = PBXGroup;
 			children = (
 				D718CF09240EE433007A1833 /* NC4 */,
 				D718CF08240EE433007A1833 /* Products */,
+				8EA06902E8C97C1B6777A2B7 /* Pods */,
+				B8D1B06789DB9A9FD7DFDF49 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		D718CF08240EE433007A1833 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D718CF07240EE433007A1833 /* Corona Attack.app */,
+				D718CF07240EE433007A1833 /* Zombie Attack.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,6 +156,8 @@
 				D718CF17240EE438007A1833 /* Assets.xcassets */,
 				D718CF1C240EE438007A1833 /* Info.plist */,
 				D718CF19240EE438007A1833 /* LaunchScreen.storyboard */,
+				D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */,
+				D71421172422E33500D3D0D8 /* LucidaGrande.ttc */,
 				D78A5BCD24198BCC00CDA3DA /* NCTTorin-Light.ttf */,
 			);
 			path = NC4;
@@ -139,8 +170,7 @@
 				D7B80D56241066830089F65C /* coin */,
 				D7B80D58241066950089F65C /* enemy */,
 				D7B80D5A241066B80089F65C /* player */,
-				D7F16A1024184B4D0063877B /* ThemeManager.swift */,
-				D78A5BCB2419616100CDA3DA /* SickPeopleManager.swift */,
+				D7C6BF26241FBB9E00607B2D /* view */,
 			);
 			path = game;
 			sourceTree = "<group>";
@@ -186,6 +216,7 @@
 				D718CF2A240FF024007A1833 /* EnemyGroup.swift */,
 				D718CF28240FF003007A1833 /* EnemyGroupFactory.swift */,
 				D7F16A1524185A140063877B /* EnemySpawner.swift */,
+				D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */,
 			);
 			path = enemy;
 			sourceTree = "<group>";
@@ -220,6 +251,15 @@
 			path = scene;
 			sourceTree = "<group>";
 		};
+		D7C6BF26241FBB9E00607B2D /* view */ = {
+			isa = PBXGroup;
+			children = (
+				D7F16A1024184B4D0063877B /* ThemeManager.swift */,
+				D78A5BCB2419616100CDA3DA /* SickPeopleManager.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		D7F16A12241851C00063877B /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,9 +279,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D718CF1F240EE438007A1833 /* Build configuration list for PBXNativeTarget "NC4" */;
 			buildPhases = (
+				7BC02952E3ED47D09202DF0D /* [CP] Check Pods Manifest.lock */,
 				D718CF03240EE433007A1833 /* Sources */,
 				D718CF04240EE433007A1833 /* Frameworks */,
 				D718CF05240EE433007A1833 /* Resources */,
+				63FF24AED0CE1FB4F2412375 /* [CP] Embed Pods Frameworks */,
+				D7C66B6424285A9E00F81F9A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -249,7 +292,7 @@
 			);
 			name = NC4;
 			productName = NC4;
-			productReference = D718CF07240EE433007A1833 /* Corona Attack.app */;
+			productReference = D718CF07240EE433007A1833 /* Zombie Attack.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -291,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D79DC9AF241ABCF000C586C4 /* theme.wav in Resources */,
+				D77B38732429BA6A002B14B7 /* GoogleService-Info.plist in Resources */,
 				D718CF16240EE433007A1833 /* Main.storyboard in Resources */,
 				D718CF0D240EE433007A1833 /* GameScene.sks in Resources */,
 				D79DC9B3241AC93200C586C4 /* infect.wav in Resources */,
@@ -304,6 +348,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		63FF24AED0CE1FB4F2412375 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NC4/Pods-NC4-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NC4/Pods-NC4-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NC4/Pods-NC4-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7BC02952E3ED47D09202DF0D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NC4-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7C66B6424285A9E00F81F9A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D718CF03240EE433007A1833 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -316,6 +419,7 @@
 				D718CF2F240FF05D007A1833 /* Lifeable.swift in Sources */,
 				D7F16A14241851DB0063877B /* ZPositoinManager.swift in Sources */,
 				D75E60722411335C000A320D /* GameEventListener.swift in Sources */,
+				D77A612524217F0F00DD69C0 /* EnemyHitParticleLoader.swift in Sources */,
 				D7B80D512410248B0089F65C /* CoinSpawner.swift in Sources */,
 				D7F16A1124184B4D0063877B /* ThemeManager.swift in Sources */,
 				D79DC9AB241ABC7B00C586C4 /* Song.swift in Sources */,
@@ -478,18 +582,19 @@
 		};
 		D718CF20240EE438007A1833 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3327BB0C5C42F6990C0F464 /* Pods-NC4.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = QM43B7QRF9;
 				INFOPLIST_FILE = NC4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.pastre.nc4;
-				PRODUCT_NAME = "Corona Attack";
+				PRODUCT_BUNDLE_IDENTIFIER = pastre.github.io.nano4;
+				PRODUCT_NAME = "Zombie Attack";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -497,18 +602,19 @@
 		};
 		D718CF21240EE438007A1833 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 628ACA5066C866935454E5F3 /* Pods-NC4.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = QM43B7QRF9;
 				INFOPLIST_FILE = NC4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.pastre.nc4;
-				PRODUCT_NAME = "Corona Attack";
+				PRODUCT_BUNDLE_IDENTIFIER = pastre.github.io.nano4;
+				PRODUCT_NAME = "Zombie Attack";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

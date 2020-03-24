@@ -35,6 +35,7 @@ class Coin: AbstractGameObject, Lifeable {
         let deltaY = CGFloat(deltaTime) * self.scene.speedManager.getCurrentSpeed()
         
         self.node.position.y -= deltaY
+        
     }
     
     func getLabelNode() -> SKLabelNode {

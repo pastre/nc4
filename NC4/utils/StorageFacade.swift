@@ -18,16 +18,26 @@ class StorageFacade {
     enum StorageKeys: String {
         case highScore
         case audioEnabled
+        case disclaimer
     }
     
     func getHighScore() -> Int {
         return UserDefaults.standard.integer(forKey: StorageKeys.highScore.rawValue)
     }
     
+    func hasDisplayedDisclaimer() -> Bool {
+        
+        UserDefaults.standard.bool(forKey: StorageKeys.disclaimer.rawValue)
+    }
+    
+    func setDisclaimerDisplayed() {
+        UserDefaults.standard.set(true, forKey: StorageKeys.disclaimer.rawValue)
+    }
     
     private func setHighScore(to newVal: Int) {
         UserDefaults.standard.set(newVal, forKey: StorageKeys.highScore.rawValue)
     }
+    
     
     func updateScoreIfNeeded(to newVal: Int) -> Bool {
         if newVal > self.getHighScore() {

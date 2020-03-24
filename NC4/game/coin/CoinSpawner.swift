@@ -16,7 +16,7 @@ class CoinSpawner: SceneSupplicant, Updateable {
     
     let spawnThreshold = TimeInterval(2)
     
-    var currentSpawnTimer = TimeInterval(4)
+    var currentSpawnTimer = TimeInterval(0)
     var shouldMoveCoins: Bool = true
     
     
@@ -55,6 +55,12 @@ class CoinSpawner: SceneSupplicant, Updateable {
     
     func spawn() {
         let newCoin = self.coinFactory.getGameObject()
+        if let enemyArea = self.scene.enemySpawner.currentEnemyGroup?.getEnemyArea() {
+            if enemyArea.contains(newCoin.node.position)  || enemyArea.intersects(newCoin.node)  {
+                return
+            }
+        }
+        
         self.coins.append(newCoin)
         self.scene.addChild(newCoin.node)
     }

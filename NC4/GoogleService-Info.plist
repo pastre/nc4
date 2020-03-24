@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>600575057960-f6kq7unqrid8gg2avbisd4a25v6o1ll1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.600575057960-f6kq7unqrid8gg2avbisd4a25v6o1ll1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCJoWCuZ9g3Tv27I0kf0DufHOxKUHRXogY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>600575057960</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>pastre.github.io.nano4</string>
+	<key>PROJECT_ID</key>
+	<string>nano-challenge-4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nano-challenge-4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:600575057960:ios:ccee5a1bcef17dfcb0d51d</string>
+	<key>DATABASE_URL</key>
+	<string>https://nano-challenge-4.firebaseio.com</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-3760704996981292~8588746666</string>
+</dict>
+</plist>

@@ -67,7 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
         playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
         playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
-        
+        playerNode.scale(to: .init(width: 40, height: 50))
         self.player = Player(playerNode, self)
         
         self.configureBg()
@@ -174,7 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playerDidScore() {
         self.score += 1
-        self.scoreNode.text = "Infections: \(self.score!)"
+        self.scoreNode.text = "Kills: \(self.score!)"
     }
     
     func movePlayer(_ dx: CGFloat) {
@@ -267,14 +267,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func setScoreLabel() {
-        self.scoreNode.text = "Infections: 0"
+        self.scoreNode.text = "Kills: 0"
     }
     
     func changeFonts() {
         visit { (node) -> () in
             if let label = node as? SKLabelNode {
-                label.fontName = "NCT Torin"
-                
+//                label.fontName = "NCT Torin"
+//                label.fontName = "HoeflerText-Black"
+//                label.addStroke(color: .black, width: 4)
 //                label.fontSize = 20
             }
         }
