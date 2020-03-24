@@ -13,20 +13,7 @@ import GoogleMobileAds
 import Firebase
 
 class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADInterstitialDelegate {
-    // MARK: - GADInterstitialDelegate
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-      print("interstitialDidDismissScreen")
-        
-        Analytics.logEvent("completedAdPresentation", parameters: nil)
-        self.loadAd()
-    }
-    
-    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-      print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
-        
-        Crashlytics.crashlytics().record(error: error)
-    }
-    
+
 
     var scene: GameScene?
     var interstitial: GADInterstitial!
@@ -244,6 +231,20 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     // MARK: - GKGameCenterControllerDelegate
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - GADInterstitialDelegate
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+      print("interstitialDidDismissScreen")
+        
+        Analytics.logEvent("completedAdPresentation", parameters: nil)
+        self.loadAd()
+    }
+    
+    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
+      print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
+        
+        Crashlytics.crashlytics().record(error: error)
     }
     
     
