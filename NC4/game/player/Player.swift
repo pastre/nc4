@@ -39,7 +39,10 @@ class Player: AbstractGameObject, Lifeable {
         DispatchQueue.global().async {
              AudioManager.shared.play(soundEffect: .infect)
         }
-        generator.impactOccurred()
+        
+        if !StorageFacade.instance.isVibrationDisabled() {
+            generator.impactOccurred()
+        }
     }
     
     func onLifePicked(_ amount: Int) {

@@ -105,15 +105,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         self.topScoreLabel.isHidden = false
     }
     
-    func updateSoundIcon() {
-        
-//        if StorageFacade.instance.isAudioDisabled() {
-//
-//            self.audioImage.image = UIImage(systemName: "speaker.slash.fill")
-//        } else {
-//            self.audioImage.image = UIImage(systemName: "speaker.3.fill")
-//        }
-    }
     
     func updateHighscoreLabel() {
         let highScore = StorageFacade.instance.getHighScore()
@@ -258,6 +249,26 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         self.configStackView.isHidden = !self.isConfigOpened
     }
     
+
+    func updateSoundIcon() {
+        let newIcon = UIImage(named: StorageFacade.instance.isAudioDisabled() ?
+            "mute" : "sound"
+        )
+
+        self.soundButton.setImage(newIcon, for: .normal)
+
+    }
+    
+    func updateVibrationIcon() {
+        
+        let newIcon = UIImage(named: StorageFacade.instance.isVibrationDisabled() ?
+            "vibOff" : "vibrate"
+        )
+
+        self.vibrationButton.setImage(newIcon, for: .normal)
+
+    }
+
     // MARK: - Button callbacks
     @IBAction func onPlay(_ sender: Any) {
         self.loadAd()
@@ -288,6 +299,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     }
     
     @IBAction func onVibrate(_ sender: Any) {
+        StorageFacade.instance.setVibrationDisabled(to: !StorageFacade.instance.isVibrationDisabled())
+        
+        self.updateVibrationIcon()
     }
     
     @IBAction func onSkinShop(_ sender: Any) {

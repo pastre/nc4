@@ -18,6 +18,7 @@ class StorageFacade {
     enum StorageKeys: String {
         case highScore
         case audioEnabled
+        case vibrationEnabled
         case disclaimer
     }
     
@@ -49,5 +50,10 @@ class StorageFacade {
     
     func isAudioDisabled() -> Bool { UserDefaults.standard.bool(forKey: StorageKeys.audioEnabled.rawValue) }
     func setAudioDisabled(to newValue: Bool) { UserDefaults.standard.set(newValue, forKey: StorageKeys.audioEnabled.rawValue) }
+    
+    
+    func isVibrationDisabled() -> Bool { UserDefaults.standard.bool(forKey: StorageKeys.vibrationEnabled.rawValue) }
+    
+    func setVibrationDisabled(to newValue: Bool) { UserDefaults.standard.set(newValue, forKey: StorageKeys.vibrationEnabled.rawValue) }
     
 }
