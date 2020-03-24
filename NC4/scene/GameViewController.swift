@@ -174,7 +174,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     
     func loadAd() {
         
-        print("Loading ad")
         // TEST AD
 //        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
         
@@ -186,7 +185,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         let request = GADRequest()
         interstitial.load(request)
         
-        print("Loading ad")
     }
     
     func presentAd() {
