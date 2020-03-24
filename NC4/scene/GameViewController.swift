@@ -252,6 +252,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         Crashlytics.crashlytics().record(error: error)
     }
     
+    // MARK: - Config methods
+    func updateConfig() {
+        self.hudStackView.isHidden = self.isConfigOpened
+        self.configStackView.isHidden = !self.isConfigOpened
+    }
     
     // MARK: - Button callbacks
     @IBAction func onPlay(_ sender: Any) {
@@ -286,15 +291,21 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     }
     
     @IBAction func onSkinShop(_ sender: Any) {
+        
     }
+    
     @IBAction func onRemoveAds(_ sender: Any) {
         
     }
     
     @IBAction func onCloseConfig(_ sender: Any) {
+        self.isConfigOpened = false
+        self.updateConfig()
     }
     
     @IBAction func onOpenConfig(_ sender: Any) {
+        self.isConfigOpened = true
+        self.updateConfig()
     }
     
     
