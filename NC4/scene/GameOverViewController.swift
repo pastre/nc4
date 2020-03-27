@@ -24,6 +24,7 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
     
     // MARK: - GADRewardedAdDelegate
     var completedReward: Bool! = false
+    var canAdRevive: Bool!
     
     func rewardedAd(_ rewardedAd: GADRewardedAd, userDidEarn reward: GADAdReward) {
         
@@ -154,7 +155,6 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
         self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3760704996981292/8000561485")
         
         #if DEBUG
-        
             self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
         #endif
         self.interstitial?.delegate = self
@@ -217,6 +217,11 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
     
     @objc func onViewAd() {
         Analytics.logEvent("gameOverReviveAd", parameters: nil)
+        guard self.canAdRevive else {
+            self.devLabel.text = "Vc ja reviveu, brow, joga mais uma ai"
+            self.animateDevText()
+            return
+        }
         self.presentRewardedAd()
     }
     

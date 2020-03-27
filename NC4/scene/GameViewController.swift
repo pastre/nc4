@@ -25,6 +25,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     
     func onRevive() {
         self.scene.playerDidRevive()
+        self.hasRevived = true
     }
     
     var scene: GameScene!
@@ -41,6 +42,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var topScoreLabel: UILabel!
     
+    var hasRevived: Bool! = false
     var shouldDisplayGameCenter: Bool = false
     var shouldDisplayWarning: Bool = true
     var isConfigOpened = false
@@ -168,6 +170,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         self.loadScene()
         self.scene?.realPaused = true
         
+        self.hasRevived = false
         self.showUI()
         
         print("Dismissed!")
@@ -426,6 +429,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? GameOverViewController {
             dest.dataSource = self
+            dest.canAdRevive = !self.hasRevived
         }
     }
 }
