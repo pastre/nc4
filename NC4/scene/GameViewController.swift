@@ -388,11 +388,13 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     @IBAction func onSkinShop(_ sender: Any) {
         // TODO
         self.showComingSoonLabel()
+        Analytics.logEvent("skinShopClicked", parameters: nil)
     }
     
     @IBAction func onRemoveAds(_ sender: Any) {
         // TODO
         self.showComingSoonLabel()
+        Analytics.logEvent("removeAdsClicked", parameters: nil)
     }
     
     @IBAction func onCloseConfig(_ sender: Any) {

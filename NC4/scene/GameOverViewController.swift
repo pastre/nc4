@@ -131,6 +131,7 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
     
     func presentRewardedAd() {
         guard let ad = self.rewarded, ad.isReady else { return }
+        Analytics.logEvent("presentRewardedAd", parameters: nil)
         ad.present(fromRootViewController: self, delegate: self)
     }
     
@@ -196,10 +197,12 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
     // MARK: - Callbacks
     
     @objc func onViewAd() {
+        Analytics.logEvent("gameOverReviveAd", parameters: nil)
         self.presentRewardedAd()
     }
     
     @objc func onBuy() {
+        Analytics.logEvent("gameOverBuyLifes", parameters: nil)
         self.devLabel.alpha = 1
         UIView.animate(withDuration: 2, delay: 1, options: [], animations: {
             self.devLabel.alpha = 0
