@@ -123,6 +123,9 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
         let testId = "ca-app-pub-3940256099942544/1712485313"
         self.rewarded = GADRewardedAd(adUnitID: id)
         
+        #if DEBUG
+            self.rewarded = GADRewardedAd(adUnitID: testId)
+        #endif
         rewarded?.load(GADRequest()) { (error) in
             if let error = error {
                 print("Vixi, deu ruim! Sem ad :(", error)
@@ -147,12 +150,13 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
     
     func loadInterAd() {
         
-        // TEST AD
-//                self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
         
-        // REAL AD
         self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3760704996981292/8000561485")
         
+        #if DEBUG
+        
+            self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        #endif
         self.interstitial?.delegate = self
         
         let request = GADRequest()
