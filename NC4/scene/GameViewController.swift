@@ -144,13 +144,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         self.configureGameRunning()
     }
     
-    func onGameOver() {
-        guard let gameScore = self.scene?.score else { return }
+    
+    func updateGameStats() {
         
-        self.configureGameIdle()
-        DispatchQueue.global().async {
-            AudioManager.shared.play(soundEffect: .gameOver)
-        }
+        guard let gameScore = self.scene?.score else { return }
         
         let timestamp = Date().timeIntervalSince1970
         if let startTs = self.gameStartedTimestamp {
@@ -161,16 +158,31 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         
         StorageFacade.instance.updateScoreIfNeeded(to: gameScore)
         GameCenterFacade.instance.onScore(gameScore)
+    }
+    
+    func onGameOverDismissed() {
         
-        self.presentAd()
+        self.configureGameIdle()
         self.loadScene()
         self.scene?.realPaused = true
         
         self.showUI()
         self.updateHighscoreLabel()
         
-        self.scoreLabel.isHidden = false
-        self.scoreLabel.text = "Last score: \(gameScore)"
+    }
+    
+    
+    
+    func onGameOver() {
+        
+        DispatchQueue.global().async {
+            AudioManager.shared.play(soundEffect: .gameOver)
+        }
+        
+//        self.presentAd()
+        
+//        self.scoreLabel.isHidden = false
+//        self.scoreLabel.text = "Last score: \(gameScore)"
     }
     
     // MARK: - Ad methods
