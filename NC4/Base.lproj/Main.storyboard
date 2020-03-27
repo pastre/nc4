@@ -289,6 +289,13 @@
                                 </constraints>
                                 <state key="normal" image="next"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Under development, coming soon!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGQ-tZ-PIO">
+                                <rect key="frame" x="75" y="720" width="264" height="21"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.80542809014869887" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -296,6 +303,7 @@
                             <constraint firstItem="lth-zo-W2p" firstAttribute="centerY" secondItem="u6t-hs-y9U" secondAttribute="centerY" id="4FE-75-ZsJ"/>
                             <constraint firstItem="BM0-2O-fOe" firstAttribute="centerY" secondItem="m6F-AI-Q2T" secondAttribute="centerY" id="8Qu-mi-BM5"/>
                             <constraint firstItem="lth-zo-W2p" firstAttribute="centerX" secondItem="u6t-hs-y9U" secondAttribute="centerX" id="Ab5-gb-PbN"/>
+                            <constraint firstItem="BVx-uJ-gfY" firstAttribute="top" secondItem="RGQ-tZ-PIO" secondAttribute="bottom" constant="23" id="AhG-a9-sRJ"/>
                             <constraint firstItem="aOr-RU-n2R" firstAttribute="centerX" secondItem="u6t-hs-y9U" secondAttribute="centerX" id="KZE-Dv-6su"/>
                             <constraint firstItem="hNE-63-ECc" firstAttribute="top" secondItem="aOr-RU-n2R" secondAttribute="top" id="Meo-eq-Y9i"/>
                             <constraint firstItem="BM0-2O-fOe" firstAttribute="leading" secondItem="PqB-3h-Uor" secondAttribute="leading" id="NZp-in-ePj"/>
@@ -308,6 +316,7 @@
                             <constraint firstItem="yjn-Zc-ujh" firstAttribute="top" secondItem="m6F-AI-Q2T" secondAttribute="bottom" multiplier="1.5" id="isS-6P-Ali"/>
                             <constraint firstItem="m6F-AI-Q2T" firstAttribute="width" secondItem="hNE-63-ECc" secondAttribute="width" id="m3z-uq-4uj"/>
                             <constraint firstItem="PqB-3h-Uor" firstAttribute="top" secondItem="aOr-RU-n2R" secondAttribute="top" id="mEL-kS-4cn"/>
+                            <constraint firstItem="RGQ-tZ-PIO" firstAttribute="centerX" secondItem="u6t-hs-y9U" secondAttribute="centerX" id="nFn-NM-8Ji"/>
                             <constraint firstItem="hNE-63-ECc" firstAttribute="width" secondItem="PqB-3h-Uor" secondAttribute="width" id="nfa-Il-Yiz"/>
                             <constraint firstItem="yjn-Zc-ujh" firstAttribute="width" secondItem="PWj-Jd-Ntk" secondAttribute="width" multiplier="0.1" id="nnf-4F-U6K"/>
                             <constraint firstItem="hNE-63-ECc" firstAttribute="leading" secondItem="aOr-RU-n2R" secondAttribute="trailing" id="ojV-n1-YIZ"/>
@@ -321,6 +330,7 @@
                     <navigationItem key="navigationItem" id="WDh-Dx-aVl"/>
                     <connections>
                         <outlet property="buyLifesView" destination="PqB-3h-Uor" id="WU0-NN-Gep"/>
+                        <outlet property="devLabel" destination="RGQ-tZ-PIO" id="Svn-5i-To7"/>
                         <outlet property="headsView" destination="m6F-AI-Q2T" id="V1A-Yt-9ht"/>
                         <outlet property="nextButton" destination="BVx-uJ-gfY" id="nuv-Sn-Byk"/>
                         <outlet property="scoreView" destination="BM0-2O-fOe" id="0G2-Hx-9se"/>

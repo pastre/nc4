@@ -23,17 +23,25 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
     
     
     // MARK: - GADRewardedAdDelegate
-    var completedReward: Bool?
+    var completedReward: Bool! = false
+    
     func rewardedAd(_ rewardedAd: GADRewardedAd, userDidEarn reward: GADAdReward) {
+        
         self.completedReward = true
+        
     }
     
     func rewardedAd(_ rewardedAd: GADRewardedAd, didFailToPresentWithError error: Error) {
-        
+        print("Failed to present ad", error)
     }
+    
     func rewardedAdDidDismiss(_ rewardedAd: GADRewardedAd) {
+        
+        guard self.completedReward else { return }
         self.dismiss(animated: false, completion: nil)
         self.dataSource?.onRevive()
+        self.loadRewardedAd()
+        
     }
     
     var interstitial: GADInterstitial?
@@ -49,6 +57,7 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
     
     @IBOutlet weak var nextButton: UIButton!
     
+    @IBOutlet weak var devLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,6 +67,12 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
         self.setupRoundedViews()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    
     
     
     func setupGestures() {
