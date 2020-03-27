@@ -167,7 +167,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         self.scene?.realPaused = true
         
         self.showUI()
-        self.updateHighscoreLabel()
+//        self.updateHighscoreLabel()
         
     }
     
@@ -178,7 +178,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         DispatchQueue.global().async {
             AudioManager.shared.play(soundEffect: .gameOver)
         }
-        
+        self.scene?.realPaused = true
+        self.updateGameStats()
+        self.performSegue(withIdentifier: "gameOver", sender: nil)
 //        self.presentAd()
         
 //        self.scoreLabel.isHidden = false
