@@ -172,6 +172,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: - Player helper function
     
+    func playerDidRevive() {
+        self.enemySpawner.forceDespawnEnemyGroup()
+        
+        while self.player.lifes != 10 {
+            self.player.onLifePicked(1)
+        }
+        
+        self.realPaused = false
+
+    }
+    
     func playerDidScore() {
         self.score += 1
         self.scoreNode.text = "Kills: \(self.score!)"

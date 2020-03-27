@@ -23,17 +23,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         return 10
     }
     
-    
-    
-
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("Recvd ad")
+    func onRevive() {
+        self.scene.playerDidRevive()
     }
-    
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print("Failed to load banner!", error)
-    }
-
     
     var scene: GameScene!
     
@@ -200,6 +192,16 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     }
     
     
+    // MARK: - BannerAd Delegate
+
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("Recvd ad")
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("Failed to load banner!", error)
+    }
+
     //MARK: - View methods
     
     func loadScene() {

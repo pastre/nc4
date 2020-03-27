@@ -52,4 +52,11 @@ class EnemySpawner: Updateable, SceneSupplicant {
         self.currentEnemyGroup = newEnemyGroup
     }
     
+    func forceDespawnEnemyGroup() {
+        guard let enemies = self.currentEnemyGroup else { return }
+        enemies.despawn()
+        enemies.collidingEnemies.removeAll()
+        self.currentEnemyGroup = nil
+    }
+    
 }
