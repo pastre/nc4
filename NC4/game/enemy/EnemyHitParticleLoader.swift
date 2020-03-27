@@ -30,6 +30,20 @@ class EnemyHitParticleLoader {
         // TODO: Configure node on completion
         
         node.scale(to: .init(width: 50, height: 60))
+        node.name = "head"
+        
+        let body = SKPhysicsBody(texture: node.texture!, alphaThreshold: 0.9, size: node.size)
+        
+        body.affectedByGravity = false
+        body.allowsRotation = false
+        body.isDynamic = false
+        
+        
+        body.categoryBitMask = ContactMask.head.rawValue
+        body.contactTestBitMask = ContactMask.player.rawValue
+        body.collisionBitMask = ContactMask.none.rawValue
+        
+        node.physicsBody = body
     }
     
     static func getParticle() -> SKSpriteNode {

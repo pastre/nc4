@@ -31,7 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastContactTimestamp: TimeInterval?
     
     var score: Int!
-    
+    var headCount: Int = 0
     
     var realPaused: Bool = false {
         didSet {
@@ -125,6 +125,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if self.hasPickedCoin(nodeA) { return }
         if self.hasPickedCoin(nodeB) { return }
         
+        if self.hasPickedHead(nodeA) { return }
+        if self.hasPickedHead(nodeB) { return }
+        
         if nodeA.name == "player" {
             self.playerCollisionStarted(playerNode: nodeA, other: nodeB)
         } else if nodeB.name == "player" {
@@ -139,12 +142,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let nodeB = contact.bodyB.node else { return }
         guard nodeA.name == "player" || nodeB.name == "player" else { return }
         
+        guard nodeA.name == "enemy" || nodeB.name == "enemy" else { return }
+        
+        
         if nodeA.name == "player" {
             self.playerCollisionCompleted(playerNode: nodeA, other: nodeB)
         } else if nodeB.name == "player" {
             self.playerCollisionCompleted(playerNode: nodeB, other: nodeA)
         }
         
+    }
+    
+    func hasPickedHead(_ node: SKNode) -> Bool {
+        guard node.name == "head" else { return false}
+        
+        self.headCount += 1
+        node.removeFromParent()
+        
+        return true
     }
     
     func hasPickedCoin(_ node: SKNode) -> Bool {
@@ -291,6 +306,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+    
+    
 }
 
 
