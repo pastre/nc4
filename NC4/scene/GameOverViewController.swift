@@ -16,15 +16,28 @@ class GameOverViewController: UIViewController {
     @IBOutlet weak var buyLifesView: UIView!
     @IBOutlet weak var viewAdView: UIView!
     
+    @IBOutlet weak var nextButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        self.setupViews()
+        self.setupGestures()
+        self.setupRoundedViews()
         // Do any additional setup after loading the view.
     }
     
-    func setupViews() {
+    
+    func setupGestures() {
+        let buyTap = UITapGestureRecognizer(target: self, action: #selector(self.onBuy))
+        let adTap = UITapGestureRecognizer(target: self, action: #selector(self.onViewAd))
+        
+        self.buyLifesView.addGestureRecognizer(buyTap)
+        self.viewAdView.addGestureRecognizer(adTap)
+        
+        self.nextButton.addTarget(self, action: #selector(self.onNext), for: .touchDown)
+    }
+    
+    func setupRoundedViews() {
         self.configureBorders(on: self.headsView, isCircular: false)
         
         self.configureBorders(on: self.scoreView, isCircular: false)
@@ -56,5 +69,19 @@ class GameOverViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - Callbacks
+    
+    @objc func onViewAd() {
+        
+    }
+    
+    @objc func onBuy() {
+        
+    }
+    
+    @objc func onNext() {
+        
+    }
 
 }

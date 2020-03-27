@@ -322,6 +322,7 @@
                     <connections>
                         <outlet property="buyLifesView" destination="PqB-3h-Uor" id="WU0-NN-Gep"/>
                         <outlet property="headsView" destination="m6F-AI-Q2T" id="V1A-Yt-9ht"/>
+                        <outlet property="nextButton" destination="BVx-uJ-gfY" id="nuv-Sn-Byk"/>
                         <outlet property="scoreView" destination="BM0-2O-fOe" id="0G2-Hx-9se"/>
                         <outlet property="viewAdView" destination="hNE-63-ECc" id="Ite-YY-UuT"/>
                     </connections>
