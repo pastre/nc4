@@ -23,7 +23,7 @@
                             <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMv-1u-Aha">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </skView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High score: 100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqI-zn-thj">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High score: 100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqI-zn-thj">
                                 <rect key="frame" x="125" y="126" width="164" height="24"/>
                                 <fontDescription key="fontDescription" name="LucidaGrande-Bold" family="Lucida Grande" pointSize="20"/>
                                 <color key="textColor" red="0.12109669699293693" green="0.31714895190211756" blue="0.95572509765625002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -12,7 +12,19 @@ import GameKit
 import GoogleMobileAds
 import Firebase
 
-class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, GameOverDataSource, GADBannerViewDelegate {
+    
+    // MARK: - GameOverDataSource
+    func getScore() -> Int {
+        return self.scene!.score
+    }
+    
+    func getHeadCount() -> Int {
+        return 10
+    }
+    
+    
+    
 
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("Recvd ad")
@@ -24,7 +36,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
 
     
     var scene: GameScene!
-    var interstitial: GADInterstitial!
     
     @IBOutlet weak var vibrationButton: UIButton!
     @IBOutlet weak var soundButton: UIButton!
@@ -140,7 +151,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     
     func onGameStart() {
         
-        self.loadAd()
         self.configureGameRunning()
     }
     
@@ -167,6 +177,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         self.scene?.realPaused = true
         
         self.showUI()
+        
+        print("Dismissed!")
 //        self.updateHighscoreLabel()
         
     }
@@ -187,40 +199,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
 //        self.scoreLabel.text = "Last score: \(gameScore)"
     }
     
-    // MARK: - Ad methods
-    
-    func loadAd() {
-        
-        // TEST AD
-//        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
-        
-        // REAL AD
-        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3760704996981292/8000561485")
-        
-        self.interstitial.delegate = self
-        
-        let request = GADRequest()
-        interstitial.load(request)
-        
-    }
-    
-    func presentAd() {
-        #if DEBUG
-            return
-        #endif
-        Analytics.logEvent("showAd", parameters: nil)
-        if self.interstitial.isReady {
-            self.interstitial.present(fromRootViewController: self)
-            print("presenting ad")
-        } else {
-            print("Tried to present fucking ad, but it didnt load")
-        }
-    }
-    
-    func onAdCompleted() {
-        
-        
-    }
     
     //MARK: - View methods
     
@@ -269,19 +247,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         gameCenterViewController.dismiss(animated: true, completion: nil)
     }
     
-    // MARK: - GADInterstitialDelegate
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-      print("interstitialDidDismissScreen")
-        
-        Analytics.logEvent("completedAdPresentation", parameters: nil)
-        self.loadAd()
-    }
-    
-    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-      print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
-        
-        Crashlytics.crashlytics().record(error: error)
-    }
+
     
     // MARK: - Config methods
     func updateConfig() {
@@ -385,7 +351,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
     @objc func onPlay(_ sender: Any) {
         guard !self.isPlaying else  { return }
         
-        self.loadAd()
         self.scene?.realPaused = false
         self.hideUI()
         self.onGameStart()
@@ -451,4 +416,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, GADI
         GameCenterFacade.instance.loadFromGamecenter()
     }
     
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? GameOverViewController {
+            dest.dataSource = self
+        }
+    }
 }
