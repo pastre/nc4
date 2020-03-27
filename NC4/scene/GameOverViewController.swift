@@ -57,7 +57,10 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
     
     @IBOutlet weak var nextButton: UIButton!
     
+    @IBOutlet weak var headsLabel: UILabel!
     @IBOutlet weak var devLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,7 +72,10 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        guard let src = self.dataSource else { return }
         
+        self.scoreLabel.text = String(src.getScore())
+        self.headsLabel.text = String(src.getHeadCount())
     }
     
     
@@ -186,6 +192,7 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
     
     
     
+    
     // MARK: - Callbacks
     
     @objc func onViewAd() {
@@ -193,7 +200,10 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
     }
     
     @objc func onBuy() {
-        
+        self.devLabel.alpha = 1
+        UIView.animate(withDuration: 2, delay: 1, options: [], animations: {
+            self.devLabel.alpha = 0
+        }, completion: nil)
     }
     
     @objc func onNext() {

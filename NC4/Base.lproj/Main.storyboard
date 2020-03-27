@@ -331,8 +331,10 @@
                     <connections>
                         <outlet property="buyLifesView" destination="PqB-3h-Uor" id="WU0-NN-Gep"/>
                         <outlet property="devLabel" destination="RGQ-tZ-PIO" id="Svn-5i-To7"/>
+                        <outlet property="headsLabel" destination="Zy9-zT-8hv" id="ETE-WV-bvV"/>
                         <outlet property="headsView" destination="m6F-AI-Q2T" id="V1A-Yt-9ht"/>
                         <outlet property="nextButton" destination="BVx-uJ-gfY" id="nuv-Sn-Byk"/>
+                        <outlet property="scoreLabel" destination="5EJ-O4-0Nv" id="Jkd-Sb-8E4"/>
                         <outlet property="scoreView" destination="BM0-2O-fOe" id="0G2-Hx-9se"/>
                         <outlet property="viewAdView" destination="hNE-63-ECc" id="Ite-YY-UuT"/>
                     </connections>
