@@ -147,7 +147,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         
         self.configureGameRunning()
         
-        self.scene.player.lifes = -1
+//        self.scene.player.lifes = -1
     }
     
     
@@ -429,9 +429,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("SEGUEEE")
         if let dest = segue.destination as? GameOverViewController {
             dest.dataSource = self
             dest.canAdRevive = !self.hasRevived
+            print("aaa")
         }
     }
 }

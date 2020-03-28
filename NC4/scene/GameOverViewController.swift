@@ -45,15 +45,15 @@ class GameOverViewController: UIViewController, AdPresenter {
         
         // Do any additional setup after loading the view.
     }
-    var shouldConfiguredOptions = true
+    
     override func viewWillAppear(_ animated: Bool) {
-        
+        print("Will appear")
         
         guard let src = self.dataSource else { return }
         
-        if !self.canReallyAdRevive() {
-            self.hideReviveWithAds()
-        }
+//        if !self.canReallyAdRevive() {
+//            self.hideReviveWithAds()
+//        }
         
         self.scoreLabel.text = String(src.getScore())
         self.headsLabel.text = String(src.getHeadCount())

@@ -157,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140.57971014492756" y="138.61607142857142"/>
+            <point key="canvasLocation" x="-371" y="139"/>
         </scene>
         <!--Game Over View Controller-->
         <scene sceneID="0al-T8-ZII">
@@ -339,7 +339,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="WDh-Dx-aVl"/>
                     <connections>
-                        <outlet property="buyLifesLeadingConstraint" destination="pWU-Lq-aqN" id="3Mb-zb-2fX"/>
                         <outlet property="buyLifesView" destination="PqB-3h-Uor" id="WU0-NN-Gep"/>
                         <outlet property="devLabel" destination="RGQ-tZ-PIO" id="Svn-5i-To7"/>
                         <outlet property="headsLabel" destination="Zy9-zT-8hv" id="ETE-WV-bvV"/>
