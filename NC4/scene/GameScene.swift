@@ -14,6 +14,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerNode: SKSpriteNode!
     var scoreNode: SKLabelNode!
+    var zombieHeadIcon: SKSpriteNode!
 
     var vc: GameViewController?
     
@@ -61,8 +62,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.enemySpawner = EnemySpawner(scene: self)
         
         self.playerNode = (self.childNode(withName: "player") as! SKSpriteNode)
-        
         self.scoreNode = (self.childNode(withName: "score") as! SKLabelNode)
+        self.zombieHeadIcon = self.childNode(withName: "zombieHeadIcon") as! SKSpriteNode
+              
         
         playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
         playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
@@ -154,10 +156,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func hasPickedHead(_ node: SKNode) -> Bool {
-        guard node.name == "head" else { return false}
+        guard node.name == "head", node.parent != nil else { return false}
         
         self.headCount += 1
-        node.removeFromParent()
+        self.playerDidScore()
+        
+        node.physicsBody?.isDynamic = false
+        node.physicsBody?.categoryBitMask = ContactMask.none.rawValue
+        node.physicsBody?.contactTestBitMask = ContactMask.none.rawValue
+        
+        let duration: TimeInterval = 1
+        
+        let transformAction = SKAction.move(to: self.zombieHeadIcon.position, duration: duration)
+        let rotateAction = SKAction.rotate(byAngle: 2 * .pi, duration: duration)
+//        let repeatAction = SKAction.repeatForever(rotateAction)
+        let group = SKAction.group([rotateAction, transformAction])
+        let resultAction = SKAction.sequence([ group , SKAction.removeFromParent() ])
+        
+        node.run(resultAction)
         
         return true
     }
@@ -288,8 +304,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             y: self.getBounds().height - (self.scoreNode.frame.height) - 60)
         self.scoreNode.color = UIColor(rgb: 0x002B5B)
         
-        guard let icon = self.childNode(withName: "zombieHeadIcon") as? SKSpriteNode else { return }
-        
+        let icon = self.zombieHeadIcon!
         
         let ratio = icon.size.width / icon.size.height
         let size = self.scoreNode.frame.height

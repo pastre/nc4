@@ -56,7 +56,7 @@ extension AdManager: GADRewardedAdDelegate {
         let id = "ca-app-pub-3760704996981292/5214330633"
         
         let testId = "ca-app-pub-3940256099942544/1712485313"
-        let newAd = GADRewardedAd(adUnitID: testId)
+        let newAd = GADRewardedAd(adUnitID: id)
         
         newAd.load(GADRequest()) { (error) in
             if let error = error {

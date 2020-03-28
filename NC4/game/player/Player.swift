@@ -34,7 +34,6 @@ class Player: AbstractGameObject, Lifeable {
     func onLifeTaken() {
         self.lifes -= 1
         self.decreaseTail()
-        self.scene.playerDidScore()
 
         DispatchQueue.global().async {
              AudioManager.shared.play(soundEffect: .infect)

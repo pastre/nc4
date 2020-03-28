@@ -20,7 +20,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     }
     
     func getHeadCount() -> Int {
-        return 10
+        return self.scene.headCount
     }
     
     func onRevive() {
