@@ -290,10 +290,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.scoreNode.fontSize = 40
         if self.realPaused {
             self.scoreNode.isHidden = true
+            self.zombieHeadIcon.isHidden = true
             return
         }
 
         self.scoreNode.isHidden = false
+        self.zombieHeadIcon.isHidden = false
         self.setScoreLabel()
     }
     
