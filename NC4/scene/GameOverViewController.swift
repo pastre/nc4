@@ -51,9 +51,9 @@ class GameOverViewController: UIViewController, AdPresenter {
         
         guard let src = self.dataSource else { return }
         
-//        if !self.canReallyAdRevive() {
-//            self.hideReviveWithAds()
-//        }
+        if !self.canReallyAdRevive() {
+            self.hideReviveWithAds()
+        }
         
         self.scoreLabel.text = String(src.getScore())
         self.headsLabel.text = String(src.getHeadCount())
@@ -64,15 +64,22 @@ class GameOverViewController: UIViewController, AdPresenter {
     
     func hideReviveWithAds() {
         let overlay = UIView(frame: self.viewAdView.frame)
-        
+        overlay.translatesAutoresizingMaskIntoConstraints = false
         overlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
         self.viewAdView.addSubview(overlay)
+        
+        self.viewAdView.bringSubviewToFront(overlay)
+        
+        overlay.centerXAnchor.constraint(equalTo: self.viewAdView.centerXAnchor).isActive = true
+        overlay.centerYAnchor.constraint(equalTo: self.viewAdView.centerYAnchor).isActive = true
+        overlay.widthAnchor.constraint(equalTo: self.viewAdView.widthAnchor).isActive = true
+        overlay.heightAnchor.constraint(equalTo: self.viewAdView.heightAnchor).isActive = true
     }
     
     func setupGestures() {
         
-        let buyTap = UITapGestureRecognizer(target: self, action: #selector(self.onBuy(_:)))
+        let buyTap = UITapGestureRecognizer(target: self, action: #selector(self.onBuy))
         let adTap = UITapGestureRecognizer(target: self, action: #selector(self.onViewAd))
         
         
@@ -160,20 +167,23 @@ class GameOverViewController: UIViewController, AdPresenter {
     }
     // MARK: - Callbacks
     
-    @IBAction func onBuy(_ sender: Any) {
-        self._onBuy()
-    }
     @objc func onViewAd() {
         Analytics.logEvent("gameOverReviveAd", parameters: nil)
-        guard self.canAdRevive else {
-            self.devLabel.text = "Vc ja reviveu, brow, joga mais uma ai"
-            self.animateDevText()
+        guard self.canReallyAdRevive() else {
+        
+            UINotificationFeedbackGenerator().notificationOccurred(.error)
+            let view = self.viewAdView!
+            view.transform = CGAffineTransform(translationX: 20, y: 0)
+            
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+                view.transform = .identity
+            }, completion: nil)
             return
         }
         self.presentRewardedAd()
     }
     
-    @objc func _onBuy() {
+    @objc func onBuy() {
         Analytics.logEvent("gameOverBuyLifes", parameters: nil)
         
         self.devLabel.text = "Under development! Coming soon..."
