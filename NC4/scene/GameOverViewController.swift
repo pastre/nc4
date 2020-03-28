@@ -19,36 +19,27 @@ protocol GameOverDataSource {
     func onRevive()
 }
 
-class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewardedAdDelegate {
-    
-    
-    // MARK: - GADRewardedAdDelegate
-    var completedReward: Bool! = false
-    var canAdRevive: Bool!
-    
-    func rewardedAd(_ rewardedAd: GADRewardedAd, userDidEarn reward: GADAdReward) {
-        
+class GameOverViewController: UIViewController, AdPresenter {
+    // MARK: - AdPresenter
+    func onUserDidEarn(reward: GADAdReward) {
         self.completedReward = true
-        
     }
     
-    func rewardedAd(_ rewardedAd: GADRewardedAd, didFailToPresentWithError error: Error) {
-        print("Failed to present ad", error)
-    }
-    
-    func rewardedAdDidDismiss(_ rewardedAd: GADRewardedAd) {
+    func onRewardedAdDismiss() {
         
         guard self.completedReward else { return }
         self.dismiss(animated: false, completion: nil)
         self.dataSource?.onRevive()
-        self.loadRewardedAd()
-        
     }
     
-    var isAdMissing: Bool?
+    func onInterAdDismiss() {
+        self.onAdInterCompleted()
+    }
+
+    var completedReward: Bool! = false
+    var canAdRevive: Bool!
     
-    var interstitial: GADInterstitial?
-    var rewarded: GADRewardedAd?
+    
     
     var dataSource: GameOverDataSource?
     
@@ -67,8 +58,7 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.loadRewardedAd()
-        self.loadInterAd()
+        
         self.setupGestures()
         self.setupRoundedViews()
         // Do any additional setup after loading the view.
@@ -116,67 +106,19 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
         
     }
     
-    // MARK: - Rewarded based ad methods
+    // MARK: - Ad methods
     
-    func loadRewardedAd() {
-        let id = "ca-app-pub-3760704996981292/5214330633"
-        
-        let testId = "ca-app-pub-3940256099942544/1712485313"
-        self.rewarded = GADRewardedAd(adUnitID: id)
-        
-        #if DEBUG
-            self.rewarded = GADRewardedAd(adUnitID: testId)
-        #endif
-        rewarded?.load(GADRequest()) { (error) in
-            if let error = error {
-                print("Vixi, deu ruim! Sem ad :(", error)
-                self.isAdMissing = true
-                return
-            }
-        }
-    }
+
     
     func presentRewardedAd() {
-        if let missing = self.isAdMissing, missing {
-            self.devLabel.text = "No ad to show :("
-            self.animateDevText()
-        }
-        
-        guard let ad = self.rewarded, ad.isReady else { return }
-        Analytics.logEvent("presentRewardedAd", parameters: nil)
-        ad.present(fromRootViewController: self, delegate: self)
-    }
-    
-    // MARK: - Interstitial ad methods
-    
-    func loadInterAd() {
-        
-        
-        self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3760704996981292/8000561485")
-        
-        #if DEBUG
-            self.interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
-        #endif
-        self.interstitial?.delegate = self
-        
-        let request = GADRequest()
-        interstitial?.load(request)
+        AdManager.instance.presentReward(on: self)
         
     }
     
     func presentInterAd() -> Bool {
-//        #if DEBUG
-//        return
-//        #endif
-        Analytics.logEvent("showAd", parameters: nil)
-        guard let interstitial = self.interstitial else { return false }
-        if interstitial.isReady {
-            interstitial.present(fromRootViewController: self)
-            print("presenting ad")
-            return true
-        }
         
-        return false
+        AdManager.instance.presentInterAd(on: self)
+        return AdManager.instance.interAd.isReady
     }
     
     func onAdInterCompleted() {
@@ -184,24 +126,6 @@ class GameOverViewController: UIViewController, GADInterstitialDelegate, GADRewa
             self.dataSource?.onGameOverDismissed()
         }
         
-    }
-    
-    
-    // MARK: - GADInterstitialDelegate
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-      print("interstitialDidDismissScreen")
-        
-        Analytics.logEvent("completedAdPresentation", parameters: nil)
-        self.loadInterAd()
-        self.onAdInterCompleted()
-    }
-    
-    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-        
-        print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
-        Crashlytics.crashlytics().record(error: error)
-        
-//        self.onAdInterCompleted()
     }
     
     

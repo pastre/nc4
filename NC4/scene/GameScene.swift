@@ -200,7 +200,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playerDidScore() {
         self.score += 1
-        self.scoreNode.text = "Kills: \(self.score!)"
+        self.scoreNode.text = String(format: "%03d", self.headCount)
     }
     
     func movePlayer(_ dx: CGFloat) {
@@ -271,6 +271,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func configureScoreLabel() {
         defer { self.positionLabel() }
+        self.scoreNode.fontSize = 40
         if self.realPaused {
             self.scoreNode.isHidden = true
             return
@@ -281,9 +282,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func positionLabel() {
+        let scoreX = self.getBounds().origin.x + (self.scoreNode.frame.width / 2) + 20
         self.scoreNode.position = CGPoint(
-            x: self.getBounds().origin.x + (self.scoreNode.frame.width / 2) + 20,
+            x: scoreX,
             y: self.getBounds().height - (self.scoreNode.frame.height) - 60)
+        self.scoreNode.color = UIColor(rgb: 0x002B5B)
+        
+        guard let icon = self.childNode(withName: "zombieHeadIcon") as? SKSpriteNode else { return }
+        
+        
+        let ratio = icon.size.width / icon.size.height
+        let size = self.scoreNode.frame.height
+        icon.scale(to: CGSize(width: ratio * size, height: size))
+        
+        icon.position = CGPoint(x:
+            scoreX + scoreNode.frame.width / 2 + icon.size.width / 2 + 5,
+                                y: self.scoreNode.position.y + icon.size.height / 2 )
     }
     
     
@@ -293,8 +307,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func setScoreLabel() {
-        self.scoreNode.text = "Kills: 0"
+        self.scoreNode.text = "000"
     }
+    
     
     func changeFonts() {
         visit { (node) -> () in

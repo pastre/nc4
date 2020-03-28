@@ -13,7 +13,6 @@
 		D718CF11240EE433007A1833 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF10240EE433007A1833 /* GameScene.swift */; };
 		D718CF13240EE433007A1833 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF12240EE433007A1833 /* GameViewController.swift */; };
 		D718CF16240EE433007A1833 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D718CF14240EE433007A1833 /* Main.storyboard */; };
-		D718CF18240EE438007A1833 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D718CF17240EE438007A1833 /* Assets.xcassets */; };
 		D718CF1B240EE438007A1833 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D718CF19240EE438007A1833 /* LaunchScreen.storyboard */; };
 		D718CF23240EE48E007A1833 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF22240EE48E007A1833 /* GameObject.swift */; };
 		D718CF25240EE547007A1833 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF24240EE547007A1833 /* Player.swift */; };
@@ -23,6 +22,8 @@
 		D718CF2D240FF041007A1833 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF2C240FF041007A1833 /* Enemy.swift */; };
 		D718CF2F240FF05D007A1833 /* Lifeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718CF2E240FF05D007A1833 /* Lifeable.swift */; };
 		D736EADB242E726000C306E6 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EADA242E726000C306E6 /* GameOverViewController.swift */; };
+		D736EADD242EB45D00C306E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D736EADC242EB45B00C306E6 /* Assets.xcassets */; };
+		D736EADF242F9CFE00C306E6 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EADE242F9CFE00C306E6 /* AdManager.swift */; };
 		D75E60722411335C000A320D /* GameEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E60712411335C000A320D /* GameEventListener.swift */; };
 		D77A612524217F0F00DD69C0 /* EnemyHitParticleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */; };
 		D77B38732429BA6A002B14B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */; };
@@ -59,7 +60,6 @@
 		D718CF10240EE433007A1833 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		D718CF12240EE433007A1833 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D718CF15240EE433007A1833 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D718CF17240EE438007A1833 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D718CF1A240EE438007A1833 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D718CF1C240EE438007A1833 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D718CF22240EE48E007A1833 /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
@@ -70,6 +70,8 @@
 		D718CF2C240FF041007A1833 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		D718CF2E240FF05D007A1833 /* Lifeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifeable.swift; sourceTree = "<group>"; };
 		D736EADA242E726000C306E6 /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
+		D736EADC242EB45B00C306E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D736EADE242F9CFE00C306E6 /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		D75E60712411335C000A320D /* GameEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventListener.swift; sourceTree = "<group>"; };
 		D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyHitParticleLoader.swift; sourceTree = "<group>"; };
 		D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -155,7 +157,7 @@
 				D7F16A12241851C00063877B /* utils */,
 				D718CF14240EE433007A1833 /* Main.storyboard */,
 				D718CF0A240EE433007A1833 /* AppDelegate.swift */,
-				D718CF17240EE438007A1833 /* Assets.xcassets */,
+				D736EADC242EB45B00C306E6 /* Assets.xcassets */,
 				D718CF1C240EE438007A1833 /* Info.plist */,
 				D718CF19240EE438007A1833 /* LaunchScreen.storyboard */,
 				D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */,
@@ -266,6 +268,7 @@
 		D7F16A12241851C00063877B /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				D736EADE242F9CFE00C306E6 /* AdManager.swift */,
 				D7925EBA2419AC9C00B940CE /* GameCenterFacade.swift */,
 				D7F16A0A2416E4C50063877B /* SpeedManager.swift */,
 				D7F16A0E2417F2B40063877B /* StorageFacade.swift */,
@@ -340,8 +343,8 @@
 				D77B38732429BA6A002B14B7 /* GoogleService-Info.plist in Resources */,
 				D718CF16240EE433007A1833 /* Main.storyboard in Resources */,
 				D718CF0D240EE433007A1833 /* GameScene.sks in Resources */,
+				D736EADD242EB45D00C306E6 /* Assets.xcassets in Resources */,
 				D79DC9B3241AC93200C586C4 /* infect.wav in Resources */,
-				D718CF18240EE438007A1833 /* Assets.xcassets in Resources */,
 				D78A5BCE24198BD200CDA3DA /* NCTTorin-Light.ttf in Resources */,
 				D79DC9B1241ABD0400C586C4 /* gameOver.wav in Resources */,
 				D718CF1B240EE438007A1833 /* LaunchScreen.storyboard in Resources */,
@@ -442,6 +445,7 @@
 				D718CF27240EF730007A1833 /* ContactMask.swift in Sources */,
 				D718CF2B240FF024007A1833 /* EnemyGroup.swift in Sources */,
 				D7F16A0F2417F2B40063877B /* StorageFacade.swift in Sources */,
+				D736EADF242F9CFE00C306E6 /* AdManager.swift in Sources */,
 				D7B80D4F241024330089F65C /* CoinFactory.swift in Sources */,
 				D7B80D4D2410241B0089F65C /* Coin.swift in Sources */,
 				D718CF0B240EE433007A1833 /* AppDelegate.swift in Sources */,
