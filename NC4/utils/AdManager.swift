@@ -9,12 +9,6 @@
 import GoogleMobileAds
 import Firebase
 
-protocol AdPresenter: UIViewController {
-    func onUserDidEarn(reward: GADAdReward)
-    func onRewardedAdDismiss()
-    func onInterAdDismiss()
-}
-
 class AdManager: NSObject {
     
     
@@ -34,6 +28,10 @@ class AdManager: NSObject {
         self.loadReward()
         self.loadInterAd()
     }
+    
+    func canDisplayRewarded() -> Bool { self.rewardAd.isReady }
+    func canDisplayInter() -> Bool { self.interAd.isReady }
+    
     
 }
 
@@ -63,7 +61,7 @@ extension AdManager: GADRewardedAdDelegate {
         newAd.load(GADRequest()) { (error) in
             if let error = error {
                 print("Vixi, deu ruim! Sem ad :(", error)
-                if self.rewardAd == nil {
+                if !self.rewardAd.isReady {
                     self.loadReward()
                 }
                 return

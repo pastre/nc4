@@ -20,26 +20,10 @@ protocol GameOverDataSource {
 }
 
 class GameOverViewController: UIViewController, AdPresenter {
-    // MARK: - AdPresenter
-    func onUserDidEarn(reward: GADAdReward) {
-        self.completedReward = true
-    }
-    
-    func onRewardedAdDismiss() {
-        
-        guard self.completedReward else { return }
-        self.dismiss(animated: false, completion: nil)
-        self.dataSource?.onRevive()
-    }
-    
-    func onInterAdDismiss() {
-        self.onAdInterCompleted()
-    }
+
 
     var completedReward: Bool! = false
     var canAdRevive: Bool!
-    
-    
     
     var dataSource: GameOverDataSource?
     
@@ -54,33 +38,48 @@ class GameOverViewController: UIViewController, AdPresenter {
     @IBOutlet weak var headsLabel: UILabel!
     @IBOutlet weak var devLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        self.setupGestures()
-        self.setupRoundedViews()
         // Do any additional setup after loading the view.
     }
-    
+    var shouldConfiguredOptions = true
     override func viewWillAppear(_ animated: Bool) {
+        
+        
         guard let src = self.dataSource else { return }
+        
+        if !self.canReallyAdRevive() {
+            self.hideReviveWithAds()
+        }
         
         self.scoreLabel.text = String(src.getScore())
         self.headsLabel.text = String(src.getHeadCount())
+        
+        self.setupGestures()
+        self.setupRoundedViews()
     }
     
-    
-    
+    func hideReviveWithAds() {
+        let overlay = UIView(frame: self.viewAdView.frame)
+        
+        overlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
+        self.viewAdView.addSubview(overlay)
+    }
     
     func setupGestures() {
-        let buyTap = UITapGestureRecognizer(target: self, action: #selector(self.onBuy))
+        
+        let buyTap = UITapGestureRecognizer(target: self, action: #selector(self.onBuy(_:)))
         let adTap = UITapGestureRecognizer(target: self, action: #selector(self.onViewAd))
         
-        self.buyLifesView.addGestureRecognizer(buyTap)
-        self.viewAdView.addGestureRecognizer(adTap)
         
+        
+       
+        self.viewAdView.addGestureRecognizer(adTap)
+        self.buyLifesView.addGestureRecognizer(buyTap)
         self.nextButton.addTarget(self, action: #selector(self.onNext), for: .touchDown)
     }
     
@@ -104,6 +103,24 @@ class GameOverViewController: UIViewController, AdPresenter {
         view.layer.cornerRadius = radius
         view.clipsToBounds = true
         
+        view.layoutIfNeeded()
+        
+    }
+    
+    // MARK: - AdPresenter
+    func onUserDidEarn(reward: GADAdReward) {
+        self.completedReward = true
+    }
+    
+    func onRewardedAdDismiss() {
+        
+        guard self.completedReward else { return }
+        self.dismiss(animated: false, completion: nil)
+        self.dataSource?.onRevive()
+    }
+    
+    func onInterAdDismiss() {
+        self.onAdInterCompleted()
     }
     
     // MARK: - Ad methods
@@ -128,6 +145,7 @@ class GameOverViewController: UIViewController, AdPresenter {
         
     }
     
+    //MARK: - Utils
     
     func animateDevText() {
         
@@ -137,8 +155,14 @@ class GameOverViewController: UIViewController, AdPresenter {
         }, completion: nil)
     }
     
+    func canReallyAdRevive() -> Bool {
+        self.canAdRevive && AdManager.instance.canDisplayRewarded()
+    }
     // MARK: - Callbacks
     
+    @IBAction func onBuy(_ sender: Any) {
+        self._onBuy()
+    }
     @objc func onViewAd() {
         Analytics.logEvent("gameOverReviveAd", parameters: nil)
         guard self.canAdRevive else {
@@ -149,10 +173,10 @@ class GameOverViewController: UIViewController, AdPresenter {
         self.presentRewardedAd()
     }
     
-    @objc func onBuy() {
+    @objc func _onBuy() {
         Analytics.logEvent("gameOverBuyLifes", parameters: nil)
         
-        self.devLabel.text = ""
+        self.devLabel.text = "Under development! Coming soon..."
         self.animateDevText()
     }
     

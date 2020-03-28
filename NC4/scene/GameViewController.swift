@@ -146,6 +146,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     func onGameStart() {
         
         self.configureGameRunning()
+        
+        self.scene.player.lifes = -1
     }
     
     
