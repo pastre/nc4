@@ -29,7 +29,7 @@ class StorageFacade {
         case vibrationEnabled
         case disclaimer
         case adsEnabled
-        
+        case revives
     }
     
     func getHighScore() -> Int {
@@ -71,8 +71,20 @@ class StorageFacade {
     func setAds(enabled: Bool) {
         UserDefaults.standard.set(enabled, forKey: StorageKeys.adsEnabled.rawValue)
     }
-    
     func canShowAds() -> Bool {
         UserDefaults.standard.bool(forKey: StorageKeys.adsEnabled.rawValue)
     }
+    
+    
+    func setReviveCount(to newValue: Int) {
+        UserDefaults.standard.set(newValue, forKey: StorageKeys.revives.rawValue)
+    }
+    
+    func getReviveCount() -> Int { UserDefaults.standard.integer(forKey: StorageKeys.revives.rawValue) }
+    
+    func addRevives(_ amount: Int) {
+        let newAmount = self.getReviveCount() + amount
+        self.setReviveCount(to: newAmount)
+    }
+    
 }
