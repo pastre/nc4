@@ -66,7 +66,8 @@ class StoreManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObs
     }
     
     private func onLifeBought() {
-        print("Comprou um pacote de vida!")
+        StorageFacade.instance.addRevives(5)
+        NotificationCenter.default.post(name: kON_ADS_REMOVED, object: nil)
     }
     
     private func onAdsBought() {

@@ -24,7 +24,7 @@ class GameOverViewController: UIViewController, AdPresenter {
 
     var completedReward: Bool! = false
     var canAdRevive: Bool!
-    
+    var reviveCount: Int!
     var dataSource: GameOverDataSource?
     
     @IBOutlet weak var headsView: UIView!
@@ -42,12 +42,12 @@ class GameOverViewController: UIViewController, AdPresenter {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(self.onUserDidBuyLifes), name: kON_PLAYER_BOUGHT_LIFES, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("Will appear")
+        print("Will appear", self.dataSource)
+        self.reviveCount = StorageFacade.instance.getReviveCount()
         
         guard let src = self.dataSource else { return }
         
@@ -60,6 +60,7 @@ class GameOverViewController: UIViewController, AdPresenter {
         
         self.setupGestures()
         self.setupRoundedViews()
+        
     }
     
     func hideReviveWithAds() {
@@ -114,6 +115,12 @@ class GameOverViewController: UIViewController, AdPresenter {
         
     }
     
+    func revivePlayer() {
+        
+        self.dismiss(animated: false, completion: nil)
+        self.dataSource?.onRevive()
+    }
+    
     // MARK: - AdPresenter
     func onUserDidEarn(reward: GADAdReward) {
         self.completedReward = true
@@ -122,8 +129,7 @@ class GameOverViewController: UIViewController, AdPresenter {
     func onRewardedAdDismiss() {
         
         guard self.completedReward else { return }
-        self.dismiss(animated: false, completion: nil)
-        self.dataSource?.onRevive()
+        self.revivePlayer()
     }
     
     func onInterAdDismiss() {
@@ -185,15 +191,24 @@ class GameOverViewController: UIViewController, AdPresenter {
     
     @objc func onBuy() {
         Analytics.logEvent("gameOverBuyLifes", parameters: nil)
-        
-        self.devLabel.text = "Under development! Coming soon..."
-        self.animateDevText()
+    
+        if reviveCount == 0 {
+            StoreManager.instance.buy(product: .lifePack)
+        } else {
+            StorageFacade.instance.onReviveUsed()
+            self.revivePlayer()
+        }
     }
     
     @objc func onNext() {
         if !self.presentInterAd() {
             self.onAdInterCompleted()
         }
+    }
+    
+    @objc func onUserDidBuyLifes() {
+        StorageFacade.instance.onReviveUsed()
+        self.revivePlayer()
     }
     
     

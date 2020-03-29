@@ -456,6 +456,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
             dest.dataSource = self
             dest.canAdRevive = !self.hasRevived
             print("aaa")
+            
+            print("dest.dataSource", dest.dataSource)
         }
     }
 }

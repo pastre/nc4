@@ -86,5 +86,10 @@ class StorageFacade {
         let newAmount = self.getReviveCount() + amount
         self.setReviveCount(to: newAmount)
     }
+    func onReviveUsed() {
+        
+        let newAmount = self.getReviveCount() - 1
+        self.setReviveCount(to: newAmount)
+    }
     
 }

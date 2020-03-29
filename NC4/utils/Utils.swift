@@ -9,6 +9,7 @@
 import SpriteKit
 
 public let kON_ADS_REMOVED = Notification.Name("onAdsRemoved")
+public let kON_PLAYER_BOUGHT_LIFES = Notification.Name("onAdsRemoved")
 
 extension CGPoint {
     static func -(_ p1: CGPoint, _ p2: CGPoint) -> CGPoint {
