@@ -55,15 +55,20 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     
     func configureBanner() {
         
+        self.bannerView.isAutoloadEnabled = false
+        
         guard StorageFacade.instance.canShowAds() else {
-            self.bannerView.removeFromSuperview()
+            self.bannerView.isHidden = true
+            self.bannerView.isAutoloadEnabled = false
+            self.bannerView.adUnitID = ""
+            
             return
         }
         
         self.bannerView.adUnitID = "ca-app-pub-6710438178084678/6470677762"
 //
         #if DEBUG
-         self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         #endif
         
         self.bannerView.rootViewController = self
@@ -73,6 +78,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     // MARK: -  UIViewController methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.onUserRemovedAds), name: kON_ADS_REMOVED, object: nil)
 
         self.scoreLabel.isHidden = true
         
@@ -438,6 +444,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         GameCenterFacade.instance.loadFromGamecenter()
     }
     
+    @objc func onUserRemovedAds() {
+        self.configureBanner()
+    }
     
     // MARK: - Navigation
     

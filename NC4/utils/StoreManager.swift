@@ -71,6 +71,7 @@ class StoreManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObs
     
     private func onAdsBought() {
         StorageFacade.instance.setAds(enabled: false)
+        NotificationCenter.default.post(name: kON_ADS_REMOVED, object: nil)
     }
     
     override private init() {

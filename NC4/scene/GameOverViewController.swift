@@ -142,7 +142,7 @@ class GameOverViewController: UIViewController, AdPresenter {
     func presentInterAd() -> Bool {
         
         AdManager.instance.presentInterAd(on: self)
-        return AdManager.instance.interAd.isReady
+        return AdManager.instance.interAd.isReady && StorageFacade.instance.canShowAds()
     }
     
     func onAdInterCompleted() {
