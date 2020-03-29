@@ -24,7 +24,17 @@ class GameOverViewController: UIViewController, AdPresenter {
 
     var completedReward: Bool! = false
     var canAdRevive: Bool!
-    var reviveCount: Int!
+    var reviveCount: Int! {
+        didSet {
+            self.lifeCountLabel.text = String(reviveCount)
+            
+            if reviveCount == 0 {
+                self.lifeIndicatorLabel.text = "Buy"
+            } else {
+                self.lifeIndicatorLabel.text = "Use"
+            }
+        }
+    }
     var dataSource: GameOverDataSource?
     
     @IBOutlet weak var headsView: UIView!
@@ -39,6 +49,8 @@ class GameOverViewController: UIViewController, AdPresenter {
     @IBOutlet weak var devLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
         
+    @IBOutlet weak var lifeIndicatorLabel: UILabel!
+    @IBOutlet weak var lifeCountLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,9 +94,6 @@ class GameOverViewController: UIViewController, AdPresenter {
         
         let buyTap = UITapGestureRecognizer(target: self, action: #selector(self.onBuy))
         let adTap = UITapGestureRecognizer(target: self, action: #selector(self.onViewAd))
-        
-        
-        
        
         self.viewAdView.addGestureRecognizer(adTap)
         self.buyLifesView.addGestureRecognizer(buyTap)

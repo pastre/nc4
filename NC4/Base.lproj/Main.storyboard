@@ -246,6 +246,12 @@
                                             <constraint firstAttribute="width" secondItem="Ydr-3I-RTg" secondAttribute="height" multiplier="76:69" id="572-jF-aQU"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYw-Sx-zUw">
+                                        <rect key="frame" x="60" y="34.5" width="11" height="20"/>
+                                        <fontDescription key="fontDescription" name="LucidaGrande-Bold" family="Lucida Grande" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.4431372549" green="0.55294117649999996" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -253,10 +259,12 @@
                                     <constraint firstAttribute="bottom" secondItem="jnO-f1-Ir8" secondAttribute="bottom" constant="10" id="M3K-OL-hX4"/>
                                     <constraint firstAttribute="trailing" secondItem="jnO-f1-Ir8" secondAttribute="trailing" constant="28" id="V3f-nb-UW2"/>
                                     <constraint firstItem="jnO-f1-Ir8" firstAttribute="leading" secondItem="PqB-3h-Uor" secondAttribute="leading" constant="28" id="VsZ-lo-8Wm"/>
+                                    <constraint firstItem="JYw-Sx-zUw" firstAttribute="centerX" secondItem="Ydr-3I-RTg" secondAttribute="centerX" id="Yi1-Wn-M6y"/>
                                     <constraint firstItem="jnO-f1-Ir8" firstAttribute="top" secondItem="Ydr-3I-RTg" secondAttribute="bottom" id="f0e-40-x7u"/>
                                     <constraint firstItem="jnO-f1-Ir8" firstAttribute="centerX" secondItem="PqB-3h-Uor" secondAttribute="centerX" id="fJ6-Aa-uyC"/>
                                     <constraint firstItem="Ydr-3I-RTg" firstAttribute="centerX" secondItem="PqB-3h-Uor" secondAttribute="centerX" id="jTm-1Y-wQ2"/>
                                     <constraint firstItem="Ydr-3I-RTg" firstAttribute="width" secondItem="jnO-f1-Ir8" secondAttribute="width" multiplier="1.01333" id="laE-t2-oGr"/>
+                                    <constraint firstItem="JYw-Sx-zUw" firstAttribute="centerY" secondItem="Ydr-3I-RTg" secondAttribute="centerY" id="usL-Do-ZFp"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNE-63-ECc" userLabel="viewAd">
@@ -343,6 +351,8 @@
                         <outlet property="devLabel" destination="RGQ-tZ-PIO" id="Svn-5i-To7"/>
                         <outlet property="headsLabel" destination="Zy9-zT-8hv" id="ETE-WV-bvV"/>
                         <outlet property="headsView" destination="m6F-AI-Q2T" id="V1A-Yt-9ht"/>
+                        <outlet property="lifeCountLabel" destination="JYw-Sx-zUw" id="bLW-oT-0qb"/>
+                        <outlet property="lifeIndicatorLabel" destination="jnO-f1-Ir8" id="XXz-B1-GV8"/>
                         <outlet property="nextButton" destination="BVx-uJ-gfY" id="nuv-Sn-Byk"/>
                         <outlet property="scoreLabel" destination="5EJ-O4-0Nv" id="Jkd-Sb-8E4"/>
                         <outlet property="scoreView" destination="BM0-2O-fOe" id="0G2-Hx-9se"/>
