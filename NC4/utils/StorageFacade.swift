@@ -20,6 +20,7 @@ class StorageFacade {
         case audioEnabled
         case vibrationEnabled
         case disclaimer
+        case adsEnabled
     }
     
     func getHighScore() -> Int {
@@ -48,6 +49,7 @@ class StorageFacade {
         return newVal > self.getHighScore()
     }
     
+    
     func isAudioDisabled() -> Bool { UserDefaults.standard.bool(forKey: StorageKeys.audioEnabled.rawValue) }
     func setAudioDisabled(to newValue: Bool) { UserDefaults.standard.set(newValue, forKey: StorageKeys.audioEnabled.rawValue) }
     
@@ -56,4 +58,12 @@ class StorageFacade {
     
     func setVibrationDisabled(to newValue: Bool) { UserDefaults.standard.set(newValue, forKey: StorageKeys.vibrationEnabled.rawValue) }
     
+    
+    func setAds(enabled: Bool) {
+        UserDefaults.standard.set(enabled, forKey: StorageKeys.adsEnabled.rawValue)
+    }
+    
+    func canShowAds() -> Bool {
+        UserDefaults.standard.bool(forKey: StorageKeys.adsEnabled.rawValue)
+    }
 }

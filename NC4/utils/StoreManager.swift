@@ -70,7 +70,7 @@ class StoreManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObs
     }
     
     private func onAdsBought() {
-        print("Tirou os ads")
+        StorageFacade.instance.setAds(enabled: false)
     }
     
     override private init() {
@@ -93,5 +93,6 @@ class StoreManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObs
     func fire() {
         
         self.request.start()
+        print("[IAP] fired!")
     }
-}
+ }

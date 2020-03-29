@@ -401,7 +401,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     
     @IBAction func onRemoveAds(_ sender: Any) {
         // TODO
-        self.showComingSoonLabel()
+//        self.showComingSoonLabel()
+        StoreManager.instance.buy(product: .removeAds)
         Analytics.logEvent("removeAdsClicked", parameters: nil)
     }
     
