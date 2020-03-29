@@ -13,7 +13,15 @@ import Foundation
 class StorageFacade {
     
     static let instance = StorageFacade()
-    private init() {}
+    
+    private init() {
+        
+        // Fixes ads being initialized with false
+        if !UserDefaults.standard.bool(forKey: "hasFlipped") {
+            self.setAds(enabled: true)
+            UserDefaults.standard.set(true, forKey: "hasFlipped")
+        }
+    }
     
     enum StorageKeys: String {
         case highScore
@@ -21,6 +29,7 @@ class StorageFacade {
         case vibrationEnabled
         case disclaimer
         case adsEnabled
+        
     }
     
     func getHighScore() -> Int {

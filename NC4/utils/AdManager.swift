@@ -109,7 +109,7 @@ extension AdManager: GADInterstitialDelegate {
     }
     
     func presentInterAd(on rootViewController: AdPresenter) {
-        guard self.interAd.isReady else { return }
+        guard self.interAd.isReady, StorageFacade.instance.canShowAds() else { return }
         
         self.currentPresenter = rootViewController
         self.interAd.present(fromRootViewController: rootViewController)

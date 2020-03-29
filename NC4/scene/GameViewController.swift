@@ -46,7 +46,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     var shouldDisplayGameCenter: Bool = false
     var shouldDisplayWarning: Bool = true
     var isConfigOpened = false
-    
     var isPlaying: Bool {
         self.startGamePanGesture == nil
     }
@@ -54,11 +53,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     var gameStartedTimestamp: TimeInterval?
     var startGamePanGesture: UIPanGestureRecognizer?
     
-    // MARK: -  UIViewController methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.scoreLabel.isHidden = true
+    func configureBanner() {
+        
+        guard StorageFacade.instance.canShowAds() else {
+            self.bannerView.removeFromSuperview()
+            return
+        }
         
         self.bannerView.adUnitID = "ca-app-pub-6710438178084678/6470677762"
 //
@@ -68,7 +68,16 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         
         self.bannerView.rootViewController = self
         self.bannerView.load(GADRequest())
+    }
+    
+    // MARK: -  UIViewController methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.scoreLabel.isHidden = true
         
+        
+        self.configureBanner()
         self.loadScene()
         self.scene?.realPaused = true
         
