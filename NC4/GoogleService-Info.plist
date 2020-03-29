@@ -19,20 +19,20 @@
 	<key>STORAGE_BUCKET</key>
 	<string>nano-challenge-4.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:600575057960:ios:ccee5a1bcef17dfcb0d51d</string>
 	<key>DATABASE_URL</key>
 	<string>https://nano-challenge-4.firebaseio.com</string>
 	<key>ADMOB_APP_ID</key>
-	<string>ca-app-pub-3760704996981292~8588746666</string>
+	<string>ca-app-pub-6710438178084678~2694798879</string>
 </dict>
 </plist>

@@ -48,6 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = vc
         
+        // Loads IAP
+        StoreManager.instance.fire()
         
         // Loads gamecenter
         GameCenterFacade.instance.auth()

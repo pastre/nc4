@@ -46,6 +46,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     var shouldDisplayGameCenter: Bool = false
     var shouldDisplayWarning: Bool = true
     var isConfigOpened = false
+    
     var isPlaying: Bool {
         self.startGamePanGesture == nil
     }
@@ -59,8 +60,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
 
         self.scoreLabel.isHidden = true
         
-        self.bannerView.adUnitID = "ca-app-pub-3760704996981292/9199739307"
-        
+        self.bannerView.adUnitID = "ca-app-pub-6710438178084678/6470677762"
+//
         #if DEBUG
          self.bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         #endif
@@ -205,6 +206,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
         print("Failed to load banner!", error)
+        
+        self.bannerView.load(GADRequest())
     }
 
     //MARK: - View methods

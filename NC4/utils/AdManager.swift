@@ -53,7 +53,7 @@ extension AdManager: GADRewardedAdDelegate {
     }
     
     func loadReward() {
-        let id = "ca-app-pub-3760704996981292/5214330633"
+        let id = "ca-app-pub-6710438178084678/7971655212"
         
         let testId = "ca-app-pub-3940256099942544/1712485313"
         let newAd = GADRewardedAd(adUnitID: id)
@@ -94,7 +94,7 @@ extension AdManager: GADInterstitialDelegate {
     }
     
     func loadInterAd() {
-        var id = "ca-app-pub-3760704996981292/8000561485"
+        var id = "ca-app-pub-6710438178084678/6850145230"
         
         #if DEBUG
            id = "ca-app-pub-3940256099942544/4411468910"

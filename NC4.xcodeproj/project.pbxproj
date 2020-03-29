@@ -25,6 +25,7 @@
 		D736EADD242EB45D00C306E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D736EADC242EB45B00C306E6 /* Assets.xcassets */; };
 		D736EADF242F9CFE00C306E6 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EADE242F9CFE00C306E6 /* AdManager.swift */; };
 		D736EAE1242FAF0E00C306E6 /* AdPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EAE0242FAF0E00C306E6 /* AdPresenter.swift */; };
+		D736EAE324304F7300C306E6 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EAE224304F7200C306E6 /* StoreManager.swift */; };
 		D75E60722411335C000A320D /* GameEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E60712411335C000A320D /* GameEventListener.swift */; };
 		D77A612524217F0F00DD69C0 /* EnemyHitParticleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */; };
 		D77B38732429BA6A002B14B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */; };
@@ -74,6 +75,7 @@
 		D736EADC242EB45B00C306E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D736EADE242F9CFE00C306E6 /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		D736EAE0242FAF0E00C306E6 /* AdPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdPresenter.swift; sourceTree = "<group>"; };
+		D736EAE224304F7200C306E6 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		D75E60712411335C000A320D /* GameEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventListener.swift; sourceTree = "<group>"; };
 		D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyHitParticleLoader.swift; sourceTree = "<group>"; };
 		D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				D736EAE0242FAF0E00C306E6 /* AdPresenter.swift */,
 				D7925EBA2419AC9C00B940CE /* GameCenterFacade.swift */,
 				D7F16A0A2416E4C50063877B /* SpeedManager.swift */,
+				D736EAE224304F7200C306E6 /* StoreManager.swift */,
 				D7F16A0E2417F2B40063877B /* StorageFacade.swift */,
 				D7B80D54241066260089F65C /* Utils.swift */,
 				D7F16A13241851DB0063877B /* ZPositoinManager.swift */,
@@ -424,6 +427,7 @@
 				D79DC9A8241ABC7B00C586C4 /* IntroWithLoop.swift in Sources */,
 				D718CF23240EE48E007A1833 /* GameObject.swift in Sources */,
 				D718CF11240EE433007A1833 /* GameScene.swift in Sources */,
+				D736EAE324304F7300C306E6 /* StoreManager.swift in Sources */,
 				D718CF13240EE433007A1833 /* GameViewController.swift in Sources */,
 				D718CF2F240FF05D007A1833 /* Lifeable.swift in Sources */,
 				D7F16A14241851DB0063877B /* ZPositoinManager.swift in Sources */,
