@@ -69,7 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
         playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
         playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
-        playerNode.scale(to: .init(width: 40, height: 50))
+
         self.player = Player(playerNode, self)
         
         self.configureBg()
@@ -85,6 +85,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bgNode.zPosition = -100
         
         self.addChild(bgNode)
+    }
+    
+    func setSkin(to image: UIImage) {
+        
+        let texture = SKTexture(image: image)
+        let ratio = image.size.height / image.size.width
+        
+        self.playerNode.texture = texture
+        playerNode.scale(to: .init(width: 40, height: 3 * ratio))
     }
     
     // MARK: - Scene overrides

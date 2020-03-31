@@ -102,6 +102,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         self.configureLeaderboardsButton()
         self.configureGameIdle()
         
+        self.updatePlayerSkin()
         self.updateHighscoreLabel()
         self.updateSoundIcon()
         self.updateVibrationIcon()
@@ -354,6 +355,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
 
         self.soundButton.setImage(newIcon, for: .normal)
 
+    }
+    
+    func updatePlayerSkin() {
+        let currentSkin = ShopItemManager.instance.equippedItem.getSkin()
+        self.scene.setSkin(to: currentSkin)
     }
     
     func updateVibrationIcon() {

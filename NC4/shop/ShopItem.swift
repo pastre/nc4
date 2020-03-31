@@ -26,9 +26,9 @@ class ShopItem: Codable, Equatable {
     var price: Int
     
     
-    func getBaseImage() -> UIImage { UIImage(named: self.imageName)! }
+    func getBaseImage() -> UIImage { UIImage(named: self.imageName)!.rotate(radians: .pi)! }
     
-    func getBaseDisplayImage() -> UIImage  { self.getBaseImage().rotate(radians: -(.pi + .pi/4))! }
+    func getBaseDisplayImage() -> UIImage  { self.getBaseImage().rotate(radians: -.pi/4)! }
     
     func getDisplayImage() -> UIImage {
         let base = self.getBaseDisplayImage()
@@ -39,6 +39,10 @@ class ShopItem: Codable, Equatable {
         
         return base.tinted(with: .gray)!
         
+    }
+    
+    func getSkin() -> UIImage {
+        return self.getBaseImage()
     }
 }
 

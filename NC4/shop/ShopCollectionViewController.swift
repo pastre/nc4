@@ -36,6 +36,9 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         self.updateSpotlightItem()
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.onTap))
+
+        self.view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,6 +128,10 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
         } else {
             self.buyAndEquipItem()
         }
+    }
+    
+    @objc func onTap() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func buyAndEquipItem() {
