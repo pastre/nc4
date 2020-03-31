@@ -22,9 +22,12 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var currentItemImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var backLabel: UILabel!
+    
     var currentSelectedItem: ShopItem!
     
     var playerHeadCount: Int!
+    var delegate: GameViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +41,8 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.onTap))
 
-        self.view.addGestureRecognizer(tap)
+        self.backLabel.addGestureRecognizer(tap)
+        self.backLabel.isUserInteractionEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,6 +135,7 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @objc func onTap() {
+        self.delegate?.updatePlayerSkin()
         self.dismiss(animated: true, completion: nil)
     }
     

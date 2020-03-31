@@ -14,7 +14,7 @@ class EnemySpawner: Updateable, SceneSupplicant {
     var enemyFactory: EnemyGroupFactory<EnemyGroup>!
     
     var currentEnemyGroup: EnemyGroup?
-    
+    var hasSpawned: Bool = false
     
     internal init(scene: GameScene?) {
         self.scene = scene
@@ -44,6 +44,11 @@ class EnemySpawner: Updateable, SceneSupplicant {
     
     func spawnEnemyGroup() {
         let newEnemyGroup = self.enemyFactory.getGameObject()
+        
+        if !self.hasSpawned {
+            newEnemyGroup.onFirstSpawn()
+            self.hasSpawned = true
+        }
         
         self.scene.addChild(newEnemyGroup.node)
         

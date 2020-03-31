@@ -329,6 +329,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="yMG-1r-L6P"/>
                     <connections>
+                        <outlet property="backLabel" destination="b6K-cE-4kB" id="8qE-11-W1G"/>
                         <outlet property="buyButton" destination="jAS-XI-36k" id="bAQ-tN-aJn"/>
                         <outlet property="collectionView" destination="qQ4-nF-MFH" id="phs-lh-XIi"/>
                         <outlet property="currentItemImage" destination="m25-gE-1U6" id="Yi7-li-Aao"/>

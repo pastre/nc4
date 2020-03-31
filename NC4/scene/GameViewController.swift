@@ -109,6 +109,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.updatePlayerSkin()
         guard self.shouldDisplayWarning else { return }
         if !StorageFacade.instance.hasDisplayedDisclaimer() {
             
@@ -163,7 +164,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     func onGameStart() {
         
         self.configureGameRunning()
-        
 //        self.scene.player.lifes = -1
     }
     
@@ -179,6 +179,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
             
             Analytics.logEvent(AnalyticsEventLevelEnd, parameters: ["duration" : duration])
         }
+        
+        StorageFacade.instance.addHead(amount: gameHeads)
         
         StorageFacade.instance.updateScoreIfNeeded(to: gameScore)
         GameCenterFacade.instance.onScore(gameScore)
@@ -360,6 +362,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     func updatePlayerSkin() {
         let currentSkin = ShopItemManager.instance.equippedItem.getSkin()
         self.scene.setSkin(to: currentSkin)
+        self.loadScene()
+        self.scene?.realPaused = true
     }
     
     func updateVibrationIcon() {
@@ -459,13 +463,13 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("SEGUEEE")
+        
         if let dest = segue.destination as? GameOverViewController {
             dest.dataSource = self
             dest.canAdRevive = !self.hasRevived
-            print("aaa")
             
-            print("dest.dataSource", dest.dataSource)
+        } else if let dest = segue.destination as? ShopViewController {
+            dest.delegate = self
         }
     }
 }

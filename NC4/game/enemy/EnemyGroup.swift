@@ -148,6 +148,12 @@ class EnemyGroup: AbstractGameObject {
         self.collidingEnemies.removeAll { $0.node == node }
     }
     
+    func onFirstSpawn() {
+        self.enemies.forEach {
+            $0.lifes = .random(in: 1...3)
+        }
+    }
+    
     func isInContact() -> Bool {
         return self.collidingEnemies.count > 0
     }

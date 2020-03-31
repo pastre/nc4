@@ -15,6 +15,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerNode: SKSpriteNode!
     var scoreNode: SKLabelNode!
     var zombieHeadIcon: SKSpriteNode!
+    var tailNode: SKSpriteNode!
 
     var vc: GameViewController?
     
@@ -56,12 +57,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.score = 0
         self.physicsWorld.contactDelegate = self
         
-        self.sickPeopleManager = SickPeopleManager(scene: self)
-        self.coinSpawner = CoinSpawner(scene: self)
-        self.themeManager = ThemeManager(self)
-        self.enemySpawner = EnemySpawner(scene: self)
         
         self.playerNode = (self.childNode(withName: "player") as! SKSpriteNode)
+        self.tailNode = (self.childNode(withName: "tail") as! SKSpriteNode)
         self.scoreNode = (self.childNode(withName: "score") as! SKLabelNode)
         self.zombieHeadIcon = self.childNode(withName: "zombieHeadIcon") as! SKSpriteNode
               
@@ -70,12 +68,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
         playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
 
+        self.setSkin(to: ShopItemManager.instance.equippedItem.getSkin())
+        
+        
         self.player = Player(playerNode, self)
+        self.sickPeopleManager = SickPeopleManager(scene: self)
+        self.coinSpawner = CoinSpawner(scene: self)
+        self.themeManager = ThemeManager(self)
+        self.enemySpawner = EnemySpawner(scene: self)
         
         self.configureBg()
         
         self.themeManager.configureStartTheme()
         AudioManager.shared.update()
+        
+        
     }
     
     func configureBg() {
@@ -89,11 +96,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func setSkin(to image: UIImage) {
         
+        print("Setting skin " )
         let texture = SKTexture(image: image)
         let ratio = image.size.height / image.size.width
         
+        texture.usesMipmaps = true
+        
         self.playerNode.texture = texture
-        playerNode.scale(to: .init(width: 40, height: 3 * ratio))
+        playerNode.scale(to: .init(width: 40, height: min(40 * ratio, 80)))
+        
+        self.tailNode.texture = texture
+        
     }
     
     // MARK: - Scene overrides
