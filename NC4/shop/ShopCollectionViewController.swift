@@ -26,13 +26,27 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("a")
+        
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        print("a")
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.updateBuyButton()
+    }
+    
+    // UI Methods
+    
+    func updateBuyButton() {
+        self.buyButton.layer.cornerRadius = self.buyButton.frame.height / 2
+        
+        self.buyButton.addTarget(self, action: #selector(self.onBuy), for: .touchDown)
     }
 
-    // MARK: UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource & Delegate
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
@@ -58,6 +72,12 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: collectionView.frame.size.width * 0.25, height: collectionView.frame.size.width * 0.25)
+    }
+    
+    // MARK: - Callbacks
+    
+    @objc func onBuy() {
+        
     }
     
     // MARK: UICollectionViewDelegate
