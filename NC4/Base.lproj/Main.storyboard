@@ -154,7 +154,7 @@
                         <outlet property="topScoreLabel" destination="IqI-zn-thj" id="M5F-5N-rAW"/>
                         <outlet property="vibrationButton" destination="aYG-oo-qVW" id="G1h-pE-E0N"/>
                         <segue destination="qzd-3v-UI9" kind="show" identifier="gameOver" id="6Ik-ku-7Yw"/>
-                        <segue destination="LqS-cG-W4q" kind="show" identifier="shop" id="kgb-10-uZU"/>
+                        <segue destination="LqS-cG-W4q" kind="show" identifier="shop" id="wRg-It-wR8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -165,7 +165,7 @@
         <scene sceneID="TH8-dA-uNb">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xra-yr-3EJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController modalPresentationStyle="overFullScreen" id="LqS-cG-W4q" customClass="ShopViewController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="LqS-cG-W4q" customClass="ShopViewController" customModule="Zombie_Attack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wva-SK-9Kg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -186,19 +186,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:vXc-lj-Ljz:image" translatesAutoresizingMaskIntoConstraints="NO" id="vXc-lj-Ljz">
-                                        <rect key="frame" x="283" y="30" width="41" height="53"/>
+                                        <rect key="frame" x="276" y="25.5" width="48" height="62"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="vXc-lj-Ljz" secondAttribute="height" multiplier="48:62" id="JvX-dJ-B2i"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="342" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdV-sr-mkJ">
-                                        <rect key="frame" x="188" y="30" width="90" height="53"/>
+                                        <rect key="frame" x="181" y="30" width="90" height="53"/>
                                         <fontDescription key="fontDescription" name="LucidaGrande-Bold" family="Lucida Grande" pointSize="45"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAS-XI-36k">
-                                        <rect key="frame" x="188" y="319" width="136" height="48"/>
+                                        <rect key="frame" x="181" y="319" width="143" height="48"/>
                                         <color key="backgroundColor" red="0.1803921568627451" green="0.71372549019607845" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="LucidaGrande-Bold" family="Lucida Grande" pointSize="30"/>
                                         <state key="normal" title="Buy">
@@ -223,7 +223,7 @@
                                         </constraints>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:vXc-lj-Ljz:image" translatesAutoresizingMaskIntoConstraints="NO" id="bDH-wR-KcH">
-                                        <rect key="frame" x="115" y="316.5" width="41" height="53"/>
+                                        <rect key="frame" x="115" y="312" width="48" height="62"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="bDH-wR-KcH" secondAttribute="height" multiplier="48:62" id="nnI-Cl-uae"/>
                                         </constraints>
@@ -236,16 +236,16 @@
                                     <constraint firstItem="aHl-71-nOt" firstAttribute="top" secondItem="b6K-cE-4kB" secondAttribute="bottom" id="5a7-51-ua8"/>
                                     <constraint firstItem="bDH-wR-KcH" firstAttribute="width" secondItem="bDH-wR-KcH" secondAttribute="height" multiplier="48:62" id="6Qq-sz-Sqw"/>
                                     <constraint firstItem="aHl-71-nOt" firstAttribute="leading" secondItem="b6K-cE-4kB" secondAttribute="leading" id="6cC-nx-SJO"/>
+                                    <constraint firstItem="bDH-wR-KcH" firstAttribute="height" secondItem="Vnc-VM-dwa" secondAttribute="height" multiplier="0.0795892" id="EMK-Q6-eD9"/>
                                     <constraint firstItem="UdV-sr-mkJ" firstAttribute="centerY" secondItem="vXc-lj-Ljz" secondAttribute="centerY" id="H2j-iP-eWl"/>
-                                    <constraint firstItem="vXc-lj-Ljz" firstAttribute="height" secondItem="b6K-cE-4kB" secondAttribute="height" id="HBY-9Y-CIa"/>
                                     <constraint firstItem="jAS-XI-36k" firstAttribute="height" secondItem="SCE-U9-Cct" secondAttribute="height" multiplier="0.90566" id="MEg-QG-drj"/>
                                     <constraint firstItem="SCE-U9-Cct" firstAttribute="top" secondItem="aHl-71-nOt" secondAttribute="bottom" id="OS7-oa-j4c"/>
                                     <constraint firstItem="vXc-lj-Ljz" firstAttribute="leading" secondItem="UdV-sr-mkJ" secondAttribute="trailing" constant="5" id="PPV-8A-zJf"/>
                                     <constraint firstItem="vXc-lj-Ljz" firstAttribute="centerY" secondItem="b6K-cE-4kB" secondAttribute="centerY" id="RsH-cL-t6X"/>
-                                    <constraint firstItem="bDH-wR-KcH" firstAttribute="height" secondItem="SCE-U9-Cct" secondAttribute="height" id="SZX-lT-ru7"/>
                                     <constraint firstItem="bDH-wR-KcH" firstAttribute="leading" secondItem="SCE-U9-Cct" secondAttribute="trailing" constant="5" id="UAm-rB-Uj2"/>
                                     <constraint firstItem="jAS-XI-36k" firstAttribute="centerY" secondItem="bDH-wR-KcH" secondAttribute="centerY" id="WVA-Oy-MIB"/>
                                     <constraint firstItem="aHl-71-nOt" firstAttribute="trailing" secondItem="vXc-lj-Ljz" secondAttribute="trailing" id="Xoy-tz-Tye"/>
+                                    <constraint firstItem="vXc-lj-Ljz" firstAttribute="height" secondItem="Vnc-VM-dwa" secondAttribute="height" multiplier="0.0795892" id="aRb-MO-XRf"/>
                                     <constraint firstItem="b6K-cE-4kB" firstAttribute="leading" secondItem="Vnc-VM-dwa" secondAttribute="leading" constant="20" id="bhp-14-3P9"/>
                                     <constraint firstItem="b6K-cE-4kB" firstAttribute="height" secondItem="Vnc-VM-dwa" secondAttribute="height" multiplier="0.0680359" id="jyv-Kd-9Tx"/>
                                     <constraint firstItem="bDH-wR-KcH" firstAttribute="centerY" secondItem="SCE-U9-Cct" secondAttribute="centerY" id="ml7-U8-x8T"/>
@@ -283,6 +283,9 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="145" height="138"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="ogv-sn-Pvp" id="wTQ-Vd-yUc"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -304,11 +307,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="yMG-1r-L6P"/>
                     <connections>
-                        <outlet property="buyButton" destination="jAS-XI-36k" id="pi7-bW-oca"/>
-                        <outlet property="collectionView" destination="qQ4-nF-MFH" id="jPu-Sz-05u"/>
-                        <outlet property="currentItemImageView" destination="m25-gE-1U6" id="x0d-cp-djR"/>
-                        <outlet property="playerCoinCountLabel" destination="UdV-sr-mkJ" id="Aer-2y-6r1"/>
-                        <outlet property="priceLabel" destination="SCE-U9-Cct" id="Rfu-St-0J3"/>
+                        <outlet property="buyButton" destination="jAS-XI-36k" id="bAQ-tN-aJn"/>
+                        <outlet property="collectionView" destination="qQ4-nF-MFH" id="phs-lh-XIi"/>
+                        <outlet property="currentItemImage" destination="m25-gE-1U6" id="Yi7-li-Aao"/>
+                        <outlet property="playerHeadCountLabel" destination="UdV-sr-mkJ" id="iNh-cJ-YYI"/>
+                        <outlet property="priceLabel" destination="SCE-U9-Cct" id="axM-lS-vjH"/>
                     </connections>
                 </viewController>
             </objects>

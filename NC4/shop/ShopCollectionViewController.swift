@@ -10,25 +10,26 @@ import UIKit
 
 private let reuseIdentifier = "shopCell"
 
-class ShopCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var playerCoinCountLabel: UILabel!
+class ShopViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    @IBOutlet weak var buyButton: UIButton!
-    
-    @IBOutlet weak var currentItemImageView: UIImageView!
-    
-    @IBOutlet weak var collectionView: UICollectionView!
     
     let manager = ShopItemManager.instance
     
+    @IBOutlet weak var playerHeadCountLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    
+    
+    @IBOutlet weak var buyButton: UIButton!
+    
+    @IBOutlet weak var currentItemImage: UIImageView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("a")
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        
+        print("a")
     }
 
     // MARK: UICollectionViewDataSource
@@ -50,11 +51,15 @@ class ShopCollectionViewController: UIViewController, UICollectionViewDelegate, 
         let item = self.manager.item(at: indexPath)
         
         cell.imageView.image = item.getDisplayImage()
-        
-        
+    
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: collectionView.frame.size.width * 0.25, height: collectionView.frame.size.width * 0.25)
+    }
+    
     // MARK: UICollectionViewDelegate
 
     /*

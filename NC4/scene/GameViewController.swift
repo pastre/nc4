@@ -410,8 +410,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     
     @IBAction func onSkinShop(_ sender: Any) {
         // TODO
-        self.showComingSoonLabel()
         Analytics.logEvent("skinShopClicked", parameters: nil)
+        self.performSegue(withIdentifier: "shop", sender: nil)
     }
     
     @IBAction func onRemoveAds(_ sender: Any) {
