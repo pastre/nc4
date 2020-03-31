@@ -6,14 +6,19 @@
 //  Copyright © 2020 Bruno Pastre. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class ShopItem: Codable {
     var imageName: String
-    var isUnblocked: Bool
+    var isUnlocked: Bool
     var price: Int
     
-    
+    func getDisplayImage() -> UIImage {
+        if self.isUnlocked {
+            return UIImage(named: self.imageName)!
+        }
+        return UIImage(named: self.imageName + "locked")!
+    }
 }
 
 class ShopItemManager {
