@@ -12,6 +12,6 @@ class ShopCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var border: UIImageView!
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var backView: UIView!
+    
 }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import FirebaseCrashlytics
 
 
 class StorageFacade {
@@ -31,6 +31,7 @@ class StorageFacade {
         case adsEnabled
         case revives
         case shopItems
+        case equipedItem
     }
     
     func getHighScore() -> Int {
@@ -97,7 +98,7 @@ class StorageFacade {
         if let serialized = try? JSONEncoder().encode(newItems) {
             UserDefaults.standard.set(serialized, forKey: StorageKeys.shopItems.rawValue)
         } else {
-            print("Falha ao serializar! PLS REPORTA")
+            Crashlytics.crashlytics().log("Failed to serialize shop items!")
         }
     }
     
@@ -110,4 +111,22 @@ class StorageFacade {
         return nil
     }
     
+    func setEquipedItem(to newItem: ShopItem) {
+        if let serialized = try? JSONEncoder().encode(newItem) {
+            UserDefaults.standard.set(serialized, forKey: StorageKeys.equipedItem.rawValue)
+        } else {
+            
+            Crashlytics.crashlytics().log("Failed to serialize equipped item!")
+        }
+    }
+    
+    func getEquipedItem() -> ShopItem? {
+        
+        if let data = UserDefaults.standard.data(forKey: StorageKeys.equipedItem.rawValue) {
+            
+            return try? JSONDecoder().decode(ShopItem.self, from: data)
+        }
+        
+        return nil
+    }
 }

@@ -12,7 +12,6 @@ private let reuseIdentifier = "shopCell"
 
 class ShopViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    
     let manager = ShopItemManager.instance
     
     @IBOutlet weak var playerHeadCountLabel: UILabel!
@@ -34,6 +33,8 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         self.currentSelectedItem = self.manager.getDefaultItem()
         
+        self.updateSpotlightItem()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,10 +49,12 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.buyButton.layer.cornerRadius = self.buyButton.frame.height / 2
         
         self.buyButton.addTarget(self, action: #selector(self.onBuy), for: .touchDown)
+        
+        if self.currentSelectedItem == 
     }
     
     func updateSpotlightItem() {
-        
+        self.currentItemImage.image = self.currentSelectedItem.getDisplayImage()
     }
 
     // MARK: UICollectionViewDataSource & Delegate
@@ -90,6 +93,7 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.currentSelectedItem = self.manager.item(at: indexPath)
         
         self.updateSpotlightItem()
+        
         self.collectionView.reloadData()
     }
     

@@ -61,6 +61,7 @@ class ShopItemManager {
     static let instance = ShopItemManager()
     
     var items: [ShopItem]!
+    var equipedItem: ShopItem!
     
     private init() {
         if let loaded = StorageFacade.instance.getShopItems() {
@@ -76,7 +77,7 @@ class ShopItemManager {
         self.items = [ShopItem]()
         self.items.append(FirstShopItem())
         for i in 1...22 {
-            let newItem = ShopItem(imageName: "weapon\(i)", isUnlocked: false, price: 100)
+            let newItem = ShopItem(imageName: "weapon\(i)", isUnlocked: false, price: 1000)
             self.items.append(newItem)
         }
         
