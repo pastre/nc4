@@ -30,6 +30,7 @@ class StorageFacade {
         case disclaimer
         case adsEnabled
         case revives
+        case shopItems
     }
     
     func getHighScore() -> Int {
@@ -87,9 +88,26 @@ class StorageFacade {
         self.setReviveCount(to: newAmount)
     }
     func onReviveUsed() {
-        
         let newAmount = self.getReviveCount() - 1
         self.setReviveCount(to: newAmount)
+    }
+    
+    
+    func setShopItems(to newItems: [ShopItem]) {
+        if let serialized = try? JSONEncoder().encode(newItems) {
+            UserDefaults.standard.set(serialized, forKey: StorageKeys.shopItems.rawValue)
+        } else {
+            print("Falha ao serializar! PLS REPORTA")
+        }
+    }
+    
+    func getShopItems() -> [ShopItem]? {
+        if let data = UserDefaults.standard.data(forKey: StorageKeys.shopItems.rawValue) {
+            
+            return try? JSONDecoder().decode([ShopItem].self, from: data)
+        }
+        
+        return nil
     }
     
 }

@@ -68,6 +68,10 @@ class ShopItemManager {
         }
     }
     
+    private func createBlankShop() {
+        
+    }
+    
     func item(at indexPath: IndexPath)  -> ShopItem {
         return self.items[indexPath.item]
     }
