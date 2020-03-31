@@ -86,6 +86,13 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return CGSize(width: collectionView.frame.size.width * mult, height: collectionView.frame.size.width * mult)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.currentSelectedItem = self.manager.item(at: indexPath)
+        
+        self.updateSpotlightItem()
+        self.collectionView.reloadData()
+    }
+    
     // MARK: - Callbacks
     
     @objc func onBuy() {
