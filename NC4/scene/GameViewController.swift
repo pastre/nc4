@@ -169,9 +169,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     
     func updateGameStats() {
         
-        guard let gameScore = self.scene?.score else { return }
-        
+        let gameScore = self.scene!.score!
+        let gameHeads = self.scene!.headCount
         let timestamp = Date().timeIntervalSince1970
+        
         if let startTs = self.gameStartedTimestamp {
             let duration = timestamp - startTs
             
@@ -203,6 +204,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         DispatchQueue.global().async {
             AudioManager.shared.play(soundEffect: .gameOver)
         }
+        
         self.scene?.realPaused = true
         self.updateGameStats()
         self.performSegue(withIdentifier: "gameOver", sender: nil)

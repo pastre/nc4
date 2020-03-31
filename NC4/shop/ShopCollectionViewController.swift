@@ -17,13 +17,14 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var playerHeadCountLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
-    
     @IBOutlet weak var buyButton: UIButton!
     
     @IBOutlet weak var currentItemImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var currentSelectedItem: ShopItem!
+    
+    var playerHeadCount: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,7 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         self.buyButton.layer.cornerRadius = self.buyButton.frame.height / 2
         self.buyButton.addTarget(self, action: #selector(self.onBuy), for: .touchDown)
-        
+        buyButton.setTitle("Equipped", for: .disabled)
         self.updateBuyButton()
     }
     
@@ -61,10 +62,21 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
+    func updateUI() {
+        
+        self.updateSpotlightItem()
+        self.updateBuyButton()
+        
+        self.collectionView.reloadData()
+    }
     
     
     func updateSpotlightItem() {
         self.currentItemImage.image = self.currentSelectedItem.getDisplayImage()
+        self.playerHeadCount = StorageFacade.instance.getHeadCount()
+        
+        self.priceLabel.text = String(self.currentSelectedItem.price)
+        self.playerHeadCountLabel.text = String(format: "%03d", self.playerHeadCount)
     }
 
     // MARK: UICollectionViewDataSource & Delegate
@@ -102,10 +114,7 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.currentSelectedItem = self.manager.item(at: indexPath)
         
-        self.updateSpotlightItem()
-        self.updateBuyButton()
-        
-        self.collectionView.reloadData()
+        self.updateUI()
     }
     
     // MARK: - Callbacks
@@ -119,11 +128,25 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func buyAndEquipItem() {
+        guard self.manager.buy(item: currentSelectedItem) else {
+            
+            self.playerHeadCountLabel.transform = self.playerHeadCountLabel.transform.translatedBy(x: 10, y: 0)
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+                self.playerHeadCountLabel.transform = .identity
+                
+                       }, completion: nil)
+            
+        UINotificationFeedbackGenerator().notificationOccurred(.error)
+            
+            return
+        }
         
+        self.equipItem()
     }
     
     func equipItem() {
-        
+        self.manager.equip(item: self.currentSelectedItem)
+        self.updateUI()
     }
     
     

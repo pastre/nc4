@@ -103,4 +103,23 @@ class ShopItemManager {
     func item(at indexPath: IndexPath)  -> ShopItem {
         return self.items[indexPath.item]
     }
+    
+    func buy(item: ShopItem) -> Bool {
+        if item.price > StorageFacade.instance.getHeadCount() {
+            return false
+        }
+        
+        item.isUnlocked = true
+        StorageFacade.instance.removeHead(amount: item.price)
+        
+        
+        return true
+    }
+    
+    func equip(item: ShopItem) {
+        self.equippedItem = item
+        
+        StorageFacade.instance.setEquippedItem(to: self.equippedItem)
+        StorageFacade.instance.setShopItems(to: self.items)
+    }
 }

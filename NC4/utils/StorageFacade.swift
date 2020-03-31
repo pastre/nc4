@@ -32,6 +32,19 @@ class StorageFacade {
         case revives
         case shopItems
         case equipedItem
+        case headCount
+    }
+    
+    func getHeadCount() -> Int { UserDefaults.standard.integer(forKey: StorageKeys.headCount.rawValue) }
+    func setHeadCount(to newValue: Int) { UserDefaults.standard.set(newValue, forKey: StorageKeys.headCount.rawValue) }
+    func addHead(amount: Int) {
+        let newCount = self.getHeadCount() + amount
+        self.setHeadCount(to: newCount)
+    }
+    func removeHead(amount: Int) {
+        
+        let newCount = self.getHeadCount() - amount
+        self.setHeadCount(to: newCount)
     }
     
     func getHighScore() -> Int {
