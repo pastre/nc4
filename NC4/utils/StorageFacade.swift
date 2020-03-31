@@ -111,7 +111,7 @@ class StorageFacade {
         return nil
     }
     
-    func setEquipedItem(to newItem: ShopItem) {
+    func setEquippedItem(to newItem: ShopItem) {
         if let serialized = try? JSONEncoder().encode(newItem) {
             UserDefaults.standard.set(serialized, forKey: StorageKeys.equipedItem.rawValue)
         } else {
@@ -120,7 +120,7 @@ class StorageFacade {
         }
     }
     
-    func getEquipedItem() -> ShopItem? {
+    func getEquippedItem() -> ShopItem? {
         
         if let data = UserDefaults.standard.data(forKey: StorageKeys.equipedItem.rawValue) {
             

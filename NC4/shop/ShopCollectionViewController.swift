@@ -40,18 +40,28 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.buyButton.layer.cornerRadius = self.buyButton.frame.height / 2
+        self.buyButton.addTarget(self, action: #selector(self.onBuy), for: .touchDown)
+        
         self.updateBuyButton()
     }
     
     // UI Methods
     
     func updateBuyButton() {
-        self.buyButton.layer.cornerRadius = self.buyButton.frame.height / 2
         
-        self.buyButton.addTarget(self, action: #selector(self.onBuy), for: .touchDown)
+        let green = #colorLiteral(red: 0, green: 0.7262999415, blue: 0.3584215641, alpha: 1)
         
-        if self.currentSelectedItem == 
+        self.buyButton.isEnabled =  self.currentSelectedItem != self.manager.equippedItem
+        self.buyButton.backgroundColor = self.buyButton.isEnabled ? green : UIColor.gray
+        if self.currentSelectedItem.isUnlocked {
+            self.buyButton.setTitle("Equip", for: .normal)
+        } else {
+            self.buyButton.setTitle("Buy", for: .normal)
+        }
     }
+    
+    
     
     func updateSpotlightItem() {
         self.currentItemImage.image = self.currentSelectedItem.getDisplayImage()
@@ -93,6 +103,7 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.currentSelectedItem = self.manager.item(at: indexPath)
         
         self.updateSpotlightItem()
+        self.updateBuyButton()
         
         self.collectionView.reloadData()
     }
@@ -100,8 +111,21 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     // MARK: - Callbacks
     
     @objc func onBuy() {
+        if self.currentSelectedItem.isUnlocked {
+            self.equipItem()
+        } else {
+            self.buyAndEquipItem()
+        }
+    }
+    
+    func buyAndEquipItem() {
         
     }
+    
+    func equipItem() {
+        
+    }
+    
     
     // MARK: UICollectionViewDelegate
 

@@ -61,7 +61,7 @@ class ShopItemManager {
     static let instance = ShopItemManager()
     
     var items: [ShopItem]!
-    var equipedItem: ShopItem!
+    var equippedItem: ShopItem!
     
     private init() {
         if let loaded = StorageFacade.instance.getShopItems() {
@@ -70,6 +70,20 @@ class ShopItemManager {
         } else {
             self.createBlankShop()
         }
+        
+        if let loaded = StorageFacade.instance.getEquippedItem() {
+            print("Properly deserialized items")
+            self.equippedItem = loaded
+        } else {
+            self.equipBasicItem()
+        }
+        
+    }
+    
+    func equipBasicItem() {
+        self.equippedItem = self.items.first!
+        
+        StorageFacade.instance.setEquippedItem(to: self.equippedItem)
     }
     
     private func createBlankShop() {
