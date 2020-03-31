@@ -38,6 +38,20 @@ class ShopItem: Codable {
     }
 }
 
+class FirstShopItem: ShopItem {
+    init() {
+        super.init(imageName: "player", isUnlocked: true, price: 0)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
+    
+    override func getBaseImage() -> UIImage {
+        super.getBaseImage().rotate(radians: .pi)!
+    }
+}
+
 class ShopItemManager {
     
     static let instance = ShopItemManager()
@@ -47,6 +61,7 @@ class ShopItemManager {
     
     private init() {
         self.items = [ShopItem]()
+        self.items.append(FirstShopItem())
         for i in 1...22 {
             let newItem = ShopItem(imageName: "weapon\(i)", isUnlocked: .random(), price: 100)
             self.items.append(newItem)
