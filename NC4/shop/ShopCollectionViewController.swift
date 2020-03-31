@@ -64,6 +64,7 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
         let item = self.manager.item(at: indexPath)
         
+        cell.backView.layer.cornerRadius = 8
         cell.imageView.image = item.getDisplayImage()
     
         return cell
