@@ -26,6 +26,9 @@
 		D736EADF242F9CFE00C306E6 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EADE242F9CFE00C306E6 /* AdManager.swift */; };
 		D736EAE1242FAF0E00C306E6 /* AdPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EAE0242FAF0E00C306E6 /* AdPresenter.swift */; };
 		D736EAE324304F7300C306E6 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EAE224304F7200C306E6 /* StoreManager.swift */; };
+		D736EAE62433ABDB00C306E6 /* ShopCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EAE52433ABDB00C306E6 /* ShopCollectionViewController.swift */; };
+		D736EAE82433ABEE00C306E6 /* ShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EAE72433ABEE00C306E6 /* ShopCollectionViewCell.swift */; };
+		D736EAEA2433AD0D00C306E6 /* ShopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EAE92433AD0D00C306E6 /* ShopItem.swift */; };
 		D75E60722411335C000A320D /* GameEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E60712411335C000A320D /* GameEventListener.swift */; };
 		D77A612524217F0F00DD69C0 /* EnemyHitParticleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */; };
 		D77B38732429BA6A002B14B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */; };
@@ -76,6 +79,9 @@
 		D736EADE242F9CFE00C306E6 /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		D736EAE0242FAF0E00C306E6 /* AdPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdPresenter.swift; sourceTree = "<group>"; };
 		D736EAE224304F7200C306E6 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		D736EAE52433ABDB00C306E6 /* ShopCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewController.swift; sourceTree = "<group>"; };
+		D736EAE72433ABEE00C306E6 /* ShopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewCell.swift; sourceTree = "<group>"; };
+		D736EAE92433AD0D00C306E6 /* ShopItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItem.swift; sourceTree = "<group>"; };
 		D75E60712411335C000A320D /* GameEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventListener.swift; sourceTree = "<group>"; };
 		D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyHitParticleLoader.swift; sourceTree = "<group>"; };
 		D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 		D718CF09240EE433007A1833 /* NC4 */ = {
 			isa = PBXGroup;
 			children = (
+				D736EAE42433ABC500C306E6 /* shop */,
 				D79DC9A2241ABC6800C586C4 /* audio */,
 				D718CF30240FF096007A1833 /* game */,
 				D7BED039241AA7F3008A861D /* scene */,
@@ -181,6 +188,16 @@
 				D7C6BF26241FBB9E00607B2D /* view */,
 			);
 			path = game;
+			sourceTree = "<group>";
+		};
+		D736EAE42433ABC500C306E6 /* shop */ = {
+			isa = PBXGroup;
+			children = (
+				D736EAE52433ABDB00C306E6 /* ShopCollectionViewController.swift */,
+				D736EAE72433ABEE00C306E6 /* ShopCollectionViewCell.swift */,
+				D736EAE92433AD0D00C306E6 /* ShopItem.swift */,
+			);
+			path = shop;
 			sourceTree = "<group>";
 		};
 		D79DC9A2241ABC6800C586C4 /* audio */ = {
@@ -426,6 +443,7 @@
 			files = (
 				D79DC9A8241ABC7B00C586C4 /* IntroWithLoop.swift in Sources */,
 				D718CF23240EE48E007A1833 /* GameObject.swift in Sources */,
+				D736EAE82433ABEE00C306E6 /* ShopCollectionViewCell.swift in Sources */,
 				D718CF11240EE433007A1833 /* GameScene.swift in Sources */,
 				D736EAE324304F7300C306E6 /* StoreManager.swift in Sources */,
 				D718CF13240EE433007A1833 /* GameViewController.swift in Sources */,
@@ -437,6 +455,7 @@
 				D736EAE1242FAF0E00C306E6 /* AdPresenter.swift in Sources */,
 				D7F16A1124184B4D0063877B /* ThemeManager.swift in Sources */,
 				D79DC9AB241ABC7B00C586C4 /* Song.swift in Sources */,
+				D736EAEA2433AD0D00C306E6 /* ShopItem.swift in Sources */,
 				D79DC9AC241ABC7B00C586C4 /* SoundEffects.swift in Sources */,
 				D7B80D55241066260089F65C /* Utils.swift in Sources */,
 				D7F16A0B2416E4C50063877B /* SpeedManager.swift in Sources */,
@@ -454,6 +473,7 @@
 				D718CF2B240FF024007A1833 /* EnemyGroup.swift in Sources */,
 				D7F16A0F2417F2B40063877B /* StorageFacade.swift in Sources */,
 				D736EADF242F9CFE00C306E6 /* AdManager.swift in Sources */,
+				D736EAE62433ABDB00C306E6 /* ShopCollectionViewController.swift in Sources */,
 				D7B80D4F241024330089F65C /* CoinFactory.swift in Sources */,
 				D7B80D4D2410241B0089F65C /* Coin.swift in Sources */,
 				D718CF0B240EE433007A1833 /* AppDelegate.swift in Sources */,
