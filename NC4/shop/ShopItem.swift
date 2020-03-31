@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ShopItem: Codable {
+class ShopItem: Codable, Equatable {
+    static func == (lhs: ShopItem, rhs: ShopItem) -> Bool {
+        lhs.imageName == rhs.imageName
+    }
+    
     
     internal init(imageName: String, isUnlocked: Bool, price: Int) {
         
@@ -78,6 +82,8 @@ class ShopItemManager {
         
         StorageFacade.instance.setShopItems(to: self.items)
     }
+    
+    func getDefaultItem() -> ShopItem { self.items.first! }
     
     func item(at indexPath: IndexPath)  -> ShopItem {
         return self.items[indexPath.item]

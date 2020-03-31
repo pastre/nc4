@@ -24,11 +24,15 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var currentItemImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var currentSelectedItem: ShopItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        
+        self.currentSelectedItem = self.manager.getDefaultItem()
         
     }
     
@@ -44,6 +48,10 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.buyButton.layer.cornerRadius = self.buyButton.frame.height / 2
         
         self.buyButton.addTarget(self, action: #selector(self.onBuy), for: .touchDown)
+    }
+    
+    func updateSpotlightItem() {
+        
     }
 
     // MARK: UICollectionViewDataSource & Delegate
@@ -64,11 +72,14 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
         let item = self.manager.item(at: indexPath)
         
-        cell.backView.layer.cornerRadius = 8
+        cell.backView.layer.cornerRadius = 16
         cell.imageView.image = item.getDisplayImage()
     
+        cell.border.isHidden = item != self.currentSelectedItem
+        
         return cell
     }
+    
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let mult: CGFloat = 0.3

@@ -274,7 +274,18 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVS-HU-LIF">
                                                     <rect key="frame" x="0.0" y="0.0" width="145" height="138"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="border" translatesAutoresizingMaskIntoConstraints="NO" id="0pK-Fe-pcW">
+                                                            <rect key="frame" x="0.0" y="0.0" width="145" height="138"/>
+                                                        </imageView>
+                                                    </subviews>
                                                     <color key="backgroundColor" red="0.050980392156862744" green="0.16078431372549018" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstItem="0pK-Fe-pcW" firstAttribute="centerX" secondItem="LVS-HU-LIF" secondAttribute="centerX" id="TJn-Bk-YTc"/>
+                                                        <constraint firstItem="0pK-Fe-pcW" firstAttribute="centerY" secondItem="LVS-HU-LIF" secondAttribute="centerY" id="ZYN-5q-aIQ"/>
+                                                        <constraint firstItem="0pK-Fe-pcW" firstAttribute="width" secondItem="LVS-HU-LIF" secondAttribute="width" id="anG-pc-adE"/>
+                                                        <constraint firstItem="0pK-Fe-pcW" firstAttribute="height" secondItem="LVS-HU-LIF" secondAttribute="height" id="fyO-sG-OXR"/>
+                                                    </constraints>
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ogv-sn-Pvp">
                                                     <rect key="frame" x="14.5" y="14" width="116" height="110"/>
@@ -294,6 +305,7 @@
                                         <size key="customSize" width="145" height="138"/>
                                         <connections>
                                             <outlet property="backView" destination="LVS-HU-LIF" id="8aO-37-Tag"/>
+                                            <outlet property="border" destination="0pK-Fe-pcW" id="HPn-L5-m20"/>
                                             <outlet property="imageView" destination="ogv-sn-Pvp" id="wTQ-Vd-yUc"/>
                                         </connections>
                                     </collectionViewCell>
@@ -534,6 +546,7 @@
     </scenes>
     <resources>
         <image name="ads" width="64" height="64"/>
+        <image name="border" width="88" height="88"/>
         <image name="heart" width="76" height="69"/>
         <image name="leaderboards" width="64" height="64"/>
         <image name="movie" width="86" height="86"/>
