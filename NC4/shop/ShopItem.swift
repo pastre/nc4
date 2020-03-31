@@ -58,18 +58,25 @@ class ShopItemManager {
     
     var items: [ShopItem]!
     
-    
     private init() {
-        self.items = [ShopItem]()
-        self.items.append(FirstShopItem())
-        for i in 1...22 {
-            let newItem = ShopItem(imageName: "weapon\(i)", isUnlocked: .random(), price: 100)
-            self.items.append(newItem)
+        if let loaded = StorageFacade.instance.getShopItems() {
+            print("Properly deserialized items")
+            self.items = loaded
+        } else {
+            self.createBlankShop()
         }
     }
     
     private func createBlankShop() {
         
+        self.items = [ShopItem]()
+        self.items.append(FirstShopItem())
+        for i in 1...22 {
+            let newItem = ShopItem(imageName: "weapon\(i)", isUnlocked: false, price: 100)
+            self.items.append(newItem)
+        }
+        
+        StorageFacade.instance.setShopItems(to: self.items)
     }
     
     func item(at indexPath: IndexPath)  -> ShopItem {
