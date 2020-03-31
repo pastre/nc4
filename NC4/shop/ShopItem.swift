@@ -21,19 +21,20 @@ class ShopItem: Codable {
     var isUnlocked: Bool
     var price: Int
     
-    func getBaseDisplayImage() -> UIImage  {
-
-        let img = UIImage(named: self.imageName)!
-        
-        return img.withHorizontallyFlippedOrientation()
-    }
+    
+    func getBaseImage() -> UIImage { UIImage(named: self.imageName)! }
+    
+    func getBaseDisplayImage() -> UIImage  { self.getBaseImage().rotate(radians: -(.pi + .pi/4))! }
     
     func getDisplayImage() -> UIImage {
         let base = self.getBaseDisplayImage()
+        
         if self.isUnlocked {
             return base
         }
-        return UIImage(named: self.imageName + "locked")!
+        
+        return base.tinted(with: .gray)!
+        
     }
 }
 
@@ -47,7 +48,7 @@ class ShopItemManager {
     private init() {
         self.items = [ShopItem]()
         for i in 1...22 {
-            let newItem = ShopItem(imageName: "weapon\(i)", isUnlocked: true, price: 100)
+            let newItem = ShopItem(imageName: "weapon\(i)", isUnlocked: .random(), price: 100)
             self.items.append(newItem)
         }
     }
