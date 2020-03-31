@@ -71,8 +71,8 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: collectionView.frame.size.width * 0.25, height: collectionView.frame.size.width * 0.25)
+        let mult: CGFloat = 0.3
+        return CGSize(width: collectionView.frame.size.width * mult, height: collectionView.frame.size.width * mult)
     }
     
     // MARK: - Callbacks
