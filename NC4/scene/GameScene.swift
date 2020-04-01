@@ -85,9 +85,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.configureBg()
         
         self.themeManager.configureStartTheme()
+        
         AudioManager.shared.update()
-        
-        
     }
     
     func configureBg() {
@@ -111,7 +110,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode.scale(to: .init(width: 40, height: min(40 * ratio, 80)))
         
         self.tailNode.texture = texture
-        
+        self.getCoinNode().texture = texture
     }
     
     func postConfig() {
@@ -307,7 +306,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func getBounds() -> CGRect {
         return CGRect(x: -self.size.width / 2, y: -self.size.height / 2, width: self.size.width / 2, height: self.size.height / 2)
     }
+    // MARK: - Getters
     
+    func getCoinNode() -> SKSpriteNode {
+        self.childNode(withName: "coin")!.childNode(withName: "texture") as! SKSpriteNode
+    }
     func getUpdateables() -> [Updateable] {
         return [
             self.player,
