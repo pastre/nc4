@@ -33,7 +33,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastContactTimestamp: TimeInterval?
     
     var score: Int!
-    var headCount: Int = 0
+    var headCount: Int = 0 {
+        didSet {
+            if headCount == 0 {
+                print("zerou")
+            }
+        }
+    }
     
     var realPaused: Bool = false {
         didSet {
@@ -111,6 +117,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func postConfig() {
         self.score = 0
         self.headCount = 0
+        
+        self.setScoreLabel()
     }
     
     // MARK: - Scene overrides
@@ -240,7 +248,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playerDidScore() {
         self.score += 1
-        print("Did score")
     }
     
     
@@ -326,7 +333,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         self.headCountNode.isHidden = false
         self.zombieHeadIcon.isHidden = false
-        self.setScoreLabel()
     }
     
     func positionLabel() {
