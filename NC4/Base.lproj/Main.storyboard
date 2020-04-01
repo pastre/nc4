@@ -50,6 +50,9 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAm-wF-Pm8" userLabel="config">
                                         <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="hAm-wF-Pm8" secondAttribute="height" multiplier="1:1" id="lYI-Up-NvO"/>
+                                        </constraints>
                                         <state key="normal" image="settings"/>
                                         <connections>
                                             <action selector="onOpenConfig:" destination="BV1-FR-VrT" eventType="touchUpInside" id="uGh-7U-7qZ"/>
@@ -57,6 +60,9 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Fz-eK-UFi">
                                         <rect key="frame" x="85.5" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="4Fz-eK-UFi" secondAttribute="height" multiplier="1:1" id="ENj-8w-aLR"/>
+                                        </constraints>
                                         <state key="normal" image="leaderboards"/>
                                         <connections>
                                             <action selector="onLeaderboard:" destination="BV1-FR-VrT" eventType="touchUpInside" id="vXz-Lf-fcv"/>
@@ -64,6 +70,9 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxb-IV-fXC" userLabel="adButton">
                                         <rect key="frame" x="170.5" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="jxb-IV-fXC" secondAttribute="height" multiplier="1:1" id="uQO-yc-gbK"/>
+                                        </constraints>
                                         <state key="normal" image="ads"/>
                                         <connections>
                                             <action selector="onRemoveAds:" destination="BV1-FR-VrT" eventType="touchUpInside" id="nBy-lA-i3j"/>
@@ -71,39 +80,12 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spS-RP-bIL" userLabel="skinButton">
                                         <rect key="frame" x="256" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="spS-RP-bIL" secondAttribute="height" multiplier="1:1" id="wmz-VT-Fi6"/>
+                                        </constraints>
                                         <state key="normal" image="skins"/>
                                         <connections>
                                             <action selector="onSkinShop:" destination="BV1-FR-VrT" eventType="touchUpInside" id="D8G-nC-Pma"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="011-DP-7oj">
-                                <rect key="frame" x="47" y="738" width="320" height="64"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4C-P4-Xg0">
-                                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
-                                        <state key="normal" image="settingsOpened"/>
-                                        <connections>
-                                            <action selector="onCloseConfig:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Ghe-Sq-ohq"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbg-tJ-DVo" userLabel="spacing">
-                                        <rect key="frame" x="85.5" y="0.0" width="64" height="64"/>
-                                        <state key="normal" image="settingsOpened"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDA-A2-IJs">
-                                        <rect key="frame" x="170.5" y="0.0" width="64" height="64"/>
-                                        <state key="normal" image="sound"/>
-                                        <connections>
-                                            <action selector="onSound:" destination="BV1-FR-VrT" eventType="touchUpInside" id="qTG-gZ-e0u"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYG-oo-qVW">
-                                        <rect key="frame" x="256" y="0.0" width="64" height="64"/>
-                                        <state key="normal" image="vibrate"/>
-                                        <connections>
-                                            <action selector="onVibrate:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Muc-sb-Imn"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -115,6 +97,48 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="011-DP-7oj">
+                                <rect key="frame" x="47" y="666" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4C-P4-Xg0">
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Z4C-P4-Xg0" secondAttribute="height" multiplier="1:1" id="VFx-yw-ch4"/>
+                                        </constraints>
+                                        <state key="normal" image="settingsOpened"/>
+                                        <connections>
+                                            <action selector="onCloseConfig:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Ghe-Sq-ohq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbg-tJ-DVo" userLabel="spacing">
+                                        <rect key="frame" x="85.5" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="wbg-tJ-DVo" secondAttribute="height" multiplier="1:1" id="rh4-Dk-23y"/>
+                                        </constraints>
+                                        <state key="normal" image="settingsOpened"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDA-A2-IJs">
+                                        <rect key="frame" x="170.5" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="HDA-A2-IJs" secondAttribute="height" multiplier="1:1" id="cnm-kP-k1f"/>
+                                        </constraints>
+                                        <state key="normal" image="sound"/>
+                                        <connections>
+                                            <action selector="onSound:" destination="BV1-FR-VrT" eventType="touchUpInside" id="qTG-gZ-e0u"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYG-oo-qVW">
+                                        <rect key="frame" x="256" y="0.0" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="aYG-oo-qVW" secondAttribute="height" multiplier="1:1" id="SfB-Ue-aw6"/>
+                                        </constraints>
+                                        <state key="normal" image="vibrate"/>
+                                        <connections>
+                                            <action selector="onVibrate:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Muc-sb-Imn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
