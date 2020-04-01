@@ -13,7 +13,7 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerNode: SKSpriteNode!
-    var scoreNode: SKLabelNode!
+    var headCountNode: SKLabelNode!
     var zombieHeadIcon: SKSpriteNode!
     var tailNode: SKSpriteNode!
 
@@ -54,13 +54,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         self.changeFonts()
         
-        self.score = 0
         self.physicsWorld.contactDelegate = self
         
         
         self.playerNode = (self.childNode(withName: "player") as! SKSpriteNode)
         self.tailNode = (self.childNode(withName: "tail") as! SKSpriteNode)
-        self.scoreNode = (self.childNode(withName: "score") as! SKLabelNode)
+        self.headCountNode = (self.childNode(withName: "score") as! SKLabelNode)
         self.zombieHeadIcon = self.childNode(withName: "zombieHeadIcon") as! SKSpriteNode
               
         
@@ -107,6 +106,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.tailNode.texture = texture
         
+    }
+    
+    func postConfig() {
+        self.score = 0
+        self.headCount = 0
     }
     
     // MARK: - Scene overrides
@@ -177,15 +181,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    
     func hasPickedHead(_ node: SKNode) -> Bool {
         guard node.name == "head", node.parent != nil else { return false}
         
-        self.headCount += 1
-        self.playerDidScore()
+        self.playerPickedHead()
         
-        node.physicsBody?.isDynamic = false
-        node.physicsBody?.categoryBitMask = ContactMask.none.rawValue
-        node.physicsBody?.contactTestBitMask = ContactMask.none.rawValue
+        node.physicsBody = nil
         
         let duration: TimeInterval = 1
         
@@ -238,7 +240,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playerDidScore() {
         self.score += 1
-        self.scoreNode.text = String(format: "%03d", self.headCount)
+        print("Did score")
+    }
+    
+    
+    func playerPickedHead() {
+        self.headCount += 1
+        self.headCountNode.text = String(format: "%03d", self.headCount)
     }
     
     func movePlayer(_ dx: CGFloat) {
@@ -309,44 +317,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func configureScoreLabel() {
         defer { self.positionLabel() }
-        self.scoreNode.fontSize = 40
+        self.headCountNode.fontSize = 40
         if self.realPaused {
-            self.scoreNode.isHidden = true
+            self.headCountNode.isHidden = true
             self.zombieHeadIcon.isHidden = true
             return
         }
 
-        self.scoreNode.isHidden = false
+        self.headCountNode.isHidden = false
         self.zombieHeadIcon.isHidden = false
         self.setScoreLabel()
     }
     
     func positionLabel() {
-        let scoreX = self.getBounds().origin.x + (self.scoreNode.frame.width / 2) + 20
-        self.scoreNode.position = CGPoint(
+        let scoreX = self.getBounds().origin.x + (self.headCountNode.frame.width / 2) + 20
+        self.headCountNode.position = CGPoint(
             x: scoreX,
-            y: self.getBounds().height - (self.scoreNode.frame.height) - 60)
-        self.scoreNode.color = UIColor(rgb: 0x002B5B)
+            y: self.getBounds().height - (self.headCountNode.frame.height) - 60)
+        self.headCountNode.color = UIColor(rgb: 0x002B5B)
         
         let icon = self.zombieHeadIcon!
         
         let ratio = icon.size.width / icon.size.height
-        let size = self.scoreNode.frame.height
+        let size = self.headCountNode.frame.height
         icon.scale(to: CGSize(width: ratio * size, height: size))
         
         icon.position = CGPoint(x:
-            scoreX + scoreNode.frame.width / 2 + icon.size.width / 2 + 5,
-                                y: self.scoreNode.position.y + icon.size.height / 2 )
+            scoreX + headCountNode.frame.width / 2 + icon.size.width / 2 + 5,
+                                y: self.headCountNode.position.y + icon.size.height / 2 )
     }
     
     
     private func setHighscoreLabel() {
         let score = StorageFacade.instance.getHighScore()
-        self.scoreNode.text = "High score: \(score)"
+        self.headCountNode.text = "High score: \(score)"
     }
     
     private func setScoreLabel() {
-        self.scoreNode.text = "000"
+        self.headCountNode.text = "000"
     }
     
     

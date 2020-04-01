@@ -35,6 +35,7 @@ class Player: AbstractGameObject, Lifeable {
     
     func onLifeTaken() {
         self.lifes -= 1
+        self.scene.playerDidScore()
         self.decreaseTail()
 
         DispatchQueue.global().async {

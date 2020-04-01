@@ -216,8 +216,10 @@ class GameOverViewController: UIViewController, AdPresenter {
     }
     
     @objc func onUserDidBuyLifes() {
-        StorageFacade.instance.onReviveUsed()
-        self.revivePlayer()
+//        StorageFacade.instance.onReviveUsed()
+//        self.revivePlayer()
+        
+        
     }
     
     

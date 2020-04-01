@@ -46,7 +46,7 @@ class StoreManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObs
             if t.transactionState == .purchased {
                 
                 
-                for product in self.products! {
+                for product in self.products ?? [] {
                     if product.productIdentifier == t.payment.productIdentifier {
                         let p = Product(product)
                         switch p {

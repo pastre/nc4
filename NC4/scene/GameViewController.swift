@@ -16,7 +16,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     
     // MARK: - GameOverDataSource
     func getScore() -> Int {
-        return self.scene!.score
+        return self.scene.score
     }
     
     func getHeadCount() -> Int {
@@ -123,10 +123,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
                 self.shouldDisplayWarning = false
             }))
             
-//            self.present(alert, animated: true, completion: nil)
         }
-        
-        
     }
 
     
@@ -388,11 +385,14 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     @objc func onPlay(_ sender: Any) {
         guard !self.isPlaying else  { return }
         
-        self.scene?.realPaused = false
         self.hideUI()
         self.onGameStart()
         self.gameStartedTimestamp = Date().timeIntervalSince1970
         Analytics.logEvent(AnalyticsEventLevelStart, parameters: nil)
+        
+        self.scene.postConfig()
+        self.scene?.realPaused = false
+        
     }
     
     @IBAction func onLeaderboard(_ sender: Any) {
