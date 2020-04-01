@@ -97,8 +97,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="011-DP-7oj">
-                                <rect key="frame" x="47" y="666" width="320" height="64"/>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="011-DP-7oj">
+                                <rect key="frame" x="47" y="738" width="320" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4C-P4-Xg0">
                                         <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
@@ -197,7 +197,7 @@
                                 <rect key="frame" x="0.0" y="5" width="414" height="896"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6K-cE-4kB">
-                                        <rect key="frame" x="20" y="29" width="100.5" height="61"/>
+                                        <rect key="frame" x="20" y="49" width="100.5" height="61"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Back">
                                                 <attributes>
@@ -215,19 +215,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zombieHeadIcon" translatesAutoresizingMaskIntoConstraints="NO" id="vXc-lj-Ljz">
-                                        <rect key="frame" x="345.5" y="28" width="48.5" height="63"/>
+                                        <rect key="frame" x="349" y="50.5" width="45" height="58"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="vXc-lj-Ljz" secondAttribute="height" multiplier="48:62" id="JvX-dJ-B2i"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="342" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdV-sr-mkJ">
-                                        <rect key="frame" x="250.5" y="28" width="90" height="63"/>
+                                        <rect key="frame" x="254" y="50.5" width="90" height="58"/>
                                         <fontDescription key="fontDescription" name="LucidaGrande-Bold" family="Lucida Grande" pointSize="45"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAS-XI-36k">
-                                        <rect key="frame" x="250.5" y="370" width="143.5" height="55"/>
+                                        <rect key="frame" x="254" y="370" width="140" height="55"/>
                                         <color key="backgroundColor" red="0.1803921568627451" green="0.71372549019607845" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="LucidaGrande-Bold" family="Lucida Grande" pointSize="30"/>
                                         <state key="normal" title="Buy">
@@ -235,10 +235,10 @@
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHl-71-nOt" userLabel="space">
-                                        <rect key="frame" x="20" y="90" width="374" height="277"/>
+                                        <rect key="frame" x="20" y="110" width="374" height="257"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m25-gE-1U6">
-                                                <rect key="frame" x="48" y="27.5" width="278" height="222"/>
+                                                <rect key="frame" x="58" y="25.5" width="258" height="206"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="m25-gE-1U6" secondAttribute="height" multiplier="243:194" id="xYV-6C-Kd8"/>
                                                 </constraints>
@@ -340,17 +340,17 @@
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.66054832713754652" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.060429352280000001" green="0.193618014" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="qQ4-nF-MFH" firstAttribute="height" secondItem="Vnc-VM-dwa" secondAttribute="height" multiplier="0.5" id="31J-6B-OKh"/>
                             <constraint firstItem="Vnc-VM-dwa" firstAttribute="centerY" secondItem="PcK-XR-HGF" secondAttribute="centerY" id="AIr-9W-CAR"/>
                             <constraint firstItem="qQ4-nF-MFH" firstAttribute="trailing" secondItem="vXc-lj-Ljz" secondAttribute="trailing" id="SJ6-39-iy7"/>
                             <constraint firstItem="qQ4-nF-MFH" firstAttribute="bottom" secondItem="Vnc-VM-dwa" secondAttribute="bottom" id="U5b-Wa-5Hv"/>
                             <constraint firstItem="Vnc-VM-dwa" firstAttribute="centerX" secondItem="PcK-XR-HGF" secondAttribute="centerX" id="UWQ-tv-VbQ"/>
-                            <constraint firstItem="Vnc-VM-dwa" firstAttribute="height" secondItem="Wva-SK-9Kg" secondAttribute="height" id="W3A-aR-lXG"/>
-                            <constraint firstItem="PcK-XR-HGF" firstAttribute="top" secondItem="b6K-cE-4kB" secondAttribute="top" constant="10" id="bJt-9e-ZLU"/>
+                            <constraint firstItem="b6K-cE-4kB" firstAttribute="top" secondItem="PcK-XR-HGF" secondAttribute="top" constant="10" id="bJt-9e-ZLU"/>
                             <constraint firstItem="qQ4-nF-MFH" firstAttribute="top" secondItem="SCE-U9-Cct" secondAttribute="bottom" constant="20" id="bXH-FY-zuu"/>
                             <constraint firstItem="SCE-U9-Cct" firstAttribute="leading" secondItem="qQ4-nF-MFH" secondAttribute="leading" id="fOu-MK-mhc"/>
+                            <constraint firstItem="Vnc-VM-dwa" firstAttribute="height" secondItem="Wva-SK-9Kg" secondAttribute="height" id="yHQ-Ox-wMd"/>
                             <constraint firstItem="qQ4-nF-MFH" firstAttribute="leading" secondItem="b6K-cE-4kB" secondAttribute="leading" id="ywa-RJ-bHY"/>
                             <constraint firstItem="Vnc-VM-dwa" firstAttribute="width" secondItem="Wva-SK-9Kg" secondAttribute="width" id="yzH-T7-qAN"/>
                         </constraints>
