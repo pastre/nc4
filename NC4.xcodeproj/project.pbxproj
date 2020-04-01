@@ -29,6 +29,7 @@
 		D736EAE62433ABDB00C306E6 /* ShopCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EAE52433ABDB00C306E6 /* ShopCollectionViewController.swift */; };
 		D736EAE82433ABEE00C306E6 /* ShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EAE72433ABEE00C306E6 /* ShopCollectionViewCell.swift */; };
 		D736EAEA2433AD0D00C306E6 /* ShopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736EAE92433AD0D00C306E6 /* ShopItem.swift */; };
+		D744DEF824353D8A00F579F4 /* GameOverDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744DEF724353D8A00F579F4 /* GameOverDataSource.swift */; };
 		D75E60722411335C000A320D /* GameEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75E60712411335C000A320D /* GameEventListener.swift */; };
 		D77A612524217F0F00DD69C0 /* EnemyHitParticleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */; };
 		D77B38732429BA6A002B14B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */; };
@@ -82,6 +83,7 @@
 		D736EAE52433ABDB00C306E6 /* ShopCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewController.swift; sourceTree = "<group>"; };
 		D736EAE72433ABEE00C306E6 /* ShopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewCell.swift; sourceTree = "<group>"; };
 		D736EAE92433AD0D00C306E6 /* ShopItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItem.swift; sourceTree = "<group>"; };
+		D744DEF724353D8A00F579F4 /* GameOverDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverDataSource.swift; sourceTree = "<group>"; };
 		D75E60712411335C000A320D /* GameEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventListener.swift; sourceTree = "<group>"; };
 		D77A612424217F0E00DD69C0 /* EnemyHitParticleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyHitParticleLoader.swift; sourceTree = "<group>"; };
 		D77B38722429BA6A002B14B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				D7F16A0E2417F2B40063877B /* StorageFacade.swift */,
 				D7B80D54241066260089F65C /* Utils.swift */,
 				D7F16A13241851DB0063877B /* ZPositoinManager.swift */,
+				D744DEF724353D8A00F579F4 /* GameOverDataSource.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				D718CF27240EF730007A1833 /* ContactMask.swift in Sources */,
 				D718CF2B240FF024007A1833 /* EnemyGroup.swift in Sources */,
 				D7F16A0F2417F2B40063877B /* StorageFacade.swift in Sources */,
+				D744DEF824353D8A00F579F4 /* GameOverDataSource.swift in Sources */,
 				D736EADF242F9CFE00C306E6 /* AdManager.swift in Sources */,
 				D736EAE62433ABDB00C306E6 /* ShopCollectionViewController.swift in Sources */,
 				D7B80D4F241024330089F65C /* CoinFactory.swift in Sources */,

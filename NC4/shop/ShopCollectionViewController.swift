@@ -53,7 +53,10 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.buyButton.layer.cornerRadius = self.buyButton.frame.height / 2
         self.buyButton.addTarget(self, action: #selector(self.onBuy), for: .touchDown)
         buyButton.setTitle("Equipped", for: .disabled)
+        
         self.updateBuyButton()
+        
+        
     }
     
     // UI Methods

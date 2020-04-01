@@ -10,20 +10,12 @@ import UIKit
 import GoogleMobileAds
 import Firebase
 
-protocol GameOverDataSource {
-    
-    func getScore() -> Int
-    func getHeadCount() -> Int
-    
-    func onGameOverDismissed()
-    func onRevive()
-}
-
 class GameOverViewController: UIViewController, AdPresenter {
 
 
     var completedReward: Bool! = false
     var canAdRevive: Bool!
+    
     var reviveCount: Int! {
         didSet {
             self.lifeCountLabel.text = String(reviveCount)
@@ -51,6 +43,7 @@ class GameOverViewController: UIViewController, AdPresenter {
         
     @IBOutlet weak var lifeIndicatorLabel: UILabel!
     @IBOutlet weak var lifeCountLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,7 +66,15 @@ class GameOverViewController: UIViewController, AdPresenter {
         self.setupGestures()
         self.setupRoundedViews()
         
+        self.nextButton.alpha = 0
+        
+        UIView.animate(withDuration: 1, delay: 3, options: .curveEaseOut, animations: {
+            self.nextButton.alpha = 1
+        }, completion: nil)
+        
     }
+    
+    
     
     func hideReviveWithAds() {
         let overlay = UIView(frame: self.viewAdView.frame)
