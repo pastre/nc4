@@ -196,8 +196,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vnc-VM-dwa">
                                 <rect key="frame" x="0.0" y="5" width="414" height="896"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6K-cE-4kB">
-                                        <rect key="frame" x="20" y="49" width="103" height="61"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="b6K-cE-4kB">
+                                        <rect key="frame" x="20" y="49" width="100.5" height="61"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Back">
                                                 <attributes>
@@ -208,8 +208,8 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCE-U9-Cct">
-                                        <rect key="frame" x="20" y="367" width="75.5" height="61"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="23" translatesAutoresizingMaskIntoConstraints="NO" id="SCE-U9-Cct">
+                                        <rect key="frame" x="20" y="367" width="89.5" height="61"/>
                                         <fontDescription key="fontDescription" name="LucidaGrande-Bold" family="Lucida Grande" pointSize="45"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -220,14 +220,14 @@
                                             <constraint firstAttribute="width" secondItem="vXc-lj-Ljz" secondAttribute="height" multiplier="48:62" id="JvX-dJ-B2i"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="342" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdV-sr-mkJ">
-                                        <rect key="frame" x="268.5" y="50.5" width="75.5" height="58"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="342" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="23" translatesAutoresizingMaskIntoConstraints="NO" id="UdV-sr-mkJ">
+                                        <rect key="frame" x="254.5" y="50.5" width="89.5" height="58"/>
                                         <fontDescription key="fontDescription" name="LucidaGrande-Bold" family="Lucida Grande" pointSize="45"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAS-XI-36k">
-                                        <rect key="frame" x="268.5" y="370" width="125.5" height="55"/>
+                                        <rect key="frame" x="254.5" y="370" width="139.5" height="55"/>
                                         <color key="backgroundColor" red="0.1803921568627451" green="0.71372549019607845" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="LucidaGrande-Bold" family="Lucida Grande" pointSize="30"/>
                                         <state key="normal" title="Buy">
@@ -252,7 +252,7 @@
                                         </constraints>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zombieHeadIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bDH-wR-KcH">
-                                        <rect key="frame" x="100.5" y="367" width="47" height="61"/>
+                                        <rect key="frame" x="114.5" y="367" width="47" height="61"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="bDH-wR-KcH" secondAttribute="height" multiplier="48:62" id="nnI-Cl-uae"/>
                                         </constraints>
@@ -442,10 +442,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PqB-3h-Uor" userLabel="buyLifes">
-                                <rect key="frame" x="56" y="517.5" width="131" height="137"/>
+                                <rect key="frame" x="56" y="517.5" width="131" height="131"/>
                                 <subviews>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnO-f1-Ir8">
-                                        <rect key="frame" x="28" y="79" width="75" height="48"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="jnO-f1-Ir8">
+                                        <rect key="frame" x="28" y="79" width="75" height="42"/>
                                         <fontDescription key="fontDescription" name="LucidaGrande-Bold" family="Lucida Grande" pointSize="40"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -479,10 +479,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNE-63-ECc" userLabel="viewAd">
-                                <rect key="frame" x="227" y="517.5" width="131" height="137"/>
+                                <rect key="frame" x="227" y="517.5" width="131" height="131"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie" translatesAutoresizingMaskIntoConstraints="NO" id="nXS-gc-EmJ">
-                                        <rect key="frame" x="22.5" y="25.5" width="86" height="86"/>
+                                        <rect key="frame" x="24.5" y="24" width="82" height="82.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="nXS-gc-EmJ" secondAttribute="height" id="odz-m9-1qQ"/>
                                         </constraints>
@@ -491,6 +491,7 @@
                                 <color key="backgroundColor" red="0.4431372549" green="0.55294117649999996" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="nXS-gc-EmJ" firstAttribute="centerY" secondItem="hNE-63-ECc" secondAttribute="centerY" id="Fah-ng-SG6"/>
+                                    <constraint firstAttribute="width" secondItem="hNE-63-ECc" secondAttribute="height" id="aVX-aa-COZ"/>
                                     <constraint firstItem="nXS-gc-EmJ" firstAttribute="centerX" secondItem="hNE-63-ECc" secondAttribute="centerX" id="tdZ-bR-Qcs"/>
                                     <constraint firstItem="nXS-gc-EmJ" firstAttribute="height" secondItem="hNE-63-ECc" secondAttribute="height" multiplier="0.627737" id="wWZ-td-zzK"/>
                                 </constraints>
