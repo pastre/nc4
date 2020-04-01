@@ -47,6 +47,8 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.backLabel.attributedText = NSAttributedString(string: "Back", attributes:
+        [.underlineStyle: NSUnderlineStyle.single.rawValue])
         
         self.buyButton.layer.cornerRadius = self.buyButton.frame.height / 2
         self.buyButton.addTarget(self, action: #selector(self.onBuy), for: .touchDown)
