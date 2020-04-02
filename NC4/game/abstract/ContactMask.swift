@@ -13,6 +13,7 @@ enum ContactMask: UInt32 {
     case enemy =  0b000010
     case coin =   0b000100
     case wall =   0b001000
+    case head =   0b010000
     
     case none = 0b00000000000000000000000000000000
 }

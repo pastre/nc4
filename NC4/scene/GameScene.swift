@@ -13,7 +13,9 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerNode: SKSpriteNode!
-    var scoreNode: SKLabelNode!
+    var headCountNode: SKLabelNode!
+    var zombieHeadIcon: SKSpriteNode!
+    var tailNode: SKSpriteNode!
 
     var vc: GameViewController?
     
@@ -31,7 +33,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastContactTimestamp: TimeInterval?
     
     var score: Int!
-    
+    var headCount: Int = 0 {
+        didSet {
+            if headCount == 0 {
+                print("zerou")
+            }
+        }
+    }
     
     var realPaused: Bool = false {
         didSet {
@@ -52,27 +60,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         self.changeFonts()
         
-        self.score = 0
         self.physicsWorld.contactDelegate = self
         
+        
+        self.playerNode = (self.childNode(withName: "player") as! SKSpriteNode)
+        self.tailNode = (self.childNode(withName: "tail") as! SKSpriteNode)
+        self.headCountNode = (self.childNode(withName: "score") as! SKLabelNode)
+        self.zombieHeadIcon = self.childNode(withName: "zombieHeadIcon") as! SKSpriteNode
+              
+        
+        playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
+        playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
+        playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
+
+        self.setSkin(to: ShopItemManager.instance.equippedItem.getSkin())
+        
+        
+        self.player = Player(playerNode, self)
         self.sickPeopleManager = SickPeopleManager(scene: self)
         self.coinSpawner = CoinSpawner(scene: self)
         self.themeManager = ThemeManager(self)
         self.enemySpawner = EnemySpawner(scene: self)
         
-        self.playerNode = (self.childNode(withName: "player") as! SKSpriteNode)
-        
-        self.scoreNode = (self.childNode(withName: "score") as! SKLabelNode)
-        
-        playerNode.physicsBody?.categoryBitMask = ContactMask.player.rawValue
-        playerNode.physicsBody?.collisionBitMask = ContactMask.wall.rawValue
-        playerNode.physicsBody?.contactTestBitMask = ContactMask.enemy.rawValue | ContactMask.coin.rawValue
-        playerNode.scale(to: .init(width: 40, height: 50))
-        self.player = Player(playerNode, self)
-        
         self.configureBg()
         
         self.themeManager.configureStartTheme()
+        
         AudioManager.shared.update()
     }
     
@@ -83,6 +96,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bgNode.zPosition = -100
         
         self.addChild(bgNode)
+    }
+    
+    func setSkin(to image: UIImage) {
+        
+        print("Setting skin " )
+        let texture = SKTexture(image: image)
+        let ratio = image.size.height / image.size.width
+        
+        texture.usesMipmaps = true
+        
+        self.playerNode.texture = texture
+        playerNode.scale(to: .init(width: 40, height: min(40 * ratio, 80)))
+        
+        self.tailNode.texture = texture
+        self.getCoinNode().texture = texture
+    }
+    
+    func postConfig() {
+        self.score = 0
+        self.headCount = 0
+        
+        self.setScoreLabel()
     }
     
     // MARK: - Scene overrides
@@ -125,6 +160,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if self.hasPickedCoin(nodeA) { return }
         if self.hasPickedCoin(nodeB) { return }
         
+        if self.hasPickedHead(nodeA) { return }
+        if self.hasPickedHead(nodeB) { return }
+        
         if nodeA.name == "player" {
             self.playerCollisionStarted(playerNode: nodeA, other: nodeB)
         } else if nodeB.name == "player" {
@@ -139,12 +177,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let nodeB = contact.bodyB.node else { return }
         guard nodeA.name == "player" || nodeB.name == "player" else { return }
         
+        guard nodeA.name == "enemy" || nodeB.name == "enemy" else { return }
+        
+        
         if nodeA.name == "player" {
             self.playerCollisionCompleted(playerNode: nodeA, other: nodeB)
         } else if nodeB.name == "player" {
             self.playerCollisionCompleted(playerNode: nodeB, other: nodeA)
         }
         
+    }
+    
+    
+    func hasPickedHead(_ node: SKNode) -> Bool {
+        guard node.name == "head", node.parent != nil else { return false}
+        
+        self.playerPickedHead()
+        
+        node.physicsBody = nil
+        
+        let duration: TimeInterval = 1
+        
+        let transformAction = SKAction.move(to: self.zombieHeadIcon.position, duration: duration)
+        let rotateAction = SKAction.rotate(byAngle: 2 * .pi, duration: duration)
+//        let repeatAction = SKAction.repeatForever(rotateAction)
+        let group = SKAction.group([rotateAction, transformAction])
+        let resultAction = SKAction.sequence([ group , SKAction.removeFromParent() ])
+        
+        node.run(resultAction)
+        
+        return true
     }
     
     func hasPickedCoin(_ node: SKNode) -> Bool {
@@ -172,9 +234,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: - Player helper function
     
+    func playerDidRevive() {
+        self.enemySpawner.forceDespawnEnemyGroup()
+        
+        while self.player.lifes != 10 {
+            self.player.onLifePicked(1)
+        }
+        
+        self.realPaused = false
+
+    }
+    
     func playerDidScore() {
         self.score += 1
-        self.scoreNode.text = "Kills: \(self.score!)"
+    }
+    
+    
+    func playerPickedHead() {
+        self.headCount += 1
+        self.headCountNode.text = String(format: "%03d", self.headCount)
     }
     
     func movePlayer(_ dx: CGFloat) {
@@ -228,7 +306,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func getBounds() -> CGRect {
         return CGRect(x: -self.size.width / 2, y: -self.size.height / 2, width: self.size.width / 2, height: self.size.height / 2)
     }
+    // MARK: - Getters
     
+    func getCoinNode() -> SKSpriteNode {
+        self.childNode(withName: "coin")!.childNode(withName: "texture") as! SKSpriteNode
+    }
     func getUpdateables() -> [Updateable] {
         return [
             self.player,
@@ -245,30 +327,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func configureScoreLabel() {
         defer { self.positionLabel() }
+        self.headCountNode.fontSize = 40
         if self.realPaused {
-            self.scoreNode.isHidden = true
+            self.headCountNode.isHidden = true
+            self.zombieHeadIcon.isHidden = true
             return
         }
 
-        self.scoreNode.isHidden = false
-        self.setScoreLabel()
+        self.headCountNode.isHidden = false
+        self.zombieHeadIcon.isHidden = false
     }
     
     func positionLabel() {
-        self.scoreNode.position = CGPoint(
-            x: self.getBounds().origin.x + (self.scoreNode.frame.width / 2) + 20,
-            y: self.getBounds().height - (self.scoreNode.frame.height) - 60)
+        let scoreX = self.getBounds().origin.x + (self.headCountNode.frame.width / 2) + 20
+        self.headCountNode.position = CGPoint(
+            x: scoreX,
+            y: self.getBounds().height - (self.headCountNode.frame.height) - 60)
+        self.headCountNode.color = UIColor(rgb: 0x002B5B)
+        
+        let icon = self.zombieHeadIcon!
+        
+        let ratio = icon.size.width / icon.size.height
+        let size = self.headCountNode.frame.height
+        icon.scale(to: CGSize(width: ratio * size, height: size))
+        
+        icon.position = CGPoint(x:
+            scoreX + headCountNode.frame.width / 2 + icon.size.width / 2 + 5,
+                                y: self.headCountNode.position.y + icon.size.height / 2 )
     }
     
     
     private func setHighscoreLabel() {
         let score = StorageFacade.instance.getHighScore()
-        self.scoreNode.text = "High score: \(score)"
+        self.headCountNode.text = "High score: \(score)"
     }
     
     private func setScoreLabel() {
-        self.scoreNode.text = "Kills: 0"
+        self.headCountNode.text = "000"
     }
+    
     
     func changeFonts() {
         visit { (node) -> () in
@@ -280,6 +377,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+    
+    
 }
 
 

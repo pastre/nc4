@@ -21,25 +21,30 @@ class Player: AbstractGameObject, Lifeable {
         self.tail = [Tail]()
         super.init(node, scene)
         
+        
         for _ in 1...self.lifes {
             self.increaseTail()
         }
         
         self.playerDefaultPosition = node.position
-        
         self.node.zPosition = ZPosition.player.rawValue
         
     }
     
+        
+    
     func onLifeTaken() {
         self.lifes -= 1
-        self.decreaseTail()
         self.scene.playerDidScore()
+        self.decreaseTail()
 
         DispatchQueue.global().async {
              AudioManager.shared.play(soundEffect: .infect)
         }
-        generator.impactOccurred()
+        
+        if !StorageFacade.instance.isVibrationDisabled() {
+            generator.impactOccurred()
+        }
     }
     
     func onLifePicked(_ amount: Int) {
@@ -81,7 +86,7 @@ class Player: AbstractGameObject, Lifeable {
         
         self.tail.append(tail)
         
-        node.position = CGPoint(x: self.tail.last?.node.position.x ?? self.node.position.x, y: self.node.position.y + CGFloat( -35 * self.tail.count))
+        node.position = CGPoint(x: self.tail.last?.node.position.x ?? self.node.position.x, y: self.node.position.y + CGFloat( -CGFloat(node.size.height) * CGFloat(self.tail.count)))
                 
         self.scene.addChild(node)
     }
@@ -99,7 +104,7 @@ class Player: AbstractGameObject, Lifeable {
     
     
     func getTailNode() -> SKSpriteNode {
-        let node = self.scene.childNode(withName: "tail")!.copy() as! SKSpriteNode
+        let node = self.scene.tailNode.copy() as! SKSpriteNode
         
         node.removeFromParent()
         node.name = "tail"

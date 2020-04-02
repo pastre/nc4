@@ -7,18 +7,44 @@
 //
 
 import Foundation
-
+import FirebaseCrashlytics
 
 
 class StorageFacade {
     
     static let instance = StorageFacade()
-    private init() {}
+    
+    private init() {
+        
+        // Fixes ads being initialized with false
+        if !UserDefaults.standard.bool(forKey: "hasFlipped") {
+            self.setAds(enabled: true)
+            UserDefaults.standard.set(true, forKey: "hasFlipped")
+        }
+    }
     
     enum StorageKeys: String {
         case highScore
         case audioEnabled
+        case vibrationEnabled
         case disclaimer
+        case adsEnabled
+        case revives
+        case shopItems
+        case equipedItem
+        case headCount
+    }
+    
+    func getHeadCount() -> Int { UserDefaults.standard.integer(forKey: StorageKeys.headCount.rawValue) }
+    func setHeadCount(to newValue: Int) { UserDefaults.standard.set(newValue, forKey: StorageKeys.headCount.rawValue) }
+    func addHead(amount: Int) {
+        let newCount = self.getHeadCount() + amount
+        self.setHeadCount(to: newCount)
+    }
+    func removeHead(amount: Int) {
+        
+        let newCount = self.getHeadCount() - amount
+        self.setHeadCount(to: newCount)
     }
     
     func getHighScore() -> Int {
@@ -47,7 +73,73 @@ class StorageFacade {
         return newVal > self.getHighScore()
     }
     
+    
     func isAudioDisabled() -> Bool { UserDefaults.standard.bool(forKey: StorageKeys.audioEnabled.rawValue) }
     func setAudioDisabled(to newValue: Bool) { UserDefaults.standard.set(newValue, forKey: StorageKeys.audioEnabled.rawValue) }
     
+    
+    func isVibrationDisabled() -> Bool { UserDefaults.standard.bool(forKey: StorageKeys.vibrationEnabled.rawValue) }
+    
+    func setVibrationDisabled(to newValue: Bool) { UserDefaults.standard.set(newValue, forKey: StorageKeys.vibrationEnabled.rawValue) }
+    
+    
+    func setAds(enabled: Bool) {
+        UserDefaults.standard.set(enabled, forKey: StorageKeys.adsEnabled.rawValue)
+    }
+    func canShowAds() -> Bool {
+        UserDefaults.standard.bool(forKey: StorageKeys.adsEnabled.rawValue)
+    }
+    
+    
+    func setReviveCount(to newValue: Int) {
+        UserDefaults.standard.set(newValue, forKey: StorageKeys.revives.rawValue)
+    }
+    
+    func getReviveCount() -> Int { UserDefaults.standard.integer(forKey: StorageKeys.revives.rawValue) }
+    
+    func addRevives(_ amount: Int) {
+        let newAmount = self.getReviveCount() + amount
+        self.setReviveCount(to: newAmount)
+    }
+    func onReviveUsed() {
+        let newAmount = self.getReviveCount() - 1
+        self.setReviveCount(to: newAmount)
+    }
+    
+    
+    func setShopItems(to newItems: [ShopItem]) {
+        if let serialized = try? JSONEncoder().encode(newItems) {
+            UserDefaults.standard.set(serialized, forKey: StorageKeys.shopItems.rawValue)
+        } else {
+            Crashlytics.crashlytics().log("Failed to serialize shop items!")
+        }
+    }
+    
+    func getShopItems() -> [ShopItem]? {
+        if let data = UserDefaults.standard.data(forKey: StorageKeys.shopItems.rawValue) {
+            
+            return try? JSONDecoder().decode([ShopItem].self, from: data)
+        }
+        
+        return nil
+    }
+    
+    func setEquippedItem(to newItem: ShopItem) {
+        if let serialized = try? JSONEncoder().encode(newItem) {
+            UserDefaults.standard.set(serialized, forKey: StorageKeys.equipedItem.rawValue)
+        } else {
+            
+            Crashlytics.crashlytics().log("Failed to serialize equipped item!")
+        }
+    }
+    
+    func getEquippedItem() -> ShopItem? {
+        
+        if let data = UserDefaults.standard.data(forKey: StorageKeys.equipedItem.rawValue) {
+            
+            return try? JSONDecoder().decode(ShopItem.self, from: data)
+        }
+        
+        return nil
+    }
 }

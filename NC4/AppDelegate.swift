@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+                
         // Loads particles
         EnemyHitParticleLoader.load()
         
@@ -48,9 +48,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = vc
         
+        // Loads IAP
+        StoreManager.instance.fire()
         
         // Loads gamecenter
         GameCenterFacade.instance.auth()
+        
+        
+        // Starts loading ads
+        AdManager.instance.start()
+
         
         return true
     }
